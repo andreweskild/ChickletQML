@@ -10,8 +10,8 @@
 class StylePlugin : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(BasePalette* palette READ palette)
-    Q_PROPERTY(DimensionsProvider* dimensions READ dimensions)
+    Q_PROPERTY(BasePalette* palette READ palette NOTIFY paletteChanged)
+    Q_PROPERTY(DimensionsProvider* dimensions READ dimensions NOTIFY dimensionsChanged)
     Q_DISABLE_COPY(StylePlugin)
 
 public:
@@ -24,6 +24,8 @@ public:
     DimensionsProvider* dimensions() const;
 
 signals:
+    void paletteChanged();
+    void dimensionsChanged();
 
 private:
     BasePalette* m_basePalette;

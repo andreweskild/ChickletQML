@@ -7,26 +7,26 @@
 class BasePalette : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QColor activeMain READ activeMain)
-    Q_PROPERTY(QColor activeHighlight READ activeHighlight)
-    Q_PROPERTY(QColor activeDark READ activeDark)
-    Q_PROPERTY(QColor activeDarkest READ activeDarkest)
-    Q_PROPERTY(QColor dangerMain READ dangerMain)
-    Q_PROPERTY(QColor dangerHighlight READ dangerHighlight)
-    Q_PROPERTY(QColor dangerDark READ dangerDark)
-    Q_PROPERTY(QColor dangerDarkest READ dangerDarkest)
-    Q_PROPERTY(QColor disabledMain READ disabledMain)
-    Q_PROPERTY(QColor disabledDark READ disabledDark)
-    Q_PROPERTY(QColor actionableMain READ actionableMain)
-    Q_PROPERTY(QColor actionableDark READ actionableDark)
-    Q_PROPERTY(QColor actionableDarkest READ actionableDarkest)
-    Q_PROPERTY(QColor structureBase READ structureBase)
-    Q_PROPERTY(QColor structureMidGround READ structureMidGround)
-    Q_PROPERTY(QColor structureTitlebar READ structureTitlebar)
-    Q_PROPERTY(QColor structureBorder READ structureBorder)
-    Q_PROPERTY(QColor textLight READ textLight)
-    Q_PROPERTY(QColor textDark READ textDark)
-    Q_PROPERTY(QColor shadow READ shadow)
+    Q_PROPERTY(QColor activeMain MEMBER m_activeMain NOTIFY activeMainChanged)
+    Q_PROPERTY(QColor activeHighlight MEMBER m_activeHighlight NOTIFY activeHighlightChanged)
+    Q_PROPERTY(QColor activeDark MEMBER m_activeDark NOTIFY activeDarkChanged)
+    Q_PROPERTY(QColor activeDarkest MEMBER m_activeDarkest NOTIFY activeDarkestChanged)
+    Q_PROPERTY(QColor dangerMain MEMBER m_dangerMain NOTIFY dangerMainChanged)
+    Q_PROPERTY(QColor dangerHighlight MEMBER m_dangerHighlight NOTIFY dangerHighlightChanged)
+    Q_PROPERTY(QColor dangerDark MEMBER m_dangerDark NOTIFY dangerDarkChanged)
+    Q_PROPERTY(QColor dangerDarkest MEMBER m_dangerDarkest NOTIFY dangerDarkestChanged)
+    Q_PROPERTY(QColor disabledMain MEMBER m_disabledMain NOTIFY disabledMainChanged)
+    Q_PROPERTY(QColor disabledDark MEMBER m_disabledDark NOTIFY disabledDarkChanged)
+    Q_PROPERTY(QColor actionableMain MEMBER m_actionableMain NOTIFY actionableMainChanged)
+    Q_PROPERTY(QColor actionableDark MEMBER m_actionableDark NOTIFY actionableDarkChanged)
+    Q_PROPERTY(QColor actionableDarkest MEMBER m_actionableDarkest NOTIFY actionableDarkestChanged)
+    Q_PROPERTY(QColor structureBase MEMBER m_structureBase NOTIFY structureBaseChanged)
+    Q_PROPERTY(QColor structureMidGround MEMBER m_structureMidGround NOTIFY structureMidGroundChanged)
+    Q_PROPERTY(QColor structureLowGround MEMBER m_structureLowGround NOTIFY structureLowGroundChanged)
+    Q_PROPERTY(QColor structureBorder MEMBER m_structureBorder NOTIFY structureBorderChanged)
+    Q_PROPERTY(QColor textLight MEMBER m_textLight NOTIFY textLightChanged)
+    Q_PROPERTY(QColor textDark MEMBER m_textDark NOTIFY textDarkChanged)
+    Q_PROPERTY(QColor shadow MEMBER m_shadow NOTIFY shadowChanged)
 
 public:
     enum ColorTheme {
@@ -39,26 +39,27 @@ public:
     ColorTheme currentColorTheme();
     void setCurrentColorTheme(ColorTheme p_newColorTheme);
 
-    QColor activeMain() const;
-    QColor activeHighlight() const;
-    QColor activeDark() const;
-    QColor activeDarkest() const;
-    QColor dangerMain() const;
-    QColor dangerHighlight() const;
-    QColor dangerDark() const;
-    QColor dangerDarkest() const;
-    QColor disabledMain() const;
-    QColor disabledDark() const;
-    QColor actionableMain() const;
-    QColor actionableDark() const;
-    QColor actionableDarkest() const;
-    QColor structureBase() const;
-    QColor structureMidGround() const;
-    QColor structureTitlebar() const;
-    QColor structureBorder() const;
-    QColor textLight() const;
-    QColor textDark() const;
-    QColor shadow() const;
+signals:
+    void activeMainChanged();
+    void activeHighlightChanged();
+    void activeDarkChanged();
+    void activeDarkestChanged();
+    void dangerMainChanged();
+    void dangerHighlightChanged();
+    void dangerDarkChanged();
+    void dangerDarkestChanged();
+    void disabledMainChanged();
+    void disabledDarkChanged();
+    void actionableMainChanged();
+    void actionableDarkChanged();
+    void actionableDarkestChanged();
+    void structureBaseChanged();
+    void structureMidGroundChanged();
+    void structureLowGroundChanged();
+    void structureBorderChanged();
+    void textLightChanged();
+    void textDarkChanged();
+    void shadowChanged();
 
 private:
     ColorTheme m_currentColorTheme;
@@ -86,7 +87,7 @@ private:
 
     QColor m_structureBase;
     QColor m_structureMidGround;
-    QColor m_structureTitlebar;
+    QColor m_structureLowGround;
     QColor m_structureBorder;
 
     QColor m_textLight;

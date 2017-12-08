@@ -25,7 +25,7 @@ Window {
             }
 
             TextField {
-                implicitWidth: window.width / columnFactor
+                placeholderText: "Enter Password"
             }
 
             Slider {
@@ -36,7 +36,6 @@ Window {
 
             ProgressBar {
                 value: slider2.value
-                implicitWidth: window.width / columnFactor
             }
 
             CheckBox {

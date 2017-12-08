@@ -2,15 +2,21 @@
 
 ActionableSurface::ActionableSurface(QQuickItem *parent) : QQuickPaintedItem(parent),
     m_mainColor(Qt::red),
-    m_secondaryColor(Qt::black),
-    m_mainActiveColor(Qt::red),
-    m_secondaryActiveColor(Qt::black),
-    m_activeBorderColor(Qt::yellow),
+    m_mainGradientColor(Qt::yellow),
+    m_secondaryGradientColor(Qt::yellow),
+    m_gradientBorderColor(Qt::yellow),
     m_radius(0),
+    m_gradientIntensity(0),
     m_border(new BorderGroup()),
-    m_hovered(false)
+    m_pressed(false)
 {
     setAcceptHoverEvents(true);
+    initAnimationEffects();
+    initGradientEffect();
+    connect(&m_hoverAnimation, SIGNAL(valueChanged(QVariant)), this, SLOT(receiveAnimValue(QVariant)));
+    connect(this, SIGNAL(widthChanged()), this, SLOT(updateGradientSize()));
+    connect(this, SIGNAL(isPressedChanged()), this, SLOT(handleMouseEvent()));
+
 }
 
 QColor ActionableSurface::mainColor() const
@@ -23,92 +29,225 @@ void ActionableSurface::setMainColor(const QColor p_mainColor)
     m_mainColor = p_mainColor;
 }
 
-QColor ActionableSurface::secondaryColor() const
+QColor ActionableSurface::gradientBorderColor() const
 {
-    return m_mainColor;
+    return m_gradientBorderColor;
 }
 
-void ActionableSurface::setSecondaryColor(const QColor p_secondaryColor)
+void ActionableSurface::setGradientBorderColor(const QColor p_gradientBorderColor)
 {
-    m_secondaryColor = p_secondaryColor;
+    m_gradientBorderColor = p_gradientBorderColor;
 }
 
-
-QColor ActionableSurface::mainActiveColor() const
+QColor ActionableSurface::mainGradientColor() const
 {
-    return m_mainActiveColor;
+    return m_mainGradientColor;
 }
 
-void ActionableSurface::setMainActiveColor(const QColor p_mainActiveColor)
+void ActionableSurface::setMainGradientColor(const QColor p_mainGradientColor)
 {
-    m_mainActiveColor = p_mainActiveColor;
-    update();
-}
-
-QColor ActionableSurface::secondaryActiveColor() const
-{
-    return m_mainActiveColor;
-}
-
-void ActionableSurface::setSecondaryActiveColor(const QColor p_secondaryActiveColor)
-{
-    m_secondaryActiveColor = p_secondaryActiveColor;
+    m_mainGradientColor = p_mainGradientColor;
+    m_surfaceGradient->setColorAt(0, m_mainGradientColor);
     update();
 }
 
 
-QColor ActionableSurface::activeBorderColor() const
+QColor ActionableSurface::secondaryGradientColor() const
 {
-    return m_activeBorderColor;
+    return m_mainGradientColor;
 }
 
-void ActionableSurface::setActiveBorderColor(const QColor p_activeBorderColor)
+void ActionableSurface::setSecondaryGradientColor(const QColor p_secondaryGradientColor)
 {
-    m_activeBorderColor = p_activeBorderColor;
+    m_secondaryGradientColor = p_secondaryGradientColor;
+    m_surfaceGradient->setColorAt(1, m_secondaryGradientColor);
+    update();
 }
 
-void ActionableSurface::initGradientEffect(QPointF p_center)
+QColor ActionableSurface::pressedColor() const
 {
-    m_surfaceGradient = new QRadialGradient(p_center, width() + width()/2);
-    m_surfaceGradient->setColorAt(0, m_mainActiveColor);
-    m_surfaceGradient->setColorAt(1, m_secondaryActiveColor);
+    return m_pressedColor;
+}
+
+void ActionableSurface::setPressedColor(const QColor p_pressedColor)
+{
+    m_pressedColor = p_pressedColor;
+    update();
+}
+
+QColor ActionableSurface::pressedBorderColor() const
+{
+    return m_pressedBorderColor;
+}
+
+void ActionableSurface::setPressedBorderColor(const QColor p_pressedBorderColor)
+{
+    m_pressedBorderColor = p_pressedBorderColor;
+    update();
+}
+
+bool ActionableSurface::isPressed() const
+{
+    return m_pressed;
+}
+
+void ActionableSurface::setIsPressed(const bool p_isPressed)
+{
+    m_pressed = p_isPressed;
+    emit isPressedChanged();
+}
+
+void ActionableSurface::initGradientEffect()
+{
+    m_surfaceGradient = new QRadialGradient(QPointF(0,0), width() + width()/2);
+    m_surfaceGradient->setColorAt(0, m_mainGradientColor);
+    m_surfaceGradient->setColorAt(1, m_secondaryGradientColor);
+}
+
+void ActionableSurface::updateGradientSize()
+{
+    m_surfaceGradient->setRadius(width() + width()/2);
+}
+
+
+void ActionableSurface::updateGradientPos(QPointF p_center)
+{
+    m_surfaceGradient->setCenter(p_center);
+    m_surfaceGradient->setFocalPoint(p_center);
+}
+
+void ActionableSurface::updateGradientColors(QColor p_main, QColor p_secondary)
+{
+    m_surfaceGradient->setColorAt(0, p_main);
+    m_surfaceGradient->setColorAt(1, p_secondary);
+}
+
+void ActionableSurface::initAnimationEffects()
+{
+    m_hoverAnimation.setEasingCurve(QEasingCurve::InOutSine);
+    m_hoverAnimation.setDuration(100);
+    m_hoverAnimation.setStartValue(0.0);
+    m_hoverAnimation.setEndValue(1.0);
 }
 
 void ActionableSurface::paint(QPainter *painter)
 {
     QQuickPaintedItem::setAntialiasing(true);
-    qreal borderClippingAdjustment = m_border->width() / 2;
-    if (opacity() > 0)
+    QRectF rect(x() + .5, y() + .5, width() - 1, height() - 1);
+
+    if(m_pressed)
     {
         painter->setPen(QPen(
-                        QBrush(m_activeBorderColor),
+                        QBrush(m_pressedBorderColor),
                         m_border->width())
                     );
-        painter->setBrush(*m_surfaceGradient);
-    }
 
-    QRectF rect(x() + .5, y() + .5, width() - 1, height() - 1);
+        painter->setBrush(QBrush(m_pressedColor));
+    }
+    else
+    {
+        painter->setPen(QPen(
+                        QBrush(m_border->color()),
+                        m_border->width())
+                    );
+
+        painter->setBrush(QBrush(m_mainColor));
+    }
 
     painter->drawRoundedRect(rect,
                          m_radius - 1, m_radius - 1);
+
+        painter->setOpacity(m_gradientIntensity);
+        painter->setPen(QPen(
+                        QBrush(m_gradientBorderColor),
+                        m_border->width())
+                    );
+
+        painter->setBrush(*m_surfaceGradient);
+
+        painter->drawRoundedRect(rect,
+                             m_radius - 1, m_radius - 1);
 }
 
 void ActionableSurface::hoverEnterEvent(QHoverEvent *event)
 {
-    initGradientEffect(event->pos());
-    m_hovered = true;
+    playAnimation();
     update();
 }
 
 void ActionableSurface::hoverLeaveEvent(QHoverEvent *event)
 {
-    m_hovered = false;
+    playReverseAnimation();
     update();
 }
 
 void ActionableSurface::hoverMoveEvent(QHoverEvent *event)
 {
-    m_surfaceGradient->setCenter(event->pos());
-    m_surfaceGradient->setFocalPoint(event->pos());
+    updateGradientPos(event->pos());
     update();
+}
+
+
+void ActionableSurface::handleMouseEvent()
+{
+    if(m_pressed)
+    {
+        mousePress();
+    }
+    else
+    {
+        mouseRelease();
+    }
+}
+
+void ActionableSurface::mousePress()
+{
+    qInfo() << "fuck";
+    playReverseAnimation();
+}
+
+void ActionableSurface::mouseRelease()
+{
+    playAnimation();
+}
+
+
+void ActionableSurface::receiveAnimValue(QVariant p_newValue)
+{
+    m_gradientIntensity = p_newValue.toFloat();
+    update();
+}
+
+void ActionableSurface::playAnimation()
+{
+    if(m_hoverAnimation.state() == BasicAnimator::Running)
+    {
+        qreal tempTime;
+        m_hoverAnimation.pause();
+        tempTime = m_hoverAnimation.currentTime();
+        m_hoverAnimation.setDirection(BasicAnimator::Forward);
+        m_hoverAnimation.setCurrentTime(tempTime);
+    }
+    else
+    {
+        m_hoverAnimation.setDirection(BasicAnimator::Forward);
+    }
+    m_hoverAnimation.start();
+}
+
+void ActionableSurface::playReverseAnimation()
+{
+    if(m_hoverAnimation.state() == BasicAnimator::Running)
+    {
+        qreal tempTime;
+        m_hoverAnimation.pause();
+        tempTime = m_hoverAnimation.currentTime();
+        m_hoverAnimation.setDirection(BasicAnimator::Backward);
+        m_hoverAnimation.setCurrentTime(tempTime);
+    }
+    else
+    {
+        m_hoverAnimation.setDirection(BasicAnimator::Backward);
+    }
+    m_hoverAnimation.start();
 }

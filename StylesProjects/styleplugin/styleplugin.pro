@@ -13,7 +13,9 @@ SOURCES += \
     basepalette.cpp \
     dimensionsprovider.cpp \
     actionablesurface.cpp \
-    bordergroup.cpp
+    bordergroup.cpp \
+    checkboxindicator.cpp \
+    basicanimator.cpp
 
 HEADERS += \
     styleplugin_plugin.h \
@@ -21,10 +23,18 @@ HEADERS += \
     basepalette.h \
     dimensionsprovider.h \
     actionablesurface.h \
-    bordergroup.h
+    bordergroup.h \
+    checkboxindicator.h \
+    basicanimator.h
 
 DISTFILES = qmldir \
-    Button.qml
+    Button.qml \
+    TextField.qml \
+    Slider.qml \
+    SliderHandle.qml \
+    ProgressBar.qml \
+    CheckBox.qml \
+    ActionableGeneric.qml
 
 !equals(_PRO_FILE_PWD_, $$OUT_PWD) {
     copy_qmldir.target = $$OUT_PWD/qmldir
@@ -41,3 +51,6 @@ unix {
     target.path = $$installPath
     INSTALLS += target qmldir
 }
+
+RESOURCES += \
+    qml.qrc
