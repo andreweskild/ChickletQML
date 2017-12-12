@@ -10,14 +10,13 @@ T.Button {
 
     property bool dangerous: false
 
-
     implicitWidth: StylePlugin.dimensions.actionableNormalWidth
     implicitHeight: StylePlugin.dimensions.actionableHeight
 
     contentItem: ActionableGeneric {
         id: buttonBackground
-        isActive: control.hovered
-        isDown: control.down
+        pressed: control.down
+        hovered: control.hovered
         dangerous: control.dangerous
 
         Text {

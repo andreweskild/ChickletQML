@@ -11,9 +11,10 @@ Item {
     implicitWidth: 24
     implicitHeight: 24
 
-    property bool isActive
-    property bool isDown
+    property bool pressed
     property bool dangerous
+    property bool hovered
+    property real radius: StylePlugin.dimensions.actionableRadius
 
     Item {
         id: visualElements
@@ -26,7 +27,7 @@ Item {
             x: 3
             height: gradientHighlight.height - 6
             width: gradientHighlight.width - 6
-            glowRadius: 10
+            glowRadius: 5
             spread: 0.2
             color: StylePlugin.palette.shadow
             cornerRadius: StylePlugin.dimensions.actionableRadius + glowRadius
@@ -35,24 +36,25 @@ Item {
 
         ActionableSurface {
             id: gradientHighlight
-            mainColor: StylePlugin.palette.actionableMain
-            mainGradientColor: root.dangerous ? StylePlugin.palette.dangerMain : StylePlugin.palette.activeMain
-            secondaryGradientColor: root.dangerous ? StylePlugin.palette.dangerDark : StylePlugin.palette.activeHighlight
-            gradientBorderColor: root.dangerous ? StylePlugin.palette.dangerDark : StylePlugin.palette.activeDark
+            color: StylePlugin.palette.actionableMain
+            gradient.mainColor: root.dangerous ? StylePlugin.palette.dangerMain : StylePlugin.palette.activeMain
+            gradient.secondaryColor: root.dangerous ? StylePlugin.palette.dangerDark : StylePlugin.palette.activeHighlight
+            gradient.border.color: root.dangerous ? StylePlugin.palette.dangerDark : StylePlugin.palette.activeDark
             pressedColor: root.dangerous ? StylePlugin.palette.dangerDark : StylePlugin.palette.activeDark
             pressedBorderColor: root.dangerous ? StylePlugin.palette.dangerDarkest : StylePlugin.palette.activeDarkest
             width: root.width
             height: root.height
             border.color: root.dangerous ? StylePlugin.palette.dangerDark : StylePlugin.palette.actionableDark
             border.width: StylePlugin.dimensions.borderWidth
-            radius: StylePlugin.dimensions.actionableRadius
-            isPressed: control.pressed
+            radius: root.radius
+            pressed: root.pressed
+            hovered: root.hovered
         }
     }
 
     states: [
         State {
-            name: "down"; when: root.isDown
+            name: "down"; when: root.pressed
             changes: [
                 PropertyChanges {
                     target: shadow
@@ -61,11 +63,6 @@ Item {
                 PropertyChanges {
                     target: root
                     y: 2
-                } ,
-                PropertyChanges {
-                    target: buttonBackground
-                    color: root.dangerous ? StylePlugin.palette.dangerDark : StylePlugin.palette.activeDark
-                    border.color: root.dangerous ? StylePlugin.palette.dangerDarkest : StylePlugin.palette.activeDarkest
                 }
 
             ]

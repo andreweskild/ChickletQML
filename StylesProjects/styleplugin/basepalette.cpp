@@ -56,7 +56,7 @@ void BasePalette::initThemeLight()
     m_textLight = QColor(250, 250, 250);
     m_textDark = QColor(20, 20, 20);
 
-    m_shadow = QColor(0, 0, 0, 30);
+    m_shadow = QColor(0, 0, 0, 50);
 }
 
 void BasePalette::initThemeDark()

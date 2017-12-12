@@ -68,7 +68,7 @@ T.TextField {
             x: 3
             height: inputBG.height - 6
             width: inputBG.width - 6
-            glowRadius: 10
+            glowRadius: 5
             spread: 0.2
             color: StylePlugin.palette.shadow
             cornerRadius: StylePlugin.dimensions.actionableRadius + glowRadius

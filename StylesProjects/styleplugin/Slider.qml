@@ -13,10 +13,6 @@ T.Slider {
         id: handle
         x: control.visualPosition * (control.availableWidth - width)
         height: control.height
-        value: control.value
-        handleHasFocus: control.visualFocus
-        handlePressed: control.pressed
-        handleHovered: control.hovered
     }
 
     background: Rectangle {

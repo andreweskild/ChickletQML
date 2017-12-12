@@ -1,9 +1,8 @@
 import QtQuick 2.9
 import QtQuick.Templates 2.2 as T
-import QtGraphicalEffects 1.0
 import styleplugin 1.0
 
-T.CheckBox {
+T.RadioButton {
     id: control
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
@@ -12,29 +11,38 @@ T.CheckBox {
 
     spacing: 16
 
-
     indicator: ActionableGeneric {
-        id: checkBoxBackground
-        implicitWidth: control.height
+        id: radioBackground
         implicitHeight: control.height
+        implicitWidth: control.height
         pressed: control.pressed
         hovered: control.hovered
+        radius: height * .5
 
 
-        CheckBoxIndicator {
-            id: checkIndicator
-            anchors.fill: parent
-            lineWidth: 2
-            color: StylePlugin.palette.actionableDarkest
-            opacity: 0
+        Rectangle {
+            id: toggleIndicator
+            anchors.centerIn: parent
+            width: control.height * .5
+            height: control.height * .5
+            radius: height * .5
+            color: StylePlugin.palette.actionableDark
+            opacity: control.checked ? 1 : 0
+            border.width: 1
+            border.color: StylePlugin.palette.actionableMain
+
 
             states: [
                 State {
                     name: "hovered"; extend: "checked"; when: control.hovered && control.checked
                     changes: [
                         PropertyChanges {
-                            target: checkIndicator
+                            target: toggleIndicator
                             color: StylePlugin.palette.textLight
+                        },
+                        PropertyChanges {
+                            target: toggleIndicator
+                            border.color: StylePlugin.palette.activeDark
                         }
                     ]
                 },
@@ -42,7 +50,7 @@ T.CheckBox {
                     name: "checked"; when: control.checked
                     changes: [
                         PropertyChanges {
-                            target: checkIndicator
+                            target: toggleIndicator
                             opacity: 1
                         }
                     ]
@@ -58,14 +66,12 @@ T.CheckBox {
                         easing.type: Easing.InOutSine
                     },
 
-                    ColorAnimation {
-                        duration: 100
-                        easing.type: Easing.InOutSine
-                    }
+                    PropertyAction {
+                        target: toggleIndicator; property: "color" }
                 ]
             }
-
         }
+
     }
 
     contentItem: Text {

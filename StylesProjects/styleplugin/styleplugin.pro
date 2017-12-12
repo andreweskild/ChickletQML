@@ -15,7 +15,8 @@ SOURCES += \
     actionablesurface.cpp \
     bordergroup.cpp \
     checkboxindicator.cpp \
-    basicanimator.cpp
+    basicanimator.cpp \
+    gradientgroup.cpp
 
 HEADERS += \
     styleplugin_plugin.h \
@@ -25,7 +26,8 @@ HEADERS += \
     actionablesurface.h \
     bordergroup.h \
     checkboxindicator.h \
-    basicanimator.h
+    basicanimator.h \
+    gradientgroup.h
 
 DISTFILES = qmldir \
     Button.qml \
@@ -34,7 +36,8 @@ DISTFILES = qmldir \
     SliderHandle.qml \
     ProgressBar.qml \
     CheckBox.qml \
-    ActionableGeneric.qml
+    ActionableGeneric.qml \
+    RadioButton.qml
 
 !equals(_PRO_FILE_PWD_, $$OUT_PWD) {
     copy_qmldir.target = $$OUT_PWD/qmldir
