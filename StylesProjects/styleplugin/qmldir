@@ -1,2 +1,4 @@
 module styleplugin
 plugin styleplugin
+SliderHandle 1.0 SliderHandle.qml
+ActionableGeneric 1.0 ActionableGeneric.qml

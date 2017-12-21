@@ -13,8 +13,6 @@ Item {
     ActionableGeneric {
         width: root.width
         height: root.height
-        pressed: control.pressed
-        hovered: control.hovered
     }
 
 }

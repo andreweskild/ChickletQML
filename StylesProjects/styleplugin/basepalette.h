@@ -7,25 +7,20 @@
 class BasePalette : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QColor activeMain MEMBER m_activeMain NOTIFY activeMainChanged)
-    Q_PROPERTY(QColor activeHighlight MEMBER m_activeHighlight NOTIFY activeHighlightChanged)
+    Q_PROPERTY(QColor activeLight MEMBER m_activeLight NOTIFY activeLightChanged)
+    Q_PROPERTY(QColor activeNormal MEMBER m_activeNormal NOTIFY activeNormalChanged)
     Q_PROPERTY(QColor activeDark MEMBER m_activeDark NOTIFY activeDarkChanged)
     Q_PROPERTY(QColor activeDarkest MEMBER m_activeDarkest NOTIFY activeDarkestChanged)
-    Q_PROPERTY(QColor dangerMain MEMBER m_dangerMain NOTIFY dangerMainChanged)
-    Q_PROPERTY(QColor dangerHighlight MEMBER m_dangerHighlight NOTIFY dangerHighlightChanged)
-    Q_PROPERTY(QColor dangerDark MEMBER m_dangerDark NOTIFY dangerDarkChanged)
-    Q_PROPERTY(QColor dangerDarkest MEMBER m_dangerDarkest NOTIFY dangerDarkestChanged)
-    Q_PROPERTY(QColor disabledMain MEMBER m_disabledMain NOTIFY disabledMainChanged)
-    Q_PROPERTY(QColor disabledDark MEMBER m_disabledDark NOTIFY disabledDarkChanged)
-    Q_PROPERTY(QColor actionableMain MEMBER m_actionableMain NOTIFY actionableMainChanged)
-    Q_PROPERTY(QColor actionableDark MEMBER m_actionableDark NOTIFY actionableDarkChanged)
-    Q_PROPERTY(QColor actionableDarkest MEMBER m_actionableDarkest NOTIFY actionableDarkestChanged)
-    Q_PROPERTY(QColor structureBase MEMBER m_structureBase NOTIFY structureBaseChanged)
-    Q_PROPERTY(QColor structureMidGround MEMBER m_structureMidGround NOTIFY structureMidGroundChanged)
-    Q_PROPERTY(QColor structureLowGround MEMBER m_structureLowGround NOTIFY structureLowGroundChanged)
-    Q_PROPERTY(QColor structureBorder MEMBER m_structureBorder NOTIFY structureBorderChanged)
-    Q_PROPERTY(QColor textLight MEMBER m_textLight NOTIFY textLightChanged)
-    Q_PROPERTY(QColor textDark MEMBER m_textDark NOTIFY textDarkChanged)
+    Q_PROPERTY(QColor cautionLight MEMBER m_cautionLight NOTIFY cautionLightChanged)
+    Q_PROPERTY(QColor cautionNormal MEMBER m_cautionNormal NOTIFY cautionNormalChanged)
+    Q_PROPERTY(QColor cautionDark MEMBER m_cautionDark NOTIFY cautionDarkChanged)
+    Q_PROPERTY(QColor cautionDarkest MEMBER m_cautionDarkest NOTIFY cautionDarkestChanged)
+    Q_PROPERTY(QColor greyWhite MEMBER m_greyWhite NOTIFY greyWhiteChanged)
+    Q_PROPERTY(QColor greyLight MEMBER m_greyLight NOTIFY greyLightChanged)
+    Q_PROPERTY(QColor greyMedium MEMBER m_greyMedium NOTIFY greyMediumChanged)
+    Q_PROPERTY(QColor greyDark MEMBER m_greyDark NOTIFY greyDarkChanged)
+    Q_PROPERTY(QColor greyDarkest MEMBER m_greyDarkest NOTIFY greyDarkestChanged)
+    Q_PROPERTY(QColor greyBlack MEMBER m_greyBlack NOTIFY greyBlackChanged)
     Q_PROPERTY(QColor shadow MEMBER m_shadow NOTIFY shadowChanged)
 
 public:
@@ -40,25 +35,20 @@ public:
     void setCurrentColorTheme(ColorTheme p_newColorTheme);
 
 signals:
-    void activeMainChanged();
-    void activeHighlightChanged();
+    void activeLightChanged();
+    void activeNormalChanged();
     void activeDarkChanged();
     void activeDarkestChanged();
-    void dangerMainChanged();
-    void dangerHighlightChanged();
-    void dangerDarkChanged();
-    void dangerDarkestChanged();
-    void disabledMainChanged();
-    void disabledDarkChanged();
-    void actionableMainChanged();
-    void actionableDarkChanged();
-    void actionableDarkestChanged();
-    void structureBaseChanged();
-    void structureMidGroundChanged();
-    void structureLowGroundChanged();
-    void structureBorderChanged();
-    void textLightChanged();
-    void textDarkChanged();
+    void cautionLightChanged();
+    void cautionNormalChanged();
+    void cautionDarkChanged();
+    void cautionDarkestChanged();
+    void greyWhiteChanged();
+    void greyLightChanged();
+    void greyMediumChanged();
+    void greyDarkChanged();
+    void greyDarkestChanged();
+    void greyBlackChanged();
     void shadowChanged();
 
 private:
@@ -68,30 +58,22 @@ private:
     void initThemeDark();
     void initThemeLight();
 
-    QColor m_activeMain;
-    QColor m_activeHighlight;
+    QColor m_activeLight;
+    QColor m_activeNormal;
     QColor m_activeDark;
     QColor m_activeDarkest;
 
-    QColor m_dangerMain;
-    QColor m_dangerHighlight;
-    QColor m_dangerDark;
-    QColor m_dangerDarkest;
+    QColor m_cautionLight;
+    QColor m_cautionNormal;
+    QColor m_cautionDark;
+    QColor m_cautionDarkest;
 
-    QColor m_disabledMain;
-    QColor m_disabledDark;
-
-    QColor m_actionableMain;
-    QColor m_actionableDark;
-    QColor m_actionableDarkest;
-
-    QColor m_structureBase;
-    QColor m_structureMidGround;
-    QColor m_structureLowGround;
-    QColor m_structureBorder;
-
-    QColor m_textLight;
-    QColor m_textDark;
+    QColor m_greyWhite;
+    QColor m_greyLight;
+    QColor m_greyMedium;
+    QColor m_greyDark;
+    QColor m_greyDarkest;
+    QColor m_greyBlack;
 
     QColor m_shadow;
 };

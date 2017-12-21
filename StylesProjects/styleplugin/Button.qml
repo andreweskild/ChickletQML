@@ -13,37 +13,37 @@ T.Button {
     implicitWidth: StylePlugin.dimensions.actionableNormalWidth
     implicitHeight: StylePlugin.dimensions.actionableHeight
 
-    contentItem: ActionableGeneric {
-        id: buttonBackground
-        pressed: control.down
-        hovered: control.hovered
-        dangerous: control.dangerous
 
-        Text {
-            id: buttonText
-            anchors.centerIn: parent
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            color: control.dangerous ? StylePlugin.palette.textLight : StylePlugin.palette.textDark
-            text: control.text
-            font: control.font
 
-            states: State {
-                name: "active"; when: control.hovered
-                PropertyChanges {
-                    target: buttonText
-                    color: StylePlugin.palette.textLight
+        contentItem: ActionableGeneric {
+                height: control.height
+                width: control.width
+
+                Text {
+                    id: buttonText
+                    anchors.centerIn: parent
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    color: control.dangerous ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
+                    text: control.text
+                    font: control.font
+
+                    states: State {
+                        name: "active"; when: control.hovered
+                        PropertyChanges {
+                            target: buttonText
+                            color: StylePlugin.palette.greyWhite
+                        }
+                    }
+
+                    transitions: Transition {
+
+                        ColorAnimation {
+                            duration: 100
+                            easing.type: Easing.OutSine
+                        }
+                    }
+
                 }
             }
-
-            transitions: Transition {
-
-                ColorAnimation {
-                    duration: 200
-                    easing.type: Easing.InOutSine
-                }
-            }
-
-        }
-    }
 }

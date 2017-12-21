@@ -11,13 +11,19 @@ T.RadioButton {
 
     spacing: 16
 
-    indicator: ActionableGeneric {
+    indicator:
+//        Rectangle {
+//        height: control.height
+//        width: control.height
+//        border.color: StylePlugin.palette.greyBlack
+//        border.width: 1
+//        radius: height * .5
+//    }
+
+        ActionableGeneric {
         id: radioBackground
         implicitHeight: control.height
         implicitWidth: control.height
-        pressed: control.pressed
-        hovered: control.hovered
-        radius: height * .5
 
 
         Rectangle {
@@ -26,10 +32,10 @@ T.RadioButton {
             width: control.height * .5
             height: control.height * .5
             radius: height * .5
-            color: StylePlugin.palette.actionableDark
+            color: StylePlugin.palette.greyDarkest
             opacity: control.checked ? 1 : 0
             border.width: 1
-            border.color: StylePlugin.palette.actionableMain
+            border.color: StylePlugin.palette.greyBlack
 
 
             states: [
@@ -38,7 +44,7 @@ T.RadioButton {
                     changes: [
                         PropertyChanges {
                             target: toggleIndicator
-                            color: StylePlugin.palette.textLight
+                            color: StylePlugin.palette.greyWhite
                         },
                         PropertyChanges {
                             target: toggleIndicator
@@ -80,7 +86,7 @@ T.RadioButton {
 
         text: control.text
         font: control.font
-        color: StylePlugin.palette.textDark
+        color: StylePlugin.palette.greyBlack
         elide: Text.ElideRight
         visible: control.text
         horizontalAlignment: Text.AlignLeft

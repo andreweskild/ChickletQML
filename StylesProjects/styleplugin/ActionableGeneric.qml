@@ -11,10 +11,7 @@ Item {
     implicitWidth: 24
     implicitHeight: 24
 
-    property bool pressed
-    property bool dangerous
-    property bool hovered
-    property real radius: StylePlugin.dimensions.actionableRadius
+    readonly property var control: parent
 
     Item {
         id: visualElements
@@ -34,27 +31,19 @@ Item {
         }
 
 
-        ActionableSurface {
+        InteractiveGradient {
             id: gradientHighlight
-            color: StylePlugin.palette.actionableMain
-            gradient.mainColor: root.dangerous ? StylePlugin.palette.dangerMain : StylePlugin.palette.activeMain
-            gradient.secondaryColor: root.dangerous ? StylePlugin.palette.dangerDark : StylePlugin.palette.activeHighlight
-            gradient.border.color: root.dangerous ? StylePlugin.palette.dangerDark : StylePlugin.palette.activeDark
-            pressedColor: root.dangerous ? StylePlugin.palette.dangerDark : StylePlugin.palette.activeDark
-            pressedBorderColor: root.dangerous ? StylePlugin.palette.dangerDarkest : StylePlugin.palette.activeDarkest
-            width: root.width
-            height: root.height
-            border.color: root.dangerous ? StylePlugin.palette.dangerDark : StylePlugin.palette.actionableDark
-            border.width: StylePlugin.dimensions.borderWidth
-            radius: root.radius
-            pressed: root.pressed
-            hovered: root.hovered
+            anchors.fill: parent
+            primaryColor: StylePlugin.palette.activeNormal
+            secondaryColor: StylePlugin.palette.activeLight
+            border.color: StylePlugin.palette.activeDark
+            border.width: 1
         }
     }
 
     states: [
         State {
-            name: "down"; when: root.pressed
+            name: "down"; when: control.pressed;
             changes: [
                 PropertyChanges {
                     target: shadow
@@ -63,7 +52,39 @@ Item {
                 PropertyChanges {
                     target: root
                     y: 2
+                },
+                PropertyChanges {
+                    target: gradientHighlight
+                    primaryColor: StylePlugin.palette.activeDark
+                } ,
+                PropertyChanges {
+                    target: gradientHighlight
+                    secondaryColor: StylePlugin.palette.activeNormal
+                } ,
+                PropertyChanges {
+                    target: gradientHighlight
+                    border.color: StylePlugin.palette.activeDarkest
                 }
+
+
+            ]
+        },
+        State {
+            name: "hovered"; when: !control.hovered;
+            changes: [
+                PropertyChanges {
+                    target: gradientHighlight
+                    primaryColor: StylePlugin.palette.greyWhite
+                } ,
+                PropertyChanges {
+                    target: gradientHighlight
+                    secondaryColor: StylePlugin.palette.greyWhite
+                },
+                PropertyChanges {
+                    target: gradientHighlight
+                    border.color: StylePlugin.palette.greyBlack
+                }
+
 
             ]
         }
@@ -71,7 +92,7 @@ Item {
 
     transitions: [
         Transition {
-            to: "down"
+            reversible: true
             animations: [
                 NumberAnimation {
                     duration: 100
@@ -79,23 +100,14 @@ Item {
                     easing.type: Easing.OutSine
                 },
                 NumberAnimation {
-                    duration: 100
+                    duration: 50
                     properties: "y";
                     easing.type: Easing.OutSine
+                },
+                ColorAnimation {
+                    duration: 100
+                    easing.type: Easing.OutSine
                 }
-            ]
-        },
-        Transition {
-            animations: [
-                    NumberAnimation {
-                        duration: 100
-                        properties: "opacity";
-                        easing.type: Easing.OutSine
-                    },
-                    ColorAnimation {
-                        duration: 50
-                        easing.type: Easing.InOutSine
-                    }
             ]
         }
     ]

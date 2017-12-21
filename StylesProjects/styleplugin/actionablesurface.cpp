@@ -7,7 +7,9 @@ ActionableSurface::ActionableSurface(QQuickItem *parent) : QQuickPaintedItem(par
     m_pressed(false),
     m_drawPressed(false)
 {
+    QQuickPaintedItem::setAntialiasing(true);
     setAcceptHoverEvents(true);
+    setMipmap(true);
     m_gradient = new GradientGroup();
 }
 
@@ -99,8 +101,7 @@ void ActionableSurface::initAnimationEffects()
 
 void ActionableSurface::paint(QPainter *painter)
 {
-    QQuickPaintedItem::setAntialiasing(true);
-    QRectF rect(x() + .5, y() + .5, width() - 1, height() - 1);
+    QRectF rect(x() + 1, y() + 1, width() - 2, height() - 2);
 
     if(m_drawPressed)
     {
@@ -121,7 +122,7 @@ void ActionableSurface::paint(QPainter *painter)
         painter->setBrush(QBrush(m_color));
     }
 
-    painter->drawRoundedRect(rect,
+    painter->drawRoundedRect(rect.adjusted(0.5, 0.5, -0.5, -0.5),
                          m_radius - 1, m_radius - 1);
 
 
@@ -133,7 +134,7 @@ void ActionableSurface::paint(QPainter *painter)
 
     painter->setBrush(*(m_gradient->gradient()));
 
-    painter->drawRoundedRect(rect,
+    painter->drawRoundedRect(rect.adjusted(0.5, 0.5, -0.5, -0.5),
                          m_radius - 1, m_radius - 1);
 }
 

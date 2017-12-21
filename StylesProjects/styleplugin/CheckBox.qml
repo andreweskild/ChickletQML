@@ -17,15 +17,13 @@ T.CheckBox {
         id: checkBoxBackground
         implicitWidth: control.height
         implicitHeight: control.height
-        pressed: control.pressed
-        hovered: control.hovered
 
 
         CheckBoxIndicator {
             id: checkIndicator
             anchors.fill: parent
             lineWidth: 2
-            color: StylePlugin.palette.actionableDarkest
+            color: StylePlugin.palette.greyBlack
             opacity: 0
 
             states: [
@@ -34,7 +32,7 @@ T.CheckBox {
                     changes: [
                         PropertyChanges {
                             target: checkIndicator
-                            color: StylePlugin.palette.textLight
+                            color: StylePlugin.palette.greyWhite
                         }
                     ]
                 },
@@ -74,7 +72,7 @@ T.CheckBox {
 
         text: control.text
         font: control.font
-        color: StylePlugin.palette.textDark
+        color: StylePlugin.palette.greyBlack
         elide: Text.ElideRight
         visible: control.text
         horizontalAlignment: Text.AlignLeft

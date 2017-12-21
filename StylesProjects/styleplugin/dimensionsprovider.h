@@ -42,7 +42,7 @@ private:
     qreal m_PROGRESS_IND_WIDTH = 24;
     qreal m_CHECKABLE_HEIGHTWIDTH = 16;
     qreal m_SLIDER_HANDLE_WIDTH = 32;
-    qreal m_PROGRESS_BAR_WIDTH = 4;
+    qreal m_PROGRESS_BAR_WIDTH = 6;
     int m_BORDER_WIDTH = 1;
 };
 

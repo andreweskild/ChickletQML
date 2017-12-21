@@ -54,8 +54,8 @@ T.TextField {
     leftPadding: 8
     rightPadding: 8
 
-    selectionColor: StylePlugin.palette.activeMain
-    selectedTextColor: StylePlugin.palette.textLight
+    selectionColor: StylePlugin.palette.activeNormal
+    selectedTextColor: StylePlugin.palette.greyWhite
     verticalAlignment: TextInput.AlignVCenter
 
 
@@ -79,8 +79,8 @@ T.TextField {
             id: inputBG
             height: control.height
             width: control.width
-            color: StylePlugin.palette.actionableMain
-            border.color: StylePlugin.palette.actionableDark
+            color: StylePlugin.palette.greyLight
+            border.color: StylePlugin.palette.greyBlack
             border.width: StylePlugin.dimensions.borderWidth
             radius: StylePlugin.dimensions.actionableRadius
 
@@ -93,7 +93,7 @@ T.TextField {
                 height: control.height - (control.topPadding + control.bottomPadding)
                 text: control.placeholderText
                 font: control.font
-                color: StylePlugin.palette.actionableDark
+                color: StylePlugin.palette.greyDarkest
                 verticalAlignment: control.verticalAlignment
                 elide: Text.ElideRight
                 visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)

@@ -16,7 +16,8 @@ SOURCES += \
     bordergroup.cpp \
     checkboxindicator.cpp \
     basicanimator.cpp \
-    gradientgroup.cpp
+    gradientgroup.cpp \
+    interactivegradientitem.cpp
 
 HEADERS += \
     styleplugin_plugin.h \
@@ -27,7 +28,8 @@ HEADERS += \
     bordergroup.h \
     checkboxindicator.h \
     basicanimator.h \
-    gradientgroup.h
+    gradientgroup.h \
+    interactivegradientitem.h
 
 DISTFILES = qmldir \
     Button.qml \
@@ -37,7 +39,8 @@ DISTFILES = qmldir \
     ProgressBar.qml \
     CheckBox.qml \
     ActionableGeneric.qml \
-    RadioButton.qml
+    RadioButton.qml \
+    ApplicationWindow.qml
 
 !equals(_PRO_FILE_PWD_, $$OUT_PWD) {
     copy_qmldir.target = $$OUT_PWD/qmldir
@@ -57,3 +60,5 @@ unix {
 
 RESOURCES += \
     qml.qrc
+
+include($$_PRO_FILE_PWD_/libqnanopainter/include.pri)

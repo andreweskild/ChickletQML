@@ -12,8 +12,10 @@ T.ProgressBar {
     background: Rectangle {
         width: control.width
         height: control.height
-        color: StylePlugin.palette.structureLowGround
+        color: StylePlugin.palette.greyDark
         radius: height / 2
+        border.width: StylePlugin.dimensions.borderWidth
+        border.color: StylePlugin.palette.greyBlack
     }
 
 
@@ -25,7 +27,9 @@ T.ProgressBar {
             width: control.visualPosition * parent.width
             height: parent.height
             radius: height / 2
-            color: StylePlugin.palette.actionableDark
+            color: StylePlugin.palette.greyDarkest
+            border.width: StylePlugin.dimensions.borderWidth
+            border.color: StylePlugin.palette.greyBlack
         }
     }
 }

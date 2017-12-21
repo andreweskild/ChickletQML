@@ -9,25 +9,30 @@ T.Slider {
     implicitHeight: StylePlugin.dimensions.actionableHeight
 
 
-    handle: SliderHandle {
+    handle: ActionableGeneric {
         id: handle
         x: control.visualPosition * (control.availableWidth - width)
         height: control.height
+        width: StylePlugin.dimensions.sliderHandleWidth
     }
 
     background: Rectangle {
         anchors.centerIn: control
         width: control.width
         height: StylePlugin.dimensions.progressBarWidth
-        color: StylePlugin.palette.structureLowGround
+        color: StylePlugin.palette.greyDark
         radius: height / 2
+        border.width: StylePlugin.dimensions.borderWidth
+        border.color: StylePlugin.palette.greyBlack
 
         Rectangle {
-            width: handle.x + 2
+            width: handle.x + handle.width
             height: parent.height
             radius: parent.radius
 
-            color: StylePlugin.palette.actionableDark
+            color: StylePlugin.palette.greyDarkest
+            border.width: StylePlugin.dimensions.borderWidth
+            border.color: StylePlugin.palette.greyBlack
         }
     }
 }

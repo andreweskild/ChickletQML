@@ -31,60 +31,26 @@ void BasePalette::updateColors()
 
 void BasePalette::initThemeLight()
 {
-    m_activeMain = QColor(60, 204, 147);
-    m_activeHighlight = QColor(133, 223, 172);
-    m_activeDark = QColor(51, 152, 112);
-    m_activeDarkest = QColor(20, 82, 57);
+    m_activeLight = QColor::fromRgb(133, 223, 172);
+    m_activeNormal = QColor::fromRgb(60, 204, 147);
+    m_activeDark = QColor::fromRgb(45, 161, 114);
+    m_activeDarkest = QColor::fromRgb(20, 82, 57);
 
-    m_dangerMain = QColor(255, 51, 127);
-    m_dangerHighlight = QColor(255, 103, 160);
-    m_dangerDark = QColor(192, 40, 136);
-    m_dangerDarkest = QColor(148, 38, 124);
+    m_cautionLight = QColor::fromRgb(255, 103, 160);
+    m_cautionNormal = QColor::fromRgb(255, 51, 127);
+    m_cautionDark = QColor::fromRgb(191, 40, 136);
+    m_cautionDarkest = QColor::fromRgb(148, 38, 124);
 
-    m_disabledMain = QColor(204, 204, 204);
-    m_disabledDark = QColor(153, 153, 153);
-
-    m_actionableMain = QColor(250, 250, 250);
-    m_actionableDark = QColor(103, 103, 103);
-    m_actionableDarkest = QColor(63, 63, 63);
-
-    m_structureBase = QColor(230, 230, 230);
-    m_structureMidGround = QColor(240, 240, 240);
-    m_structureLowGround = QColor(204, 204, 204);
-    m_structureBorder = QColor(158, 158, 158);
-
-    m_textLight = QColor(250, 250, 250);
-    m_textDark = QColor(20, 20, 20);
+    m_greyWhite = Qt::white;
+    m_greyLight = QColor::fromRgb(240, 238, 241);
+    m_greyMedium = QColor::fromRgb(229, 227, 232);
+    m_greyDark = QColor::fromRgb(204, 200, 208);
+    m_greyDarkest = QColor::fromRgb(153, 145, 161);
+    m_greyBlack = QColor::fromRgb(51, 47, 55);
 
     m_shadow = QColor(0, 0, 0, 50);
 }
 
 void BasePalette::initThemeDark()
 {
-    m_activeMain = QColor(133, 223, 172);
-    m_activeHighlight = QColor(133, 223, 172);
-    m_activeDark = QColor(51, 152, 112);
-    m_activeDarkest = QColor(20, 82, 57);
-
-    m_dangerMain = QColor(255, 51, 127);
-    m_dangerHighlight = QColor(133, 223, 172);
-    m_dangerDark = QColor(192, 40, 136);
-    m_dangerDarkest = QColor(148, 38, 124);
-
-    m_disabledMain = QColor(204, 204, 204);
-    m_disabledDark = QColor(153, 153, 153);
-
-    m_actionableMain = QColor(250, 250, 250);
-    m_actionableDark = QColor(103, 103, 103);
-    m_actionableDarkest = QColor(63, 63, 63);
-
-    m_structureBase = QColor(230, 230, 230);
-    m_structureMidGround = QColor(240, 240, 240);
-    m_structureLowGround = QColor(204, 204, 204);
-    m_structureBorder = QColor(158, 158, 158);
-
-    m_textLight = QColor(250, 250, 250);
-    m_textDark = QColor(20, 20, 20);
-
-    m_shadow = QColor(0, 0, 0, 70);
 }
