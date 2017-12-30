@@ -9,30 +9,52 @@ T.Slider {
     implicitHeight: StylePlugin.dimensions.actionableHeight
 
 
-    handle: ActionableGeneric {
+    handle: Item {
         id: handle
         x: control.visualPosition * (control.availableWidth - width)
         height: control.height
         width: StylePlugin.dimensions.sliderHandleWidth
+        y: control.pressed ? 2 : 0
+
+        Behavior on y {
+            NumberAnimation {
+                duration: 100
+                easing {
+                    type: Easing.OutSine
+                }
+            }
+        }
+
+        ShadowItem {
+            anchors.fill: parent
+            hidden: control.pressed
+        }
+
+        InteractiveGradient {
+            id: background
+            anchors.fill: parent
+            pressed: control.pressed
+            hovered: control.hovered
+        }
     }
 
     background: Rectangle {
         anchors.centerIn: control
         width: control.width
         height: StylePlugin.dimensions.progressBarWidth
-        color: StylePlugin.palette.greyDark
+        color: StylePlugin.palette.greyMid
         radius: height / 2
         border.width: StylePlugin.dimensions.borderWidth
-        border.color: StylePlugin.palette.greyBlack
+        border.color: StylePlugin.palette.greyMidDark
 
         Rectangle {
             width: handle.x + handle.width
             height: parent.height
             radius: parent.radius
 
-            color: StylePlugin.palette.greyDarkest
+            color: StylePlugin.palette.greyMidDark
             border.width: StylePlugin.dimensions.borderWidth
-            border.color: StylePlugin.palette.greyBlack
+            border.color: StylePlugin.palette.greyDark
         }
     }
 }

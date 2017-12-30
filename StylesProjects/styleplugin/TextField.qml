@@ -54,35 +54,37 @@ T.TextField {
     leftPadding: 8
     rightPadding: 8
 
-    selectionColor: StylePlugin.palette.activeNormal
+    selectionColor: StylePlugin.palette.primaryNormal
     selectedTextColor: StylePlugin.palette.greyWhite
     verticalAlignment: TextInput.AlignVCenter
 
 
+    y: control.activeFocus ? 2 : 0
+
+    Behavior on y {
+        NumberAnimation {
+            duration: 100
+            easing {
+                type: Easing.OutSine
+            }
+        }
+    }
 
     background: Item {
         id: background
-        RectangularGlow {
-            id: shadow
-            y: 6
-            x: 3
-            height: inputBG.height - 6
-            width: inputBG.width - 6
-            glowRadius: 5
-            spread: 0.2
-            color: StylePlugin.palette.shadow
-            cornerRadius: StylePlugin.dimensions.actionableRadius + glowRadius
-            opacity: 1
+
+
+        ShadowItem {
+            anchors.fill: parent
+            hidden: control.activeFocus
         }
 
-        Rectangle {
+        RectangleItem {
             id: inputBG
             height: control.height
             width: control.width
-            color: StylePlugin.palette.greyLight
-            border.color: StylePlugin.palette.greyBlack
-            border.width: StylePlugin.dimensions.borderWidth
-            radius: StylePlugin.dimensions.actionableRadius
+            pressed: control.activeFocus
+            hovered: control.hovered
 
 
             PlaceholderText {
@@ -93,67 +95,22 @@ T.TextField {
                 height: control.height - (control.topPadding + control.bottomPadding)
                 text: control.placeholderText
                 font: control.font
-                color: StylePlugin.palette.greyDarkest
+                color: StylePlugin.palette.greyMidDark
                 verticalAlignment: control.verticalAlignment
                 elide: Text.ElideRight
                 visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)
+                opacity: control.hovered ? .5 : 1
+
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 100
+                        easing {
+                            type: Easing.OutSine
+                        }
+                    }
+                }
             }
         }
 
     }
-
-    states: [
-        State {
-            name: "hovered"; when: control.hovered && !control.activeFocus
-            changes: [
-                PropertyChanges {
-                    target: inputBG
-                    border.color: StylePlugin.palette.activeDark
-                }
-            ]
-        },
-        State {
-            name: "focused"; when: control.activeFocus
-            changes: [
-                PropertyChanges {
-                    target: shadow
-                    opacity: 0
-                },
-                PropertyChanges {
-                    target: placeholder
-                    opacity: .5
-                },
-                PropertyChanges {
-                    target: inputBG
-                    border.color: StylePlugin.palette.activeDark
-                },
-                PropertyChanges {
-                    target: control
-                    y: 2
-                }
-            ]
-        }
-    ]
-
-    transitions: [
-         Transition {
-            reversible: true
-            animations: [
-                ColorAnimation {
-                    duration: 100
-                    easing.type: Easing.OutSine
-                },
-                NumberAnimation {
-                    duration: 100
-                    properties: "opacity"
-                    easing.type: Easing.OutSine
-                },
-                NumberAnimation {
-                    duration: 100
-                    properties: "y"
-                    easing.type: Easing.OutSine
-                }
-            ]
-         }
-     ]
 }

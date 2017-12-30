@@ -1,6 +1,6 @@
 TEMPLATE = lib
 TARGET = styleplugin
-QT += qml quick
+QT += qml quick widgets
 CONFIG += plugin c++11
 
 TARGET = $$qtLibraryTarget($$TARGET)
@@ -12,35 +12,33 @@ SOURCES += \
     styleplugin.cpp \
     basepalette.cpp \
     dimensionsprovider.cpp \
-    actionablesurface.cpp \
-    bordergroup.cpp \
     checkboxindicator.cpp \
-    basicanimator.cpp \
-    gradientgroup.cpp \
-    interactivegradientitem.cpp
+    interactivegradientitem.cpp \
+    rectangleitem.cpp \
+    linearrowindicator.cpp
 
 HEADERS += \
     styleplugin_plugin.h \
     styleplugin.h \
     basepalette.h \
     dimensionsprovider.h \
-    actionablesurface.h \
-    bordergroup.h \
     checkboxindicator.h \
-    basicanimator.h \
-    gradientgroup.h \
-    interactivegradientitem.h
+    interactivegradientitem.h \
+    rectangleitem.h \
+    linearrowindicator.h
 
 DISTFILES = qmldir \
     Button.qml \
     TextField.qml \
     Slider.qml \
-    SliderHandle.qml \
     ProgressBar.qml \
     CheckBox.qml \
     ActionableGeneric.qml \
     RadioButton.qml \
-    ApplicationWindow.qml
+    ApplicationWindow.qml \
+    ShadowItem.qml \
+    ComboBox.qml \
+    MenuItem.qml
 
 !equals(_PRO_FILE_PWD_, $$OUT_PWD) {
     copy_qmldir.target = $$OUT_PWD/qmldir

@@ -11,7 +11,7 @@ Item {
     implicitWidth: 24
     implicitHeight: 24
 
-    readonly property var control: parent
+    readonly property Item control: parent
 
     Item {
         id: visualElements
@@ -34,10 +34,7 @@ Item {
         InteractiveGradient {
             id: gradientHighlight
             anchors.fill: parent
-            primaryColor: StylePlugin.palette.activeNormal
-            secondaryColor: StylePlugin.palette.activeLight
-            border.color: StylePlugin.palette.activeDark
-            border.width: 1
+            pressed: control.pressed
         }
     }
 
@@ -52,39 +49,7 @@ Item {
                 PropertyChanges {
                     target: root
                     y: 2
-                },
-                PropertyChanges {
-                    target: gradientHighlight
-                    primaryColor: StylePlugin.palette.activeDark
-                } ,
-                PropertyChanges {
-                    target: gradientHighlight
-                    secondaryColor: StylePlugin.palette.activeNormal
-                } ,
-                PropertyChanges {
-                    target: gradientHighlight
-                    border.color: StylePlugin.palette.activeDarkest
                 }
-
-
-            ]
-        },
-        State {
-            name: "hovered"; when: !control.hovered;
-            changes: [
-                PropertyChanges {
-                    target: gradientHighlight
-                    primaryColor: StylePlugin.palette.greyWhite
-                } ,
-                PropertyChanges {
-                    target: gradientHighlight
-                    secondaryColor: StylePlugin.palette.greyWhite
-                },
-                PropertyChanges {
-                    target: gradientHighlight
-                    border.color: StylePlugin.palette.greyBlack
-                }
-
 
             ]
         }

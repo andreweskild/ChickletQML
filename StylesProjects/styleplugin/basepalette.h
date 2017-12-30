@@ -4,75 +4,74 @@
 #include <QObject>
 #include <QColor>
 
+
 class BasePalette : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QColor activeLight MEMBER m_activeLight NOTIFY activeLightChanged)
-    Q_PROPERTY(QColor activeNormal MEMBER m_activeNormal NOTIFY activeNormalChanged)
-    Q_PROPERTY(QColor activeDark MEMBER m_activeDark NOTIFY activeDarkChanged)
-    Q_PROPERTY(QColor activeDarkest MEMBER m_activeDarkest NOTIFY activeDarkestChanged)
-    Q_PROPERTY(QColor cautionLight MEMBER m_cautionLight NOTIFY cautionLightChanged)
-    Q_PROPERTY(QColor cautionNormal MEMBER m_cautionNormal NOTIFY cautionNormalChanged)
-    Q_PROPERTY(QColor cautionDark MEMBER m_cautionDark NOTIFY cautionDarkChanged)
-    Q_PROPERTY(QColor cautionDarkest MEMBER m_cautionDarkest NOTIFY cautionDarkestChanged)
-    Q_PROPERTY(QColor greyWhite MEMBER m_greyWhite NOTIFY greyWhiteChanged)
-    Q_PROPERTY(QColor greyLight MEMBER m_greyLight NOTIFY greyLightChanged)
-    Q_PROPERTY(QColor greyMedium MEMBER m_greyMedium NOTIFY greyMediumChanged)
-    Q_PROPERTY(QColor greyDark MEMBER m_greyDark NOTIFY greyDarkChanged)
-    Q_PROPERTY(QColor greyDarkest MEMBER m_greyDarkest NOTIFY greyDarkestChanged)
-    Q_PROPERTY(QColor greyBlack MEMBER m_greyBlack NOTIFY greyBlackChanged)
-    Q_PROPERTY(QColor shadow MEMBER m_shadow NOTIFY shadowChanged)
+
+    Q_PROPERTY(QColor primaryLight READ primaryLight CONSTANT)
+    Q_PROPERTY(QColor primaryNormal READ primaryNormal CONSTANT)
+    Q_PROPERTY(QColor primaryMid READ primaryMid CONSTANT)
+    Q_PROPERTY(QColor primaryDark READ primaryDark CONSTANT)
+
+    Q_PROPERTY(QColor dangerousLight READ dangerousLight CONSTANT)
+    Q_PROPERTY(QColor dangerousNormal READ dangerousNormal CONSTANT)
+    Q_PROPERTY(QColor dangerousMid READ dangerousMid CONSTANT)
+    Q_PROPERTY(QColor dangerousDark READ dangerousDark CONSTANT)
+
+    Q_PROPERTY(QColor greyWhite READ greyWhite CONSTANT)
+    Q_PROPERTY(QColor greyLight READ greyLight CONSTANT)
+    Q_PROPERTY(QColor greyMidLight READ greyMidLight CONSTANT)
+    Q_PROPERTY(QColor greyMid READ greyMid CONSTANT)
+    Q_PROPERTY(QColor greyMidDark READ greyMidDark CONSTANT)
+    Q_PROPERTY(QColor greyDark READ greyDark CONSTANT)
+    Q_PROPERTY(QColor greyBlack READ greyBlack CONSTANT)
+
+    Q_PROPERTY(QColor shadow READ shadow CONSTANT)
 
 public:
-    enum ColorTheme {
-        Light,
-        Dark
-    };
 
-    BasePalette(ColorTheme p_colorTheme = Light, QObject *parent = nullptr);
+    BasePalette(QObject *parent = nullptr);
 
-    ColorTheme currentColorTheme();
-    void setCurrentColorTheme(ColorTheme p_newColorTheme);
+    QColor primaryLight() const;
+    QColor primaryNormal() const;
+    QColor primaryMid() const;
+    QColor primaryDark() const;
 
-signals:
-    void activeLightChanged();
-    void activeNormalChanged();
-    void activeDarkChanged();
-    void activeDarkestChanged();
-    void cautionLightChanged();
-    void cautionNormalChanged();
-    void cautionDarkChanged();
-    void cautionDarkestChanged();
-    void greyWhiteChanged();
-    void greyLightChanged();
-    void greyMediumChanged();
-    void greyDarkChanged();
-    void greyDarkestChanged();
-    void greyBlackChanged();
-    void shadowChanged();
+    QColor dangerousLight() const;
+    QColor dangerousNormal() const;
+    QColor dangerousMid() const;
+    QColor dangerousDark() const;
+
+    QColor greyWhite() const;
+    QColor greyLight() const;
+    QColor greyMidLight() const;
+    QColor greyMid() const;
+    QColor greyMidDark() const;
+    QColor greyDark() const;
+    QColor greyBlack() const;
+    QColor shadow() const;
 
 private:
-    ColorTheme m_currentColorTheme;
+    void initColors();
 
-    void updateColors();
-    void initThemeDark();
-    void initThemeLight();
+    const QColor m_primaryHue = QColor::fromRgb(51, 204, 153);
+    const QColor m_dangerousHue = QColor::fromRgb(255, 51, 153);
+    const QColor m_greyHue = QColor::fromRgb(204, 200, 208);
 
-    QColor m_activeLight;
-    QColor m_activeNormal;
-    QColor m_activeDark;
-    QColor m_activeDarkest;
+    QColor m_primaryLight;
+    QColor m_primaryMid;
+    QColor m_primaryDark;
 
-    QColor m_cautionLight;
-    QColor m_cautionNormal;
-    QColor m_cautionDark;
-    QColor m_cautionDarkest;
+    QColor m_dangerousLight;
+    QColor m_dangerousMid;
+    QColor m_dangerousDark;
 
     QColor m_greyWhite;
     QColor m_greyLight;
-    QColor m_greyMedium;
+    QColor m_greyMidLight;
+    QColor m_greyMidDark;
     QColor m_greyDark;
-    QColor m_greyDarkest;
     QColor m_greyBlack;
 
     QColor m_shadow;

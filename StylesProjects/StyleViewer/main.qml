@@ -8,7 +8,7 @@ Window {
     width: 640
     height: 480
     visible: true
-    color: "#E6E6E6"
+    color: "#e5e0e9"
 
 
     property int columnFactor: 5

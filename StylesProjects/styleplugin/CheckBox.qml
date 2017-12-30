@@ -13,57 +13,61 @@ T.CheckBox {
     spacing: 16
 
 
-    indicator: ActionableGeneric {
-        id: checkBoxBackground
-        implicitWidth: control.height
-        implicitHeight: control.height
 
+    indicator: Item {
+            height: parent.height
+            width: parent.height
+            y: control.down ? 2 : 0
 
-        CheckBoxIndicator {
-            id: checkIndicator
-            anchors.fill: parent
-            lineWidth: 2
-            color: StylePlugin.palette.greyBlack
-            opacity: 0
-
-            states: [
-                State {
-                    name: "hovered"; extend: "checked"; when: control.hovered && control.checked
-                    changes: [
-                        PropertyChanges {
-                            target: checkIndicator
-                            color: StylePlugin.palette.greyWhite
-                        }
-                    ]
-                },
-                State {
-                    name: "checked"; when: control.checked
-                    changes: [
-                        PropertyChanges {
-                            target: checkIndicator
-                            opacity: 1
-                        }
-                    ]
-                }
-            ]
-
-            transitions: Transition {
-                reversible: true
-                animations: [
-                    NumberAnimation {
-                        duration: 100
-                        properties: "opacity"
-                        easing.type: Easing.InOutSine
-                    },
-
-                    ColorAnimation {
-                        duration: 100
-                        easing.type: Easing.InOutSine
+            Behavior on y {
+                NumberAnimation {
+                    duration: 100
+                    easing {
+                        type: Easing.OutSine
                     }
-                ]
+                }
             }
 
-        }
+            ShadowItem {
+                anchors.fill: parent
+                hidden: control.pressed
+            }
+
+            InteractiveGradient {
+                id: background
+                implicitWidth: control.height
+                implicitHeight: control.height
+                pressed: control.down
+                hovered: control.hovered
+
+
+                CheckBoxIndicator {
+                    id: checkIndicator
+                    anchors.fill: parent
+                    lineWidth: 2
+                    color: control.hovered ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
+                    dashOffset: control.checked ? 0 : 6
+
+                    Behavior on dashOffset {
+                        NumberAnimation {
+                            duration: 150
+                            easing {
+                                type: Easing.InOutCubic
+                            }
+                        }
+                    }
+
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: 100
+                            easing {
+                                type: Easing.OutSine
+                            }
+                        }
+                    }
+
+                }
+            }
     }
 
     contentItem: Text {
@@ -78,4 +82,30 @@ T.CheckBox {
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
     }
+
+
+//    states: [
+//        State {
+//            name: "down"; when: control.down;
+//            changes: [
+//                PropertyChanges {
+//                    target: background
+//                    y: 2
+//                }
+//            ]
+//        }
+//    ]
+
+//    transitions: [
+//        Transition {
+//            reversible: true
+//            animations: [
+//                NumberAnimation {
+//                    duration: 50
+//                    properties: "y";
+//                    easing.type: Easing.OutSine
+//                }
+//            ]
+//        }
+//    ]
 }

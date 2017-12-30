@@ -1,56 +1,115 @@
 #include "basepalette.h"
 
-BasePalette::BasePalette(ColorTheme p_colorTheme, QObject *parent) : QObject(parent),
-    m_currentColorTheme(p_colorTheme)
+BasePalette::BasePalette(QObject *parent) : QObject(parent)
 {
-    updateColors();
+    initColors();
 }
 
-BasePalette::ColorTheme BasePalette::currentColorTheme()
+void BasePalette::initColors()
 {
-    return m_currentColorTheme;
-}
+    m_primaryLight = m_primaryHue.lighter(120);
+    m_primaryMid = m_primaryHue.darker(120);
+    m_primaryDark = m_primaryHue.darker(160);
 
-void BasePalette::setCurrentColorTheme(ColorTheme p_newColorTheme)
-{
-    m_currentColorTheme = p_newColorTheme;
-    updateColors();
-}
-
-void BasePalette::updateColors()
-{
-    if (m_currentColorTheme == Light)
-    {
-        initThemeLight();
-    }
-    else
-    {
-        initThemeDark();
-    }
-}
-
-void BasePalette::initThemeLight()
-{
-    m_activeLight = QColor::fromRgb(133, 223, 172);
-    m_activeNormal = QColor::fromRgb(60, 204, 147);
-    m_activeDark = QColor::fromRgb(45, 161, 114);
-    m_activeDarkest = QColor::fromRgb(20, 82, 57);
-
-    m_cautionLight = QColor::fromRgb(255, 103, 160);
-    m_cautionNormal = QColor::fromRgb(255, 51, 127);
-    m_cautionDark = QColor::fromRgb(191, 40, 136);
-    m_cautionDarkest = QColor::fromRgb(148, 38, 124);
+    m_dangerousLight = m_dangerousHue.lighter(120);
+    m_dangerousMid = m_dangerousHue.darker(120);
+    m_dangerousDark = m_dangerousHue.darker(140);
 
     m_greyWhite = Qt::white;
-    m_greyLight = QColor::fromRgb(240, 238, 241);
-    m_greyMedium = QColor::fromRgb(229, 227, 232);
-    m_greyDark = QColor::fromRgb(204, 200, 208);
-    m_greyDarkest = QColor::fromRgb(153, 145, 161);
-    m_greyBlack = QColor::fromRgb(51, 47, 55);
+    m_greyLight = m_greyHue.lighter(140);
+    m_greyMidLight = m_greyHue.lighter(112);
+    m_greyMidDark = m_greyHue.darker(140);
+    m_greyDark = m_greyHue.darker(200);
+    m_greyBlack = m_greyHue.darker(350);
 
-    m_shadow = QColor(0, 0, 0, 50);
+    m_shadow = QColor(0, 0, 0, 70);
 }
 
-void BasePalette::initThemeDark()
+
+// PRIMARY COLOR GETTERS ==============
+QColor BasePalette::primaryLight() const
 {
+    return m_primaryLight;
 }
+
+QColor BasePalette::primaryNormal() const
+{
+    return m_primaryHue;
+}
+
+QColor BasePalette::primaryMid() const
+{
+    return m_primaryMid;
+}
+
+QColor BasePalette::primaryDark() const
+{
+    return m_primaryDark;
+}
+
+
+//DANGEROUS COLOR GETTERS ===============
+QColor BasePalette::dangerousLight() const
+{
+    return m_dangerousLight;
+}
+
+QColor BasePalette::dangerousNormal() const
+{
+    return m_dangerousHue;
+}
+
+QColor BasePalette::dangerousMid() const
+{
+    return m_dangerousMid;
+}
+
+QColor BasePalette::dangerousDark() const
+{
+    return m_dangerousDark;
+}
+
+
+//GREY COLOR GETTERS ===============
+QColor BasePalette::greyWhite() const
+{
+    return m_greyWhite;
+}
+
+QColor BasePalette::greyLight() const
+{
+    return m_greyLight;
+}
+
+QColor BasePalette::greyMidLight() const
+{
+    return m_greyMidLight;
+}
+
+QColor BasePalette::greyMid() const
+{
+    return m_greyHue;
+}
+
+QColor BasePalette::greyMidDark() const
+{
+    return m_greyMidDark;
+}
+
+QColor BasePalette::greyDark() const
+{
+    return m_greyDark;
+}
+
+QColor BasePalette::greyBlack() const
+{
+    return m_greyBlack;
+}
+
+
+// SHADOW COLOR GETTER ==============
+QColor BasePalette::shadow() const
+{
+    return m_shadow;
+}
+

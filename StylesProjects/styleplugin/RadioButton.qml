@@ -11,73 +11,97 @@ T.RadioButton {
 
     spacing: 16
 
-    indicator:
-//        Rectangle {
-//        height: control.height
-//        width: control.height
-//        border.color: StylePlugin.palette.greyBlack
-//        border.width: 1
-//        radius: height * .5
-//    }
+    indicator:Item {
+        width: control.height
+        height: control.height
 
-        ActionableGeneric {
-        id: radioBackground
-        implicitHeight: control.height
-        implicitWidth: control.height
+        y: control.pressed ? 2 : 0
 
-
-        Rectangle {
-            id: toggleIndicator
-            anchors.centerIn: parent
-            width: control.height * .5
-            height: control.height * .5
-            radius: height * .5
-            color: StylePlugin.palette.greyDarkest
-            opacity: control.checked ? 1 : 0
-            border.width: 1
-            border.color: StylePlugin.palette.greyBlack
-
-
-            states: [
-                State {
-                    name: "hovered"; extend: "checked"; when: control.hovered && control.checked
-                    changes: [
-                        PropertyChanges {
-                            target: toggleIndicator
-                            color: StylePlugin.palette.greyWhite
-                        },
-                        PropertyChanges {
-                            target: toggleIndicator
-                            border.color: StylePlugin.palette.activeDark
-                        }
-                    ]
-                },
-                State {
-                    name: "checked"; when: control.checked
-                    changes: [
-                        PropertyChanges {
-                            target: toggleIndicator
-                            opacity: 1
-                        }
-                    ]
+        Behavior on y {
+            NumberAnimation {
+                duration: 100
+                easing {
+                    type: Easing.OutSine
                 }
-            ]
-
-            transitions: Transition {
-                reversible: true
-                animations: [
-                    NumberAnimation {
-                        duration: 100
-                        properties: "opacity"
-                        easing.type: Easing.InOutSine
-                    },
-
-                    PropertyAction {
-                        target: toggleIndicator; property: "color" }
-                ]
             }
         }
 
+        ShadowItem {
+            width: parent.width
+            height: parent.height
+            hidden: control.pressed
+        }
+
+        InteractiveGradient {
+            id: radioBackground
+            implicitHeight: parent.height
+            implicitWidth: parent.height
+            geometryMode: InteractiveGradient.Circle
+            pressed: control.pressed
+            hovered: control.hovered
+
+
+            Rectangle {
+                id: toggleIndicator
+                anchors.centerIn: parent
+                width: control.checked ? control.height * .5 : 0
+                height: control.checked ? control.height * .5 : 0
+                radius: height * .5
+                color: control.hovered ? StylePlugin.palette.greyWhite :
+                                         StylePlugin.palette.greyMidDark
+                opacity: control.checked ? 1 : 0
+                border.width: 1
+                border.color: control.hovered ? StylePlugin.palette.primaryMid :
+                                                StylePlugin.palette.greyBlack
+
+                Behavior on height {
+                    NumberAnimation {
+                        duration: 100
+                        easing {
+                            type: Easing.OutSine
+                        }
+                    }
+                }
+
+
+                Behavior on width {
+                    NumberAnimation {
+                        duration: 100
+                        easing {
+                            type: Easing.OutSine
+                        }
+                    }
+                }
+
+                Behavior on color {
+                    ColorAnimation {
+                        duration: 100
+                        easing {
+                            type: Easing.OutSine
+                        }
+                    }
+                }
+
+                Behavior on border.color {
+                    ColorAnimation {
+                        duration: 100
+                        easing {
+                            type: Easing.OutSine
+                        }
+                    }
+                }
+
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 100
+                        easing {
+                            type: Easing.OutSine
+                        }
+                    }
+                }
+            }
+
+        }
     }
 
     contentItem: Text {
@@ -92,4 +116,5 @@ T.RadioButton {
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
     }
+
 }

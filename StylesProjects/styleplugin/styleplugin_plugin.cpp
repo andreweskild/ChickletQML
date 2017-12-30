@@ -1,9 +1,11 @@
 #include "styleplugin_plugin.h"
 #include "styleplugin.h"
-#include "actionablesurface.h"
 #include "checkboxindicator.h"
-#include "gradientsurface.h"
 #include "interactivegradientitem.h"
+#include "basepalette.h"
+#include "dimensionsprovider.h"
+#include "rectangleitem.h"
+#include "linearrowindicator.h"
 
 #include <qqml.h>
 
@@ -11,11 +13,11 @@ void StylepluginPlugin::registerTypes(const char *uri)
 {
     // @uri styleplugin
     qmlRegisterUncreatableType<StylePlugin>(uri, 1, 0, "StylePlugin", "For Stuff");
-    qmlRegisterType<ActionableSurface>(uri, 1, 0, "ActionableSurface");
-    qmlRegisterType<BorderGroup>(uri, 1, 0, "BorderGroup");
-    qmlRegisterType<GradientGroup>(uri, 1, 0, "GradientGroup");
+    qmlRegisterType<DimensionsProvider>(uri, 1, 0, "DimensionsProvider");
+    qmlRegisterType<BasePalette>(uri, 1, 0, "BasePalette");
     qmlRegisterType<CheckBoxIndicator>(uri, 1, 0, "CheckBoxIndicator");
-    qmlRegisterType<GradientSurface>(uri, 1, 0, "GradientSurface");
+    qmlRegisterType<LineArrowIndicator>(uri, 1, 0, "LineArrowIndicator");
     qmlRegisterType<InteractiveGradientItem>(uri, 1, 0, "InteractiveGradient");
+    qmlRegisterType<RectangleItem>(uri, 1, 0, "RectangleItem");
 }
 
