@@ -2,20 +2,26 @@
 
 
 RectanglePainter::RectanglePainter() :
-    m_dimensions(new DimensionsProvider)
+    m_dimensions(new DimensionsProvider()),
+    m_borderWidth(m_dimensions->property("borderWidth").toInt())
 {
+}
+
+RectanglePainter::~RectanglePainter()
+{
+    delete m_dimensions;
 }
 
 void RectanglePainter::paint(QNanoPainter *p)
 {
-    p->setAntialias(1.1);
-    p->setPixelAlign(QNanoPainter::PIXEL_ALIGN_HALF);
+    qreal borderAdjustment = m_borderWidth * .5;
     p->beginPath();
-    p->roundedRect(0, 0, width() - 1, height() - 1, 4);
+    p->roundedRect(borderAdjustment, borderAdjustment,
+                   width() - m_borderWidth, height() - m_borderWidth, 4);
     p->setFillStyle(QNanoColor::fromQColor(m_primaryColor));
     p->fill();
     p->setStrokeStyle(m_borderColor);
-    p->setLineWidth(m_dimensions->property("borderWidth").toInt());
+    p->setLineWidth(m_borderWidth);
     p->stroke();
 }
 
@@ -34,7 +40,7 @@ RectangleItem::RectangleItem(QQuickItem *p_parent) : QNanoQuickItem(p_parent),
     m_borderAnimation(new QPropertyAnimation(this, "borderColor"))
 {
     m_primaryColor = m_palette->greyLight();
-    m_borderColor = m_palette->greyMidDark();
+    m_borderColor = m_palette->greyLight();
     initAnimations();
 
     connect(this, SIGNAL(hoveredChanged()), this, SLOT(handleHover()));
@@ -120,19 +126,19 @@ void RectangleItem::handleAnimation(State p_state)
     {
         case Normal:
         {
-            m_borderAnimation->setEndValue(m_palette->greyMidDark());
+            m_borderAnimation->setEndValue(m_palette->greyWhite());
             m_borderAnimation->start();
         }
         break;
         case Hovered:
         {
-            m_borderAnimation->setEndValue(m_palette->primaryMid());
+            m_borderAnimation->setEndValue(m_palette->primaryNormal());
             m_borderAnimation->start();
         }
         break;
         case Pressed:
         {
-            m_borderAnimation->setEndValue(m_palette->primaryDark());
+            m_borderAnimation->setEndValue(m_palette->primaryMid());
             m_borderAnimation->start();
         }
         break;

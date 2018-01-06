@@ -14,6 +14,8 @@ class RectanglePainter : public QNanoQuickItemPainter
 public:
     RectanglePainter();
 
+    ~RectanglePainter();
+
     void paint(QNanoPainter *p);
 
     void synchronize(QNanoQuickItem *p_item);
@@ -23,6 +25,7 @@ private:
     QColor m_primaryColor;
     QColor m_secondaryColor;
     QNanoColor m_borderColor;
+    int m_borderWidth;
     QNanoRadialGradient m_gradient;
     QPointF m_mousePos;
 
@@ -59,6 +62,8 @@ signals:
     void pressedChanged();
     void hoveredChanged();
 
+    void effectiveHorizontalAlignmentChanged();
+
     void pressed();
     void releasedNormal();
     void releasedHovered();
@@ -82,8 +87,8 @@ private:
     bool m_pressed;
     bool m_hovered;
 
-    const QEasingCurve ANIM_EASING = QEasingCurve::OutSine;
-    const int ANIM_DURATION = 100;
+    const QEasingCurve ANIM_EASING = QEasingCurve::InOutSine;
+    const int ANIM_DURATION = 200;
 
     QPropertyAnimation *m_borderAnimation;
 

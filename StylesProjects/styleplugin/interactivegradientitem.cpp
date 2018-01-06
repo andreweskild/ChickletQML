@@ -1,48 +1,50 @@
 #include "interactivegradientitem.h"
 
 
-InteractiveGradientPainter::InteractiveGradientPainter() :
-    m_dimensions(new DimensionsProvider)
+InteractiveGradientPainter::InteractiveGradientPainter(const Shape &p_shape) :
+    m_dimensions(new DimensionsProvider()),
+    m_borderWidth(m_dimensions->property("borderWidth").toInt()),
+    m_radius(m_dimensions->property("actionableRadius").toInt()),
+    m_shape(p_shape)
 {
+}
+
+InteractiveGradientPainter::~InteractiveGradientPainter()
+{
+    delete m_dimensions;
 }
 
 void InteractiveGradientPainter::paint(QNanoPainter *p)
 {
-    p->setAntialias(1.1);
+    qreal borderAdjustment = m_borderWidth * .5;
     p->beginPath();
-    switch(m_geometryMode)
+    switch(m_shape)
     {
-        case InteractiveGradientItem::RoundedRect:
+        case Rect:
         {
-            p->setPixelAlign(QNanoPainter::PIXEL_ALIGN_HALF);
-            p->roundedRect(0, 0, width() - 1, height() - 1, m_dimensions->property("actionableRadius").toInt());
+            p->rect(borderAdjustment, borderAdjustment,
+                    width() - m_borderWidth, height() - m_borderWidth);
         }
         break;
-        case InteractiveGradientItem::Circle:
+        case RoundedRect:
         {
-            p->circle(width()*.5, height()*.5, width()*.5 - .5);
+            p->roundedRect(borderAdjustment, borderAdjustment,
+                           width() - m_borderWidth, height() - m_borderWidth, m_radius);
         }
         break;
-        case InteractiveGradientItem::Rect:
+        case Circle:
         {
-            p->setPixelAlign(QNanoPainter::PIXEL_ALIGN_HALF);
-            p->rect(0, 0, width() - 1, height() - 1);
+            p->circle(width()*.5, height()*.5, width()*.5 - borderAdjustment);
         }
+        break;
     }
     m_gradient.setOuterRadius(width()*2);
-    if (m_primaryColor == m_secondaryColor)
-    {
-        p->setFillStyle(QNanoColor::fromQColor(m_primaryColor));
-    }
-    else
-    {
-        m_gradient.setStartColor(QNanoColor::fromQColor(m_primaryColor));
-        m_gradient.setEndColor(QNanoColor::fromQColor(m_secondaryColor));
-        p->setFillStyle(m_gradient);
-    }
+    m_gradient.setStartColor(m_primaryColor);
+    m_gradient.setEndColor(m_secondaryColor);
+    p->setFillStyle(m_gradient);
     p->fill();
-    p->setStrokeStyle(m_borderColor);
-    p->setLineWidth(m_dimensions->property("borderWidth").toInt());
+    p->setStrokeStyle(m_primaryColor);
+    p->setLineWidth(m_borderWidth);
     p->stroke();
 }
 
@@ -51,11 +53,9 @@ void InteractiveGradientPainter::synchronize(QNanoQuickItem *p_item)
     InteractiveGradientItem *gradientItem = static_cast<InteractiveGradientItem *>(p_item);
     if(gradientItem)
     {
-        m_borderColor = QNanoColor::fromQColor(gradientItem->borderColor());
-        m_primaryColor = gradientItem->primaryColor();
-        m_secondaryColor = gradientItem->secondaryColor();
+        m_primaryColor = QNanoColor::fromQColor(gradientItem->primaryColor());
+        m_secondaryColor = QNanoColor::fromQColor(gradientItem->secondaryColor());
         m_gradient.setCenterPosition(gradientItem->mousePosition());
-        m_geometryMode = static_cast<InteractiveGradientItem::GeometryMode>(gradientItem->property("geometryMode").toInt());
     }
 }
 
@@ -63,33 +63,14 @@ InteractiveGradientItem::InteractiveGradientItem(QQuickItem *p_parent) : QNanoQu
     m_palette(new BasePalette(this)),
     m_pressed(false),
     m_hovered(false),
-    m_group(new QParallelAnimationGroup),
-    m_primaryAnimation(new QPropertyAnimation(this, "primaryColor")),
-    m_secondaryAnimation(new QPropertyAnimation(this, "secondaryColor")),
-    m_borderAnimation(new QPropertyAnimation(this, "borderColor"))
+    m_group(new QParallelAnimationGroup(this)),
+    m_primaryAnimation(new QPropertyAnimation(this, "primaryColor", this)),
+    m_secondaryAnimation(new QPropertyAnimation(this, "secondaryColor", this))
 {
     setAcceptHoverEvents(true);
-    m_primaryColor = m_palette->greyLight();
-    m_secondaryColor = m_palette->greyLight();
-    m_borderColor = m_palette->greyMidDark();
     initAnimations();
-
     connect(this, SIGNAL(hoveredChanged()), this, SLOT(handleHover()));
     connect(this, SIGNAL(pressedChanged()), this, SLOT(handleMousePress()));
-}
-
-QColor InteractiveGradientItem::borderColor() const
-{
-    return m_borderColor;
-}
-
-void InteractiveGradientItem::setBorderColor(const QColor &p_borderColor)
-{
-    if (m_borderColor.rgba() != p_borderColor.rgba())
-    {
-        m_borderColor = p_borderColor;
-        update();
-    }
 }
 
 QColor InteractiveGradientItem::primaryColor() const
@@ -181,23 +162,22 @@ void InteractiveGradientItem::initAnimations()
     m_secondaryAnimation->setDuration(ANIM_DURATION);
     m_secondaryAnimation->setEasingCurve(ANIM_EASING);
 
-    m_borderAnimation->setDuration(ANIM_DURATION);
-    m_borderAnimation->setEasingCurve(ANIM_EASING);
-
     m_group->addAnimation(m_primaryAnimation);
     m_group->addAnimation(m_secondaryAnimation);
-    m_group->addAnimation(m_borderAnimation);
 }
 
 void InteractiveGradientItem::handleAnimation(State p_state)
 {
+    if(m_group->state() == QParallelAnimationGroup::Running)
+    {
+        m_group->stop();
+    }
     switch(p_state)
     {
         case Normal:
         {
             m_primaryAnimation->setEndValue(m_palette->greyLight());
             m_secondaryAnimation->setEndValue(m_palette->greyLight());
-            m_borderAnimation->setEndValue(m_palette->greyMidDark());
             m_group->start();
         }
         break;
@@ -205,7 +185,6 @@ void InteractiveGradientItem::handleAnimation(State p_state)
         {
             m_primaryAnimation->setEndValue(m_palette->primaryNormal());
             m_secondaryAnimation->setEndValue(m_palette->primaryLight());
-            m_borderAnimation->setEndValue(m_palette->primaryMid());
             m_group->start();
         }
         break;
@@ -213,7 +192,6 @@ void InteractiveGradientItem::handleAnimation(State p_state)
         {
             m_primaryAnimation->setEndValue(m_palette->primaryMid());
             m_secondaryAnimation->setEndValue(m_palette->primaryNormal());
-            m_borderAnimation->setEndValue(m_palette->primaryDark());
             m_group->start();
         }
         break;

@@ -22,7 +22,7 @@ T.Button {
                 hidden: control.pressed
             }
 
-            InteractiveGradient {
+            InteractiveButton {
                 id: background
                 height: parent.height
                 width: parent.width
@@ -35,8 +35,7 @@ T.Button {
                     NumberAnimation {
                         duration: 100
                         easing {
-                            type: Easing.OutSine
-                            overshoot: 5
+                            type: Easing.InOutSine
                         }
                     }
                 }
@@ -52,9 +51,9 @@ T.Button {
 
                     Behavior on color {
                         ColorAnimation {
-                            duration: 100
+                            duration: 150
                             easing {
-                                type: Easing.OutSine
+                                type: Easing.InOutSine
                             }
                         }
                     }

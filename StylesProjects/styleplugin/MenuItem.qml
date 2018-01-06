@@ -14,20 +14,27 @@ T.MenuItem {
 
 
     contentItem: Text {
-        leftPadding: !control.mirrored ? 8 : arrowPadding
-        rightPadding: control.mirrored ? 8 : arrowPadding
+        leftPadding: 8
         height: parent.height
 
         verticalAlignment: Text.AlignVCenter
         text: control.text
         font: control.font
         color: control.hovered ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
+
+        Behavior on color {
+            ColorAnimation {
+                duration: 200
+                easing {
+                    type: Easing.InOutSine
+                }
+            }
+        }
     }
 
-    background: InteractiveGradient {
-        geometryMode: InteractiveGradient.Rect
+    background: InteractiveMenuItem {
         implicitWidth: 200
-        implicitHeight: parent.height
+        height: control.height
         hovered: control.hovered
         pressed: control.pressed
     }

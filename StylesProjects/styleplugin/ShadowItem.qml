@@ -26,11 +26,11 @@ Item {
 
     RectangularGlow {
         id: shadow
-        y: 6
+        y: 4
         x: 3
-        height: root.height - 6
+        height: root.height - 4
         width: root.width - 6
-        glowRadius: 5
+        glowRadius: 6
         spread: 0.2
         color: StylePlugin.palette.shadow
         cornerRadius: StylePlugin.dimensions.actionableRadius + glowRadius

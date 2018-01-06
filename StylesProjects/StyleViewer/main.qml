@@ -1,14 +1,36 @@
-import QtQuick 2.6
+import QtQuick 2.10
 import QtQuick.Window 2.3
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.1
+import QtQuick.Controls 2.3
 
-Window {
+ApplicationWindow {
     id: window
     width: 640
     height: 480
     visible: true
     color: "#e5e0e9"
+
+    menuBar: MenuBar {
+        Menu {
+            title: qsTr("File")
+            Action { text: qsTr("New...") }
+            Action { text: qsTr("Open...") }
+            Action { text: qsTr("Save") }
+            Action { text: qsTr("Save As...") }
+            MenuSeparator { }
+            Action { text: qsTr("Quit") }
+        }
+        Menu {
+            title: qsTr("Edit")
+            Action { text: qsTr("Cut") }
+            Action { text: qsTr("Copy") }
+            Action { text: qsTr("Paste") }
+        }
+        Menu {
+            title: qsTr("Help")
+            Action { text: qsTr("About") }
+        }
+    }
 
 
     property int columnFactor: 5
@@ -49,11 +71,24 @@ Window {
                 implicitWidth: window.width / columnFactor
             }
 
-            ComboBox {
-                model: ["Paris", "Oslo", "New York"]
-                implicitWidth: window.width / columnFactor
-            }
+            GroupBox {
+                title: "ahhh"
 
+                ColumnLayout {
+
+                    BusyIndicator {
+                    }
+
+                    ComboBox {
+                        model: ["Paris", "Oslo", "New York"]
+                    }
+
+                    PageIndicator {
+                        count: 5
+                        interactive: true
+                    }
+                }
+            }
 
 //            TabView {
 //                Layout.row: 6

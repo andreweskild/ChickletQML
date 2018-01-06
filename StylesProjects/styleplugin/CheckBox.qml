@@ -23,7 +23,7 @@ T.CheckBox {
                 NumberAnimation {
                     duration: 100
                     easing {
-                        type: Easing.OutSine
+                        type: Easing.InOutSine
                     }
                 }
             }
@@ -33,7 +33,7 @@ T.CheckBox {
                 hidden: control.pressed
             }
 
-            InteractiveGradient {
+            InteractiveButton {
                 id: background
                 implicitWidth: control.height
                 implicitHeight: control.height
@@ -59,9 +59,9 @@ T.CheckBox {
 
                     Behavior on color {
                         ColorAnimation {
-                            duration: 100
+                            duration: 200
                             easing {
-                                type: Easing.OutSine
+                                type: Easing.InOutSine
                             }
                         }
                     }
@@ -82,30 +82,4 @@ T.CheckBox {
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
     }
-
-
-//    states: [
-//        State {
-//            name: "down"; when: control.down;
-//            changes: [
-//                PropertyChanges {
-//                    target: background
-//                    y: 2
-//                }
-//            ]
-//        }
-//    ]
-
-//    transitions: [
-//        Transition {
-//            reversible: true
-//            animations: [
-//                NumberAnimation {
-//                    duration: 50
-//                    properties: "y";
-//                    easing.type: Easing.OutSine
-//                }
-//            ]
-//        }
-//    ]
 }

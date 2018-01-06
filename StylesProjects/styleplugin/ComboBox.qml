@@ -17,9 +17,9 @@ T.ComboBox {
 
     delegate: MenuItem {
         width: parent.width
+        height: StylePlugin.dimensions.actionableHeight - 1
         text: control.textRole ? (Array.isArray(control.model) ? modelData[control.textRole] : model[control.textRole]) : modelData
         highlighted: control.highlightedIndex === index
-        hoverEnabled: control.hoverEnabled
     }
 
     indicator: Item {
@@ -32,7 +32,7 @@ T.ComboBox {
                 NumberAnimation {
                     duration: 100
                     easing {
-                        type: Easing.OutSine
+                        type: Easing.InOutSine
                     }
                 }
             }
@@ -45,9 +45,9 @@ T.ComboBox {
                 anchors.centerIn: parent
                 Behavior on color {
                     ColorAnimation {
-                        duration: 100
+                        duration: 200
                         easing {
-                            type: Easing.OutSine
+                            type: Easing.InOutSine
                         }
                     }
                 }
@@ -70,8 +70,8 @@ T.ComboBox {
 
         font: control.font
         color: control.hovered || popup.visible ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
-        selectionColor: control.Material.accentColor
-        selectedTextColor: control.Material.primaryHighlightedTextColor
+        selectionColor: StylePlugin.palette.primaryNormal
+        selectedTextColor: StylePlugin.palette.greyWhite
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
 
@@ -81,7 +81,16 @@ T.ComboBox {
             NumberAnimation {
                 duration: 100
                 easing {
-                    type: Easing.OutSine
+                    type: Easing.InOutSine
+                }
+            }
+        }
+
+        Behavior on color {
+            ColorAnimation {
+                duration: 200
+                easing {
+                    type: Easing.InOutSine
                 }
             }
         }
@@ -90,15 +99,15 @@ T.ComboBox {
 
     background: Item {
         id: background
-        implicitWidth: StylePlugin.dimensions.actionableWideWidth
-        implicitHeight: StylePlugin.dimensions.actionableHeight
+        width: control.width
+        height: control.height
 
         ShadowItem {
             anchors.fill: parent
             hidden: control.pressed
         }
 
-        InteractiveGradient {
+        InteractiveButton {
             y: control.pressed ? 2 : 0
             height: parent.height
             width: parent.width
@@ -109,7 +118,7 @@ T.ComboBox {
                 NumberAnimation {
                     duration: 100
                     easing {
-                        type: Easing.OutSine
+                        type: Easing.InOutSine
                     }
                 }
             }

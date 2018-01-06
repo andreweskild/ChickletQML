@@ -16,23 +16,12 @@ class InteractiveGradientItem : public QNanoQuickItem
 
     Q_PROPERTY(QColor primaryColor READ primaryColor WRITE setPrimaryColor NOTIFY primaryColorChanged)
     Q_PROPERTY(QColor secondaryColor READ secondaryColor WRITE setSecondaryColor NOTIFY secondaryColorChanged)
-    Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor NOTIFY borderColorChanged)
     Q_PROPERTY(bool pressed MEMBER m_pressed NOTIFY pressedChanged)
     Q_PROPERTY(bool hovered MEMBER m_hovered NOTIFY hoveredChanged)
-    Q_PROPERTY(GeometryMode geometryMode MEMBER m_geometryMode NOTIFY geometryModeChanged)
 
 
 public:
-    enum GeometryMode {
-        Rect,
-        RoundedRect,
-        Circle
-    };
-    Q_ENUM(GeometryMode)
-
     InteractiveGradientItem(QQuickItem *p_parent = 0);
-
-    QColor borderColor() const;
     
     QColor primaryColor() const;
 
@@ -48,7 +37,6 @@ public:
 public slots:
     void setPrimaryColor(const QColor &p_primaryColor);
     void setSecondaryColor(const QColor &p_secondaryColor);
-    void setBorderColor(const QColor &p_borderColor);
 
     void handleMousePress();
     void handleHover();
@@ -56,10 +44,8 @@ public slots:
 signals:
     void primaryColorChanged();
     void secondaryColorChanged();
-    void borderColorChanged();
     void pressedChanged();
     void hoveredChanged();
-    void geometryModeChanged();
 
     void pressed();
     void releasedNormal();
@@ -71,6 +57,11 @@ signals:
 protected:
     void hoverMoveEvent(QHoverEvent *p_event);
 
+    BasePalette *m_palette;
+
+    QColor m_primaryColor;
+    QColor m_secondaryColor;
+
 private:
     enum State {
         Normal,
@@ -78,25 +69,16 @@ private:
         Pressed
     };
 
-    BasePalette *m_palette;
-
-    QColor m_primaryColor;
-    QColor m_secondaryColor;
-    QColor m_borderColor;
-
-    GeometryMode m_geometryMode = RoundedRect;
-
     QPointF m_mousePos;
     bool m_pressed;
     bool m_hovered;
 
-    const QEasingCurve ANIM_EASING = QEasingCurve::OutSine;
-    const int ANIM_DURATION = 100;
+    const QEasingCurve ANIM_EASING = QEasingCurve::InOutSine;
+    const int ANIM_DURATION = 150;
 
     QParallelAnimationGroup *m_group;
     QPropertyAnimation *m_primaryAnimation;
     QPropertyAnimation *m_secondaryAnimation;
-    QPropertyAnimation *m_borderAnimation;
 
     void initAnimations();
     void handleAnimation(State p_state);
@@ -108,7 +90,15 @@ private:
 class InteractiveGradientPainter : public QNanoQuickItemPainter
 {
 public:
-    InteractiveGradientPainter();
+    enum Shape {
+        Rect,
+        RoundedRect,
+        Circle
+    };
+
+    InteractiveGradientPainter(const Shape &p_shape = Rect);
+
+    ~InteractiveGradientPainter();
 
     void paint(QNanoPainter *p);
 
@@ -116,13 +106,16 @@ public:
 
 private:
     DimensionsProvider *m_dimensions;
-    QColor m_primaryColor;
-    QColor m_secondaryColor;
-    QNanoColor m_borderColor;
     QNanoRadialGradient m_gradient;
+
+    QNanoColor m_primaryColor;
+    QNanoColor m_secondaryColor;
     QPointF m_mousePos;
-    InteractiveGradientItem::GeometryMode m_geometryMode;
+
+    int m_borderWidth;
     qreal m_radius;
+
+    Shape m_shape;
 
 };
 

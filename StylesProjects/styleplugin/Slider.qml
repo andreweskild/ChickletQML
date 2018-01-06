@@ -30,7 +30,7 @@ T.Slider {
             hidden: control.pressed
         }
 
-        InteractiveGradient {
+        InteractiveButton {
             id: background
             anchors.fill: parent
             pressed: control.pressed
@@ -44,17 +44,13 @@ T.Slider {
         height: StylePlugin.dimensions.progressBarWidth
         color: StylePlugin.palette.greyMid
         radius: height / 2
-        border.width: StylePlugin.dimensions.borderWidth
-        border.color: StylePlugin.palette.greyMidDark
 
         Rectangle {
             width: handle.x + handle.width
             height: parent.height
             radius: parent.radius
 
-            color: StylePlugin.palette.greyMidDark
-            border.width: StylePlugin.dimensions.borderWidth
-            border.color: StylePlugin.palette.greyDark
+            color: StylePlugin.palette.greyDark
         }
     }
 }

@@ -95,10 +95,9 @@ T.TextField {
                 height: control.height - (control.topPadding + control.bottomPadding)
                 text: control.placeholderText
                 font: control.font
-                color: StylePlugin.palette.greyMidDark
+                color: StylePlugin.palette.greyMid
                 verticalAlignment: control.verticalAlignment
-                elide: Text.ElideRight
-                visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)
+                visible: !control.length && !control.preeditText
                 opacity: control.hovered ? .5 : 1
 
                 Behavior on opacity {

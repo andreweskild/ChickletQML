@@ -32,11 +32,10 @@ T.RadioButton {
             hidden: control.pressed
         }
 
-        InteractiveGradient {
+        InteractiveRoundButton {
             id: radioBackground
             implicitHeight: parent.height
             implicitWidth: parent.height
-            geometryMode: InteractiveGradient.Circle
             pressed: control.pressed
             hovered: control.hovered
 
@@ -48,11 +47,8 @@ T.RadioButton {
                 height: control.checked ? control.height * .5 : 0
                 radius: height * .5
                 color: control.hovered ? StylePlugin.palette.greyWhite :
-                                         StylePlugin.palette.greyMidDark
+                                         StylePlugin.palette.greyDark
                 opacity: control.checked ? 1 : 0
-                border.width: 1
-                border.color: control.hovered ? StylePlugin.palette.primaryMid :
-                                                StylePlugin.palette.greyBlack
 
                 Behavior on height {
                     NumberAnimation {
@@ -74,15 +70,6 @@ T.RadioButton {
                 }
 
                 Behavior on color {
-                    ColorAnimation {
-                        duration: 100
-                        easing {
-                            type: Easing.OutSine
-                        }
-                    }
-                }
-
-                Behavior on border.color {
                     ColorAnimation {
                         duration: 100
                         easing {

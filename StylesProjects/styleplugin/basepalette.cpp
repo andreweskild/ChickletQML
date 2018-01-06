@@ -16,13 +16,13 @@ void BasePalette::initColors()
     m_dangerousDark = m_dangerousHue.darker(140);
 
     m_greyWhite = Qt::white;
-    m_greyLight = m_greyHue.lighter(140);
+    m_greyLight = m_greyHue.lighter(120);
     m_greyMidLight = m_greyHue.lighter(112);
-    m_greyMidDark = m_greyHue.darker(140);
+    m_greyMidDark = m_greyHue.darker(112);
     m_greyDark = m_greyHue.darker(200);
     m_greyBlack = m_greyHue.darker(350);
 
-    m_shadow = QColor(0, 0, 0, 70);
+    m_shadow = QColor(0, 0, 0, 60);
 }
 
 
