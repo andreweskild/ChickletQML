@@ -6,10 +6,8 @@
 #include "dimensionsprovider.h"
 #include "rectangleitem.h"
 #include "linearrowindicator.h"
-#include "interactiveroundbutton.h"
-#include "interactivebutton.h"
-#include "interactivemenuitem.h"
 #include "busyindicatorarc.h"
+#include "delaybuttonprogressindicator.h"
 
 #include <qqml.h>
 
@@ -22,9 +20,7 @@ void StylepluginPlugin::registerTypes(const char *uri)
     qmlRegisterType<CheckBoxIndicator>(uri, 1, 0, "CheckBoxIndicator");
     qmlRegisterType<LineArrowIndicator>(uri, 1, 0, "LineArrowIndicator");
     qmlRegisterType<BusyIndicatorArc>(uri, 1, 0, "BusyIndicatorArc");
-    qmlRegisterType<InteractiveRoundButton>(uri, 1, 0, "InteractiveRoundButton");
-    qmlRegisterType<InteractiveButton>(uri, 1, 0, "InteractiveButton");
-    qmlRegisterType<InteractiveMenuItem>(uri, 1, 0, "InteractiveMenuItem");
-    qmlRegisterType<RectangleItem>(uri, 1, 0, "RectangleItem");
+    qmlRegisterType<InteractiveGradientItem>(uri, 1, 0, "InteractiveGradientItem");
+    qmlRegisterType<DelayButtonProgressIndicator>(uri, 1, 0, "DelayButtonProgressIndicator");
 }
 

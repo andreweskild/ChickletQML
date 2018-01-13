@@ -16,10 +16,8 @@ SOURCES += \
     interactivegradientitem.cpp \
     rectangleitem.cpp \
     linearrowindicator.cpp \
-    interactiveroundbutton.cpp \
-    interactivebutton.cpp \
-    interactivemenuitem.cpp \
-    busyindicatorarc.cpp
+    busyindicatorarc.cpp \
+    delaybuttonprogressindicator.cpp
 
 HEADERS += \
     styleplugin_plugin.h \
@@ -30,10 +28,8 @@ HEADERS += \
     interactivegradientitem.h \
     rectangleitem.h \
     linearrowindicator.h \
-    interactiveroundbutton.h \
-    interactivebutton.h \
-    interactivemenuitem.h \
-    busyindicatorarc.h
+    busyindicatorarc.h \
+    delaybuttonprogressindicator.h
 
 DISTFILES = qmldir \
     Button.qml \
@@ -53,7 +49,24 @@ DISTFILES = qmldir \
     Menu.qml \
     MenuBarItem.qml \
     MenuSeparator.qml \
-    PageIndicator.qml
+    PageIndicator.qml \
+    Pane.qml \
+    ScrollBar.qml \
+    Switch.qml \
+    ToolTip.qml \
+    DelayButton.qml \
+    TabBar.qml \
+    TabButton.qml \
+    StackView.qml \
+    GenericInteractiveRounded.qml \
+    GenericInteractiveCircle.qml \
+    GenericInteractiveRect.qml \
+    Drawer.qml \
+    Tumbler.qml \
+    ToolBar.qml \
+    ToolButton.qml \
+    RoundButton.qml \
+    SpinBox.qml
 
 !equals(_PRO_FILE_PWD_, $$OUT_PWD) {
     copy_qmldir.target = $$OUT_PWD/qmldir

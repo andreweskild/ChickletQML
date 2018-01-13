@@ -9,30 +9,41 @@ Item {
     id: root
 
     property bool hidden: false;
+    property bool hovered: false;
+    property real radius: 4;
 
     implicitWidth: 24
     implicitHeight: 24
 
-    opacity: hidden ? 0 : 1
 
-    Behavior on opacity {
-        NumberAnimation {
-            duration: 100
-            easing {
-                type: Easing.OutSine
-            }
-        }
-    }
 
     RectangularGlow {
         id: shadow
-        y: 4
-        x: 3
-        height: root.height - 4
-        width: root.width - 6
-        glowRadius: 6
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: root.hovered ? 4 : 2
+        height: root.height
+        width: root.width
+        glowRadius: 3
         spread: 0.2
         color: StylePlugin.palette.shadow
-        cornerRadius: StylePlugin.dimensions.actionableRadius + glowRadius
+        cornerRadius: radius + glowRadius
+        opacity: hidden ? 0 : 1
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 150
+                easing {
+                    type: Easing.InOutSine
+                }
+            }
+        }
+        Behavior on anchors.verticalCenterOffset {
+            NumberAnimation {
+                duration: 400
+                easing {
+                    type: Easing.OutSine
+                }
+            }
+        }
     }
 }

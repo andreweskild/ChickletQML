@@ -5,10 +5,15 @@ import QtQuick.Controls 2.3
 
 ApplicationWindow {
     id: window
-    width: 640
+    width: 1024
     height: 480
     visible: true
     color: "#e5e0e9"
+
+    Drawer {
+        width: 200
+        height: window.height
+    }
 
     menuBar: MenuBar {
         Menu {
@@ -36,11 +41,7 @@ ApplicationWindow {
     property int columnFactor: 5
 
         GridLayout {
-            rowSpacing: 12
-            columnSpacing: 30
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.margins: 30
+            anchors.fill: parent
 
             Button {
                 text: "Close"
@@ -54,6 +55,7 @@ ApplicationWindow {
                 id: slider2
                 value: 0.5
                 implicitWidth: window.width / columnFactor
+
             }
 
             ProgressBar {
@@ -71,35 +73,124 @@ ApplicationWindow {
                 implicitWidth: window.width / columnFactor
             }
 
-            GroupBox {
-                title: "ahhh"
 
-                ColumnLayout {
+            Switch {
+            }
 
-                    BusyIndicator {
-                    }
+            Flickable {
+                width: 100
+                height: 100
+                contentHeight: rect.height
+                contentWidth: rect.width
+                clip: true
 
-                    ComboBox {
-                        model: ["Paris", "Oslo", "New York"]
-                    }
+                ScrollBar.horizontal: ScrollBar {id: hbar; active: vbar.active; interactive: true}
+                ScrollBar.vertical: ScrollBar {id: vbar; active: hbar.active}
 
-                    PageIndicator {
-                        count: 5
-                        interactive: true
-                    }
+                Rectangle {
+                    id: rect
+                    height: 200
+                    width: 200
+                    color: "white"
+                    border.width: 10
+                    border.color: "blue"
                 }
             }
 
-//            TabView {
-//                Layout.row: 6
-//                Layout.columnSpan: 3
-//                Layout.fillWidth: true
-//                implicitHeight: 30
-//                Tab { title: "One" ; Item {}}
-//                Tab { title: "Two" ; Item {}}
-//                Tab { title: "Three" ; Item {}}
-//                Tab { title: "Four" ; Item {}}
-//            }
+            DelayButton {
+                text: "Launch"
+            }
+
+            ColumnLayout {
+                width: 200
+                height: 200
+                spacing: 0
+                TabBar {
+                    id: bar
+                    Layout.row: 6
+                    Layout.columnSpan: 3
+                    Layout.fillWidth: true
+                    TabButton { text: "One" }
+                    TabButton { text: "Two" }
+                    TabButton { text: "Three"}
+                    TabButton { text: "Four" }
+                }
+                StackLayout {
+                    width: parent.width
+                    currentIndex: bar.currentIndex
+
+                    GroupBox {
+                        title: "ahhh"
+                        width: parent.width
+
+
+                        ColumnLayout {
+
+                            ToolBar {
+                                width: parent.width
+                                    RowLayout {
+                                        spacing: 8
+                                        anchors.fill: parent
+                                        ToolButton {
+                                            text: qsTr("Back")
+                                        }
+                                        ToolButton {
+                                            text: qsTr("Edit")
+                                        }
+                                        ToolButton {
+                                            text: qsTr("Undo")
+                                        }
+                                        ToolButton {
+                                            text: qsTr("Redo")
+                                        }
+                                    }
+                                }
+
+                            BusyIndicator {
+                            }
+
+                            ComboBox {
+                                model: ["Paris", "Oslo", "New York"]
+                            }
+
+                            PageIndicator {
+                                count: 5
+                                interactive: true
+                            }
+
+                            Tumbler {
+                                model: 12
+                            }
+
+                            RoundButton {
+                                text: "\u2713"
+                            }
+
+                            SpinBox {
+                                editable: true
+                                value: 100
+                                to: 1000
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        id: discoverTab
+                        anchors.fill: parent
+                        color: "yellow"
+                    }
+                    Rectangle {
+                        id: activityTab
+                        anchors.fill: parent
+                        color: "blue"
+                    }
+                    Rectangle {
+                        id: fourthTab
+                        anchors.fill: parent
+                        color: "green"
+                    }
+                }
+            }
         }
 
         // Style delegates:

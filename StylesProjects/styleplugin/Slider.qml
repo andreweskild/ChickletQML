@@ -1,4 +1,5 @@
 import QtQuick 2.9
+import QtQuick.Controls 2.2
 import QtQuick.Templates 2.2 as T
 import styleplugin 1.0
 
@@ -8,19 +9,25 @@ T.Slider {
     implicitWidth: StylePlugin.dimensions.actionableWideWidth
     implicitHeight: StylePlugin.dimensions.actionableHeight
 
+    ToolTip {
+        x: handle.x - width * .5 + leftPadding + padding
+        text: control.value.toFixed(1)
+        delay: 1000
+        visible: control.hovered
+    }
 
     handle: Item {
         id: handle
         x: control.visualPosition * (control.availableWidth - width)
         height: control.height
-        width: StylePlugin.dimensions.sliderHandleWidth
+        width: control.height
         y: control.pressed ? 2 : 0
 
         Behavior on y {
             NumberAnimation {
                 duration: 100
                 easing {
-                    type: Easing.OutSine
+                    type: Easing.InOutSine
                 }
             }
         }
@@ -28,22 +35,22 @@ T.Slider {
         ShadowItem {
             anchors.fill: parent
             hidden: control.pressed
-        }
-
-        InteractiveButton {
-            id: background
-            anchors.fill: parent
-            pressed: control.pressed
             hovered: control.hovered
         }
+
+        GenericInteractiveRounded {
+            id: background
+            anchors.fill: parent
+        }
+
     }
 
     background: Rectangle {
-        anchors.centerIn: control
         width: control.width
-        height: StylePlugin.dimensions.progressBarWidth
+        height: 24
         color: StylePlugin.palette.greyMid
-        radius: height / 2
+        radius: 4
+        y: 2
 
         Rectangle {
             width: handle.x + handle.width

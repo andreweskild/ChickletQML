@@ -59,13 +59,13 @@ T.TextField {
     verticalAlignment: TextInput.AlignVCenter
 
 
-    y: control.activeFocus ? 2 : 0
+    topPadding: control.activeFocus ? 2 : 0
 
-    Behavior on y {
+    Behavior on topPadding {
         NumberAnimation {
             duration: 100
             easing {
-                type: Easing.OutSine
+                type: Easing.InOutSine
             }
         }
     }
@@ -73,18 +73,32 @@ T.TextField {
     background: Item {
         id: background
 
+        y: control.activeFocus ? 2 : 0
+
+        Behavior on y {
+            NumberAnimation {
+                duration: 100
+                easing {
+                    type: Easing.InOutSine
+                }
+            }
+        }
 
         ShadowItem {
             anchors.fill: parent
             hidden: control.activeFocus
+            hovered: control.hovered
         }
 
-        RectangleItem {
+        Rectangle {
             id: inputBG
             height: control.height
             width: control.width
-            pressed: control.activeFocus
-            hovered: control.hovered
+            color: StylePlugin.palette.greyLight
+            border.color: control.hovered || control.activeFocus ? StylePlugin.palette.primaryNormal
+                                          : StylePlugin.palette.greyLight
+            border.width: 2
+            radius: StylePlugin.dimensions.actionableRadius
 
 
             PlaceholderText {
@@ -102,9 +116,9 @@ T.TextField {
 
                 Behavior on opacity {
                     NumberAnimation {
-                        duration: 100
+                        duration: 150
                         easing {
-                            type: Easing.OutSine
+                            type: Easing.InOutSine
                         }
                     }
                 }

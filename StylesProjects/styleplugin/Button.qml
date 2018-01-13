@@ -18,27 +18,16 @@ T.Button {
             anchors.fill: parent
 
             ShadowItem {
-                anchors.fill: parent
+                height: parent.height
+                width: parent.width
                 hidden: control.pressed
+                hovered: control.hovered
             }
 
-            InteractiveButton {
+            GenericInteractiveRounded {
                 id: background
                 height: parent.height
                 width: parent.width
-                pressed: control.pressed
-                hovered: control.hovered
-
-                y: control.pressed ? 2 : 0
-
-                Behavior on y {
-                    NumberAnimation {
-                        duration: 100
-                        easing {
-                            type: Easing.InOutSine
-                        }
-                    }
-                }
 
                 Text {
                     id: buttonText

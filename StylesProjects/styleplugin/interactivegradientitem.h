@@ -16,17 +16,26 @@ class InteractiveGradientItem : public QNanoQuickItem
 
     Q_PROPERTY(QColor primaryColor READ primaryColor WRITE setPrimaryColor NOTIFY primaryColorChanged)
     Q_PROPERTY(QColor secondaryColor READ secondaryColor WRITE setSecondaryColor NOTIFY secondaryColorChanged)
-    Q_PROPERTY(bool pressed MEMBER m_pressed NOTIFY pressedChanged)
-    Q_PROPERTY(bool hovered MEMBER m_hovered NOTIFY hoveredChanged)
-
+    Q_PROPERTY(Shape shape READ shape WRITE setShape NOTIFY shapeChanged)
 
 public:
+    enum Shape {
+        Rect,
+        RoundedRect,
+        Circle
+    };
+    Q_ENUM(Shape)
+
     InteractiveGradientItem(QQuickItem *p_parent = 0);
     
     QColor primaryColor() const;
+    void setPrimaryColor(const QColor &p_primaryColor);
 
     QColor secondaryColor() const;
+    void setSecondaryColor(const QColor &p_secondaryColor);
 
+    Shape shape() const;
+    void setShape(const Shape &p_shape);
 
 
     QPointF mousePosition() const;
@@ -34,55 +43,25 @@ public:
 
     QNanoQuickItemPainter *createItemPainter() const;
 
-public slots:
-    void setPrimaryColor(const QColor &p_primaryColor);
-    void setSecondaryColor(const QColor &p_secondaryColor);
-
-    void handleMousePress();
-    void handleHover();
 
 signals:
     void primaryColorChanged();
     void secondaryColorChanged();
-    void pressedChanged();
-    void hoveredChanged();
-
-    void pressed();
-    void releasedNormal();
-    void releasedHovered();
-
-    void hoverEnter();
-    void hoverLeave();
+    void shapeChanged();
 
 protected:
     void hoverMoveEvent(QHoverEvent *p_event);
 
-    BasePalette *m_palette;
+
+
+private:
+
+    QPointF m_mousePos;
 
     QColor m_primaryColor;
     QColor m_secondaryColor;
 
-private:
-    enum State {
-        Normal,
-        Hovered,
-        Pressed
-    };
-
-    QPointF m_mousePos;
-    bool m_pressed;
-    bool m_hovered;
-
-    const QEasingCurve ANIM_EASING = QEasingCurve::InOutSine;
-    const int ANIM_DURATION = 150;
-
-    QParallelAnimationGroup *m_group;
-    QPropertyAnimation *m_primaryAnimation;
-    QPropertyAnimation *m_secondaryAnimation;
-
-    void initAnimations();
-    void handleAnimation(State p_state);
-
+    Shape m_shape;
 
 
 };
@@ -90,32 +69,25 @@ private:
 class InteractiveGradientPainter : public QNanoQuickItemPainter
 {
 public:
-    enum Shape {
-        Rect,
-        RoundedRect,
-        Circle
-    };
 
-    InteractiveGradientPainter(const Shape &p_shape = Rect);
-
-    ~InteractiveGradientPainter();
+    InteractiveGradientPainter(const InteractiveGradientItem::Shape &p_shape = InteractiveGradientItem::RoundedRect);
 
     void paint(QNanoPainter *p);
 
     void synchronize(QNanoQuickItem *p_item);
 
 private:
-    DimensionsProvider *m_dimensions;
     QNanoRadialGradient m_gradient;
 
     QNanoColor m_primaryColor;
     QNanoColor m_secondaryColor;
     QPointF m_mousePos;
 
-    int m_borderWidth;
-    qreal m_radius;
 
-    Shape m_shape;
+    InteractiveGradientItem::Shape m_shape;
+
+    const int M_RADIUS = 4;
+
 
 };
 

@@ -1,76 +1,10 @@
 #include "interactivegradientitem.h"
 
 
-InteractiveGradientPainter::InteractiveGradientPainter(const Shape &p_shape) :
-    m_dimensions(new DimensionsProvider()),
-    m_borderWidth(m_dimensions->property("borderWidth").toInt()),
-    m_radius(m_dimensions->property("actionableRadius").toInt()),
-    m_shape(p_shape)
-{
-}
-
-InteractiveGradientPainter::~InteractiveGradientPainter()
-{
-    delete m_dimensions;
-}
-
-void InteractiveGradientPainter::paint(QNanoPainter *p)
-{
-    qreal borderAdjustment = m_borderWidth * .5;
-    p->beginPath();
-    switch(m_shape)
-    {
-        case Rect:
-        {
-            p->rect(borderAdjustment, borderAdjustment,
-                    width() - m_borderWidth, height() - m_borderWidth);
-        }
-        break;
-        case RoundedRect:
-        {
-            p->roundedRect(borderAdjustment, borderAdjustment,
-                           width() - m_borderWidth, height() - m_borderWidth, m_radius);
-        }
-        break;
-        case Circle:
-        {
-            p->circle(width()*.5, height()*.5, width()*.5 - borderAdjustment);
-        }
-        break;
-    }
-    m_gradient.setOuterRadius(width()*2);
-    m_gradient.setStartColor(m_primaryColor);
-    m_gradient.setEndColor(m_secondaryColor);
-    p->setFillStyle(m_gradient);
-    p->fill();
-    p->setStrokeStyle(m_primaryColor);
-    p->setLineWidth(m_borderWidth);
-    p->stroke();
-}
-
-void InteractiveGradientPainter::synchronize(QNanoQuickItem *p_item)
-{
-    InteractiveGradientItem *gradientItem = static_cast<InteractiveGradientItem *>(p_item);
-    if(gradientItem)
-    {
-        m_primaryColor = QNanoColor::fromQColor(gradientItem->primaryColor());
-        m_secondaryColor = QNanoColor::fromQColor(gradientItem->secondaryColor());
-        m_gradient.setCenterPosition(gradientItem->mousePosition());
-    }
-}
-
 InteractiveGradientItem::InteractiveGradientItem(QQuickItem *p_parent) : QNanoQuickItem(p_parent),
-    m_palette(new BasePalette(this)),
-    m_pressed(false),
-    m_hovered(false),
-    m_group(new QParallelAnimationGroup(this)),
-    m_primaryAnimation(new QPropertyAnimation(this, "primaryColor", this)),
-    m_secondaryAnimation(new QPropertyAnimation(this, "secondaryColor", this))
+    m_shape(InteractiveGradientItem::RoundedRect)
 {
     setAcceptHoverEvents(true);
-    initAnimations();
-    connect(this, SIGNAL(hoveredChanged()), this, SLOT(handleHover()));
-    connect(this, SIGNAL(pressedChanged()), this, SLOT(handleMousePress()));
 }
 
 QColor InteractiveGradientItem::primaryColor() const
@@ -101,6 +35,20 @@ void InteractiveGradientItem::setSecondaryColor(const QColor &p_secondaryColor)
     }
 }
 
+InteractiveGradientItem::Shape InteractiveGradientItem::shape() const
+{
+    return m_shape;
+}
+
+void InteractiveGradientItem::setShape(const InteractiveGradientItem::Shape &p_shape)
+{
+    if(m_shape != p_shape)
+    {
+        m_shape = p_shape;
+        update();
+    }
+}
+
 QPointF InteractiveGradientItem::mousePosition() const
 {
     return m_mousePos;
@@ -117,84 +65,61 @@ void InteractiveGradientItem::hoverMoveEvent(QHoverEvent *p_event)
     updateMousePosition(p_event->posF());
 }
 
-void InteractiveGradientItem::handleHover()
+QNanoQuickItemPainter *InteractiveGradientItem::createItemPainter() const
 {
-    if(m_hovered && !m_pressed)
-    {
-        handleAnimation(Hovered);
-    }
-    else if(!m_pressed)
-    {
-        handleAnimation(Normal);
-    }
+    return new InteractiveGradientPainter(m_shape);
+}
+
+InteractiveGradientPainter::InteractiveGradientPainter(const InteractiveGradientItem::Shape &p_shape) :
+    m_shape(p_shape)
+{
 }
 
 
-void InteractiveGradientItem::handleMousePress()
+void InteractiveGradientPainter::paint(QNanoPainter *p)
 {
-    if (m_pressed)
+    p->beginPath();
+    switch(m_shape)
     {
-        handleAnimation(Pressed);
+        case InteractiveGradientItem::Rect:
+        {
+            p->rect(0, 0,
+                    width(), height());
+        }
+        break;
+        case InteractiveGradientItem::RoundedRect:
+        {
+            p->roundedRect(0, 0,
+                           width(), height(), M_RADIUS);
+        }
+        break;
+        case InteractiveGradientItem::Circle:
+        {
+            p->circle(width()*.5, height()*.5, width()*.5);
+        }
+        break;
+    }
+    if(width() > height())
+    {
+        m_gradient.setOuterRadius(width() * 2);
     }
     else
     {
-        if(m_hovered)
-        {
-            handleAnimation(Hovered);
-        }
-        else
-        {
-            handleAnimation(Normal);
-        }
+        m_gradient.setOuterRadius(height() * 2);
     }
+    m_gradient.setStartColor(m_primaryColor);
+    m_gradient.setEndColor(m_secondaryColor);
+    p->setFillStyle(m_gradient);
+    p->fill();
 }
 
-QNanoQuickItemPainter *InteractiveGradientItem::createItemPainter() const
+void InteractiveGradientPainter::synchronize(QNanoQuickItem *p_item)
 {
-    return new InteractiveGradientPainter();
-}
-
-void InteractiveGradientItem::initAnimations()
-{
-    m_primaryAnimation->setDuration(ANIM_DURATION);
-    m_primaryAnimation->setEasingCurve(ANIM_EASING);
-
-    m_secondaryAnimation->setDuration(ANIM_DURATION);
-    m_secondaryAnimation->setEasingCurve(ANIM_EASING);
-
-    m_group->addAnimation(m_primaryAnimation);
-    m_group->addAnimation(m_secondaryAnimation);
-}
-
-void InteractiveGradientItem::handleAnimation(State p_state)
-{
-    if(m_group->state() == QParallelAnimationGroup::Running)
+    InteractiveGradientItem *gradientItem = static_cast<InteractiveGradientItem *>(p_item);
+    if(gradientItem)
     {
-        m_group->stop();
-    }
-    switch(p_state)
-    {
-        case Normal:
-        {
-            m_primaryAnimation->setEndValue(m_palette->greyLight());
-            m_secondaryAnimation->setEndValue(m_palette->greyLight());
-            m_group->start();
-        }
-        break;
-        case Hovered:
-        {
-            m_primaryAnimation->setEndValue(m_palette->primaryNormal());
-            m_secondaryAnimation->setEndValue(m_palette->primaryLight());
-            m_group->start();
-        }
-        break;
-        case Pressed:
-        {
-            m_primaryAnimation->setEndValue(m_palette->primaryMid());
-            m_secondaryAnimation->setEndValue(m_palette->primaryNormal());
-            m_group->start();
-        }
-        break;
+        m_primaryColor = QNanoColor::fromQColor(gradientItem->primaryColor());
+        m_secondaryColor = QNanoColor::fromQColor(gradientItem->secondaryColor());
+        m_gradient.setCenterPosition(gradientItem->mousePosition());
     }
 }
-

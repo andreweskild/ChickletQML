@@ -31,14 +31,13 @@ T.CheckBox {
             ShadowItem {
                 anchors.fill: parent
                 hidden: control.pressed
+                hovered: control.hovered
             }
 
-            InteractiveButton {
+            GenericInteractiveRounded {
                 id: background
                 implicitWidth: control.height
                 implicitHeight: control.height
-                pressed: control.down
-                hovered: control.hovered
 
 
                 CheckBoxIndicator {
@@ -59,7 +58,7 @@ T.CheckBox {
 
                     Behavior on color {
                         ColorAnimation {
-                            duration: 200
+                            duration: 150
                             easing {
                                 type: Easing.InOutSine
                             }

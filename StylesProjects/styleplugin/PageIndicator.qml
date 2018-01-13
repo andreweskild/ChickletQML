@@ -22,11 +22,11 @@ T.PageIndicator {
             width: index === currentIndex ? parent.width : parent.width * .66
             anchors.centerIn: parent
             radius: width / 2
-            color: index === currentIndex ? StylePlugin.palette.greyDark : StylePlugin.palette.greyMid
+            color: index === currentIndex ? StylePlugin.palette.greyDark : StylePlugin.palette.greyLight
 
             Behavior on height {
                 NumberAnimation {
-                    duration: 100
+                    duration: 150
                     easing {
                         type: Easing.InOutSine
                     }
@@ -35,7 +35,7 @@ T.PageIndicator {
 
             Behavior on width {
                 NumberAnimation {
-                    duration: 100
+                    duration: 150
                     easing {
                         type: Easing.InOutSine
                     }
@@ -44,9 +44,9 @@ T.PageIndicator {
 
             Behavior on color {
                 ColorAnimation {
-                    duration: 100
+                    duration: 150
                     easing {
-                        type: Easing.OutSine
+                        type: Easing.InOutSine
                     }
                 }
             }

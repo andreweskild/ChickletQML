@@ -35,7 +35,7 @@ T.MenuBarItem {
 
         Behavior on color {
             ColorAnimation {
-                duration: 200
+                duration: 150
                 easing {
                     type: Easing.InOutSine
                 }
@@ -50,14 +50,33 @@ T.MenuBarItem {
         ShadowItem {
             anchors.fill: parent
             hidden: control.pressed || menu.isOpen
+            hovered: control.hovered
         }
 
-        InteractiveButton {
+        GenericInteractiveRounded {
         id: background
-        height: menu.opened ? control.height + 4 : control.height
+        height: control.height
         width: control.width
-        pressed: control.pressed && !menu.isOpen
-        hovered: control.hovered && !menu.isOpen
+        primaryColor: control.pressed && !menu.isOpen ? StylePlugin.palette.primaryMid :
+                        control.hovered && !menu.isOpen ? StylePlugin.palette.primaryNormal : StylePlugin.palette.greyLight
+        secondaryColor: control.hovered && !menu.isOpen ? StylePlugin.palette.primaryLight : StylePlugin.palette.greyLight
+
+        Behavior on primaryColor {
+            ColorAnimation {
+                duration: 150
+                easing {
+                    type: Easing.InOutSine
+                }
+            }
+        }
+        Behavior on secondaryColor {
+            ColorAnimation {
+                duration: 150
+                easing {
+                    type: Easing.InOutSine
+                }
+            }
+        }
 
         y: control.pressed || menu.isOpen ? 2 : 0
 

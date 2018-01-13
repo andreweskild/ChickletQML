@@ -45,7 +45,7 @@ T.ComboBox {
                 anchors.centerIn: parent
                 Behavior on color {
                     ColorAnimation {
-                        duration: 200
+                        duration: 150
                         easing {
                             type: Easing.InOutSine
                         }
@@ -88,7 +88,7 @@ T.ComboBox {
 
         Behavior on color {
             ColorAnimation {
-                duration: 200
+                duration: 150
                 easing {
                     type: Easing.InOutSine
                 }
@@ -105,23 +105,12 @@ T.ComboBox {
         ShadowItem {
             anchors.fill: parent
             hidden: control.pressed
+            hovered: control.hovered
         }
 
-        InteractiveButton {
-            y: control.pressed ? 2 : 0
+        GenericInteractiveRounded {
             height: parent.height
             width: parent.width
-            hovered: control.hovered
-            pressed: control.pressed
-
-            Behavior on y {
-                NumberAnimation {
-                    duration: 100
-                    easing {
-                        type: Easing.InOutSine
-                    }
-                }
-            }
 
         }
 
@@ -151,9 +140,9 @@ T.ComboBox {
                 to: popup.height
             }
             NumberAnimation {
-                duration: 50
+                duration: 100
                 easing {
-                    type: Easing.OutSine
+                    type: Easing.InOutSine
                 }
 
                 targets: [background]
@@ -164,7 +153,7 @@ T.ComboBox {
                 targets: [arrowIndicator, buttonText]
                 duration: 100
                 easing {
-                    type: Easing.OutSine
+                    type: Easing.InOutSine
                 }
                 property: "opacity"
                 to: 0
@@ -186,7 +175,7 @@ T.ComboBox {
                 targets: [arrowIndicator, buttonText]
                 duration: 100
                 easing {
-                    type: Easing.OutSine
+                    type: Easing.InOutSine
                 }
                 property: "opacity"
                 to: 1
@@ -194,9 +183,9 @@ T.ComboBox {
             }
 
             NumberAnimation {
-                duration: 50
+                duration: 100
                 easing {
-                    type: Easing.OutSine
+                    type: Easing.InOutSine
                 }
 
                 targets: [background]
@@ -218,9 +207,9 @@ T.ComboBox {
 
             Behavior on opacity {
                 NumberAnimation {
-                    duration: 100
+                    duration: 150
                     easing {
-                        type: Easing.OutSine
+                        type: Easing.InOutSine
                     }
                 }
             }

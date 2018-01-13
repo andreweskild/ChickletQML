@@ -21,7 +21,7 @@ T.RadioButton {
             NumberAnimation {
                 duration: 100
                 easing {
-                    type: Easing.OutSine
+                    type: Easing.InOutSine
                 }
             }
         }
@@ -30,14 +30,14 @@ T.RadioButton {
             width: parent.width
             height: parent.height
             hidden: control.pressed
+            hovered: control.hovered
+            radius: parent.height * .5
         }
 
-        InteractiveRoundButton {
+        GenericInteractiveCircle {
             id: radioBackground
             implicitHeight: parent.height
             implicitWidth: parent.height
-            pressed: control.pressed
-            hovered: control.hovered
 
 
             Rectangle {
@@ -52,9 +52,9 @@ T.RadioButton {
 
                 Behavior on height {
                     NumberAnimation {
-                        duration: 100
+                        duration: 150
                         easing {
-                            type: Easing.OutSine
+                            type: Easing.InOutSine
                         }
                     }
                 }
@@ -62,27 +62,27 @@ T.RadioButton {
 
                 Behavior on width {
                     NumberAnimation {
-                        duration: 100
+                        duration: 150
                         easing {
-                            type: Easing.OutSine
+                            type: Easing.InOutSine
                         }
                     }
                 }
 
                 Behavior on color {
                     ColorAnimation {
-                        duration: 100
+                        duration: 150
                         easing {
-                            type: Easing.OutSine
+                            type: Easing.InOutSine
                         }
                     }
                 }
 
                 Behavior on opacity {
                     NumberAnimation {
-                        duration: 100
+                        duration: 150
                         easing {
-                            type: Easing.OutSine
+                            type: Easing.InOutSine
                         }
                     }
                 }

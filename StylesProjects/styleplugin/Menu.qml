@@ -19,6 +19,7 @@ T.Menu {
 
 
 
+
     transformOrigin: !cascade ? Item.Top : (mirrored ? Item.TopRight : Item.TopLeft)
 
     delegate: MenuItem {}
@@ -67,7 +68,7 @@ T.Menu {
                 NumberAnimation {
                     duration: 100
                     easing {
-                        type: Easing.OutSine
+                        type: Easing.InOutSine
                     }
                 }
             }
@@ -78,7 +79,7 @@ T.Menu {
             color: StylePlugin.palette.greyLight
             width: control.parent.width
             y: -2
-            height: 2
+            height: 6
         }
 
 

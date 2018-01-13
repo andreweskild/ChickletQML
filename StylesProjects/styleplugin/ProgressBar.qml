@@ -6,7 +6,7 @@ T.ProgressBar {
     id: control
 
     implicitWidth: StylePlugin.dimensions.actionableWideWidth
-    implicitHeight: StylePlugin.dimensions.progressBarWidth
+    implicitHeight: 8
 
 
     background: Rectangle {

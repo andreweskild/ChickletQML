@@ -24,7 +24,7 @@ T.MenuItem {
 
         Behavior on color {
             ColorAnimation {
-                duration: 200
+                duration: 150
                 easing {
                     type: Easing.InOutSine
                 }
@@ -32,10 +32,8 @@ T.MenuItem {
         }
     }
 
-    background: InteractiveMenuItem {
+    background: GenericInteractiveRect {
         implicitWidth: 200
         height: control.height
-        hovered: control.hovered
-        pressed: control.pressed
     }
 }
