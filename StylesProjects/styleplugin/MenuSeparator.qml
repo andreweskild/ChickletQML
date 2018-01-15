@@ -8,12 +8,12 @@ T.MenuSeparator {
     implicitWidth: parent.width
     implicitHeight: topPadding + bottomPadding + contentItem.implicitHeight
 
-    topPadding: 4
-    bottomPadding: 4
+    topPadding: 2
+    bottomPadding: 2
 
     contentItem: Rectangle {
-        implicitHeight: 1
+        implicitHeight: 2
         width: control.width
-        color: StylePlugin.palette.greyMid
+        color: StylePlugin.palette.greyMidLight
     }
 }

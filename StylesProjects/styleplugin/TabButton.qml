@@ -47,16 +47,9 @@ T.TabButton {
     implicitHeight: 24
     y: 4
 
-    contentItem: Label {
-        height: parent.height
-        width: parent.width
-        text: control.text
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        color: control.checked ? StylePlugin.palette.greyBlack :
-                                                    StylePlugin.palette.greyWhite
-
+    transform: Translate {
         y: control.pressed ? 2 : 0
+
 
         Behavior on y {
             NumberAnimation {
@@ -66,6 +59,16 @@ T.TabButton {
                 }
             }
         }
+    }
+
+    contentItem: Label {
+        anchors.fill: parent
+        text: control.text
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+        color: control.checked ? StylePlugin.palette.greyBlack :
+                                                    StylePlugin.palette.greyWhite
+
         Behavior on color {
             ColorAnimation {
                 duration: 150
@@ -77,14 +80,13 @@ T.TabButton {
     }
 
     background: Item {
-        height: parent.height
-        width: parent.width
+        anchors.fill: parent
         ShadowItem {
             anchors.fill: parent
             hidden: control.pressed
         }
 
-        InteractiveGradientItem {
+        GenericInteractiveRounded {
             height: parent.height + 4
             width: parent.width
             primaryColor: control.checked ? StylePlugin.palette.greyMidLight :
@@ -93,32 +95,6 @@ T.TabButton {
             secondaryColor: control.checked ? StylePlugin.palette.greyMidLight :
                             control.hovered ? StylePlugin.palette.primaryLight : StylePlugin.palette.greyDark
 
-            Behavior on primaryColor {
-                ColorAnimation {
-                    duration: 150
-                    easing {
-                        type: Easing.InOutSine
-                    }
-                }
-            }
-            Behavior on secondaryColor {
-                ColorAnimation {
-                    duration: 150
-                    easing {
-                        type: Easing.InOutSine
-                    }
-                }
-            }
-            y: control.pressed ? 2 : 0
-
-            Behavior on y {
-                NumberAnimation {
-                    duration: 100
-                    easing {
-                        type: Easing.InOutSine
-                    }
-                }
-            }
         }
     }
 

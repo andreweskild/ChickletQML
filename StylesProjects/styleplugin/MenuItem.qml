@@ -35,5 +35,7 @@ T.MenuItem {
     background: GenericInteractiveRect {
         implicitWidth: 200
         height: control.height
+        hovered: control.hovered
+        pressed: control.pressed
     }
 }

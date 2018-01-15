@@ -10,38 +10,52 @@ T.ToolButton {
     implicitWidth: StylePlugin.dimensions.actionableMiniWidth
     implicitHeight: 24
 
+    transform: Translate {
+        y: control.pressed ? 2 : 0
+
+
+        Behavior on y {
+            NumberAnimation {
+                duration: 100
+                easing {
+                    type: Easing.InOutSine
+                }
+            }
+        }
+    }
+
+    contentItem: Text {
+            id: buttonText
+            anchors.centerIn: parent
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            color: control.hovered ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
+            text: control.text
+            font: control.font
+
+            Behavior on color {
+                ColorAnimation {
+                    duration: 150
+                    easing {
+                        type: Easing.InOutSine
+                    }
+                }
+            }
+        }
 
     background: Item {
         anchors.fill: parent
 
         ShadowItem {
-            height: parent.height
-            width: parent.width
+            anchors.fill: parent
             hidden: control.pressed
             hovered: control.hovered
         }
 
         GenericInteractiveRounded {
-            height: parent.height
-            width: parent.width
-            Text {
-                id: buttonText
-                anchors.centerIn: parent
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                color: control.hovered ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
-                text: control.text
-                font: control.font
-
-                Behavior on color {
-                    ColorAnimation {
-                        duration: 150
-                        easing {
-                            type: Easing.InOutSine
-                        }
-                    }
-                }
-            }
+            anchors.fill: parent
+            hovered: control.hovered
+            pressed: control.pressed
         }
     }
 }

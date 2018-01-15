@@ -6,28 +6,22 @@ import styleplugin 1.0
 T.ScrollBar {
     id: control
 
-    implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                            contentItem.implicitWidth + leftPadding + rightPadding)
-    implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                             contentItem.implicitHeight + topPadding + bottomPadding)
+    implicitWidth: 16
+    implicitHeight: 16
 
     clip: false
-    padding: 3
     visible: control.policy !== T.ScrollBar.AlwaysOff
 
     contentItem: Item {
         implicitWidth: control.interactive ? 8 : StylePlugin.dimensions.progressBarWidth
         implicitHeight: control.interactive ? 8 : StylePlugin.dimensions.progressBarWidth
 
-        Rectangle {
-            id: handle
-            height: parent.height
-            width: parent.width
-            color: control.interactive ? (control.pressed ? StylePlugin.palette.greyBlack
-                                        : control.hovered ? StylePlugin.palette.greyMidDark : StylePlugin.palette.greyDark)
-                                       : StylePlugin.palette.greyDark
-            radius: height * .5
-            y: control.pressed ? 2 : 0
+        transform: Translate {
+            y: control.vertical ?
+                   (control.pressed ? 2 : 0) :
+                   (control.pressed ? 0 : -2)
+
+
             Behavior on y {
                 NumberAnimation {
                     duration: 100
@@ -36,16 +30,40 @@ T.ScrollBar {
                     }
                 }
             }
-            Behavior on color {
-                ColorAnimation {
-                    duration: 150
-                    easing {
-                        type: Easing.InOutSine
-                    }
-                }
-            }
         }
 
+        ShadowItem {
+            anchors.fill: parent
+            hidden: control.pressed
+            hovered: control.hovered
+        }
+
+        GenericInteractiveRounded {
+            id: handle
+            anchors.fill: parent
+            hovered: control.hovered
+            pressed: control.pressed
+
+        }
+
+
+    }
+
+    background: Item {
+        anchors.fill: parent
+
+
+        Rectangle {
+            anchors.fill: parent
+            radius: 4
+            color: StylePlugin.palette.greyMid
+        }
+        Rectangle {
+            width: control.horizontal ? control.position * control.width + handle.width : parent.width
+            height: control.vertical ? control.position * control.height + handle.height + 2 : parent.height
+            color: StylePlugin.palette.greyDark
+            radius: 4
+        }
     }
 
 

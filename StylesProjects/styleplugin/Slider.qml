@@ -10,24 +10,27 @@ T.Slider {
     implicitHeight: StylePlugin.dimensions.actionableHeight
 
     ToolTip {
-        x: handle.x - width * .5 + leftPadding + padding
+        x: handleBG.x - width * .5 + leftPadding + padding
         text: control.value.toFixed(1)
         delay: 1000
         visible: control.hovered
     }
 
     handle: Item {
-        id: handle
+        id: handleBG
         x: control.visualPosition * (control.availableWidth - width)
         height: control.height
         width: control.height
-        y: control.pressed ? 2 : 0
+        transform: Translate {
+            y: control.pressed ? 2 : 0
 
-        Behavior on y {
-            NumberAnimation {
-                duration: 100
-                easing {
-                    type: Easing.InOutSine
+
+            Behavior on y {
+                NumberAnimation {
+                    duration: 100
+                    easing {
+                        type: Easing.InOutSine
+                    }
                 }
             }
         }
@@ -41,6 +44,8 @@ T.Slider {
         GenericInteractiveRounded {
             id: background
             anchors.fill: parent
+            hovered: control.hovered
+            pressed: control.pressed
         }
 
     }
@@ -53,7 +58,7 @@ T.Slider {
         y: 2
 
         Rectangle {
-            width: handle.x + handle.width
+            width: handleBG.x + handleBG.width
             height: parent.height
             radius: parent.radius
 

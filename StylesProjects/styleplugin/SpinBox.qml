@@ -18,6 +18,20 @@ T.SpinBox {
         top: Math.max(control.from, control.to)
     }
 
+    transform: Translate {
+        y: control.up.pressed || control.down.pressed ? 2 : 0
+
+
+        Behavior on y {
+            NumberAnimation {
+                duration: 100
+                easing {
+                    type: Easing.InOutSine
+                }
+            }
+        }
+    }
+
     contentItem: Item {
         anchors.horizontalCenter: parent.horizontalCenter
 
@@ -25,7 +39,7 @@ T.SpinBox {
             width: parent.width
             height: parent.height
             anchors.centerIn: parent
-            color: "white"
+            color: StylePlugin.palette.greyLight
             visible: input.activeFocus
             border.width: 2
             border.color: StylePlugin.palette.primaryNormal
@@ -43,6 +57,8 @@ T.SpinBox {
             verticalAlignment: Qt.AlignVCenter
             selectByMouse: true
 
+            cursorDelegate: CursorDelegate{}
+
             readOnly: !control.editable
             validator: control.validator
             inputMethodHints: control.inputMethodHints
@@ -52,16 +68,6 @@ T.SpinBox {
                     easing {
                         type: Easing.InOutSine
                     }
-                }
-            }
-        }
-        y: control.up.pressed || control.down.pressed ? 2 : 0
-
-        Behavior on y {
-            NumberAnimation {
-                duration: 100
-                easing {
-                    type: Easing.InOutSine
                 }
             }
         }
@@ -105,16 +111,6 @@ T.SpinBox {
                 }
             }
         }
-        y: control.up.pressed || control.down.pressed ? 2 : 0
-
-        Behavior on y {
-            NumberAnimation {
-                duration: 100
-                easing {
-                    type: Easing.InOutSine
-                }
-            }
-        }
     }
 
     down.indicator: Item {
@@ -140,16 +136,6 @@ T.SpinBox {
                 }
             }
         }
-        y: control.up.pressed || control.down.pressed ? 2 : 0
-
-        Behavior on y {
-            NumberAnimation {
-                duration: 100
-                easing {
-                    type: Easing.InOutSine
-                }
-            }
-        }
     }
 
     background: Item {
@@ -161,40 +147,11 @@ T.SpinBox {
             hidden: control.up.pressed || control.down.pressed
         }
 
-        InteractiveGradientItem {
-            id: background
+        GenericInteractiveRounded {
             height: parent.height
             width: parent.width
-            primaryColor: control.up.pressed || control.down.pressed ? StylePlugin.palette.primaryMid :
-                            control.hovered || input.activeFocus ? StylePlugin.palette.primaryNormal : StylePlugin.palette.greyLight
-            secondaryColor: control.hovered || input.activeFocus ? StylePlugin.palette.primaryLight : StylePlugin.palette.greyLight
-
-            Behavior on primaryColor {
-                ColorAnimation {
-                    duration: 150
-                    easing {
-                        type: Easing.InOutSine
-                    }
-                }
-            }
-            Behavior on secondaryColor {
-                ColorAnimation {
-                    duration: 150
-                    easing {
-                        type: Easing.InOutSine
-                    }
-                }
-            }
-            y: control.up.pressed || control.down.pressed ? 2 : 0
-
-            Behavior on y {
-                NumberAnimation {
-                    duration: 100
-                    easing {
-                        type: Easing.InOutSine
-                    }
-                }
-            }
+            hovered: control.hovered || input.activeFocus
+            pressed: control.up.pressed || control.down.pressed
         }
     }
 }

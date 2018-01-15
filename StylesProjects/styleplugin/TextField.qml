@@ -59,7 +59,21 @@ T.TextField {
     verticalAlignment: TextInput.AlignVCenter
 
 
-    topPadding: control.activeFocus ? 2 : 0
+    transform: Translate {
+        y: control.activeFocus ? 2 : 0
+
+
+        Behavior on y {
+            NumberAnimation {
+                duration: 100
+                easing {
+                    type: Easing.InOutSine
+                }
+            }
+        }
+    }
+
+    cursorDelegate: CursorDelegate {}
 
     Behavior on topPadding {
         NumberAnimation {
@@ -73,17 +87,6 @@ T.TextField {
     background: Item {
         id: background
 
-        y: control.activeFocus ? 2 : 0
-
-        Behavior on y {
-            NumberAnimation {
-                duration: 100
-                easing {
-                    type: Easing.InOutSine
-                }
-            }
-        }
-
         ShadowItem {
             anchors.fill: parent
             hidden: control.activeFocus
@@ -92,14 +95,21 @@ T.TextField {
 
         Rectangle {
             id: inputBG
-            height: control.height
-            width: control.width
+            anchors.fill: parent
             color: StylePlugin.palette.greyLight
             border.color: control.hovered || control.activeFocus ? StylePlugin.palette.primaryNormal
                                           : StylePlugin.palette.greyLight
             border.width: 2
             radius: StylePlugin.dimensions.actionableRadius
 
+            Behavior on border.color {
+                ColorAnimation {
+                    duration: 150
+                    easing {
+                        type: Easing.InOutSine
+                    }
+                }
+            }
 
             PlaceholderText {
                 id: placeholder
@@ -109,13 +119,12 @@ T.TextField {
                 height: control.height - (control.topPadding + control.bottomPadding)
                 text: control.placeholderText
                 font: control.font
-                color: StylePlugin.palette.greyMid
+                color: control.hovered ? StylePlugin.palette.greyMidLight : StylePlugin.palette.greyMid
                 verticalAlignment: control.verticalAlignment
                 visible: !control.length && !control.preeditText
-                opacity: control.hovered ? .5 : 1
 
-                Behavior on opacity {
-                    NumberAnimation {
+                Behavior on color {
+                    ColorAnimation {
                         duration: 150
                         easing {
                             type: Easing.InOutSine

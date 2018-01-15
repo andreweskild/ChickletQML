@@ -17,13 +17,17 @@ T.CheckBox {
     indicator: Item {
             height: parent.height
             width: parent.height
-            y: control.down ? 2 : 0
 
-            Behavior on y {
-                NumberAnimation {
-                    duration: 100
-                    easing {
-                        type: Easing.InOutSine
+            transform: Translate {
+                y: control.pressed ? 2 : 0
+
+
+                Behavior on y {
+                    NumberAnimation {
+                        duration: 100
+                        easing {
+                            type: Easing.InOutSine
+                        }
                     }
                 }
             }
@@ -38,6 +42,8 @@ T.CheckBox {
                 id: background
                 implicitWidth: control.height
                 implicitHeight: control.height
+                hovered: control.hovered
+                pressed: control.pressed
 
 
                 CheckBoxIndicator {

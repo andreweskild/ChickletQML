@@ -10,16 +10,14 @@ T.ProgressBar {
 
 
     background: Rectangle {
-        width: control.width
-        height: control.height
+        anchors.fill: parent
         color: StylePlugin.palette.greyMid
         radius: height / 2
     }
 
 
     contentItem: Item {
-        implicitWidth: control.width
-        implicitHeight: control.height
+        anchors.fill: parent
 
         Rectangle {
             width: control.visualPosition * parent.width

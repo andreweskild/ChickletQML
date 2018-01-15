@@ -15,17 +15,30 @@ T.Switch {
         x: control.checked ? control.width - width: 0
         width: StylePlugin.dimensions.actionableHeight
         height: StylePlugin.dimensions.actionableHeight
+        transform: Translate {
+            y: control.pressed ? 2 : 0
+
+
+            Behavior on y {
+                NumberAnimation {
+                    duration: 100
+                    easing {
+                        type: Easing.InOutSine
+                    }
+                }
+            }
+        }
 
         ShadowItem {
-            height: parent.height
-            width: parent.width
+            anchors.fill: parent
             hidden: control.pressed
             hovered: control.hovered
         }
 
         GenericInteractiveRounded {
-            width: parent.width
-            height: parent.height
+            anchors.fill: parent
+            hovered: control.hovered
+            pressed: control.pressed
         }
 
         Behavior on x {
@@ -68,7 +81,7 @@ T.Switch {
                 width: 2
                 height: 10
                 anchors.centerIn: parent
-                color: control.checked ? StylePlugin.palette.greyMid : StylePlugin.palette.greyDark
+                color: control.checked ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
                 radius: 2
                 Behavior on color {
                     ColorAnimation {
@@ -92,7 +105,7 @@ T.Switch {
                 color: "transparent"
                 radius: height * .5
                 border.width: 2
-                border.color: control.checked ? StylePlugin.palette.greyMid : StylePlugin.palette.greyDark
+                border.color: control.checked ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
                 Behavior on border.color {
                     ColorAnimation {
                         duration: 150

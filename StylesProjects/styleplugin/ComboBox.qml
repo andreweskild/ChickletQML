@@ -26,13 +26,16 @@ T.ComboBox {
             height: parent.height
             width: parent.height
             anchors.right: parent.right
-            y: control.pressed ? 2 : 0
+            transform: Translate {
+                y: control.pressed ? 2 : 0
 
-            Behavior on y {
-                NumberAnimation {
-                    duration: 100
-                    easing {
-                        type: Easing.InOutSine
+
+                Behavior on y {
+                    NumberAnimation {
+                        duration: 100
+                        easing {
+                            type: Easing.InOutSine
+                        }
                     }
                 }
             }
@@ -75,13 +78,16 @@ T.ComboBox {
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
 
-        y: control.pressed ? 2 : 0
+        transform: Translate {
+            y: control.pressed ? 2 : 0
 
-        Behavior on y {
-            NumberAnimation {
-                duration: 100
-                easing {
-                    type: Easing.InOutSine
+
+            Behavior on y {
+                NumberAnimation {
+                    duration: 100
+                    easing {
+                        type: Easing.InOutSine
+                    }
                 }
             }
         }
@@ -101,6 +107,19 @@ T.ComboBox {
         id: background
         width: control.width
         height: control.height
+        transform: Translate {
+            y: control.pressed ? 2 : 0
+
+
+            Behavior on y {
+                NumberAnimation {
+                    duration: 100
+                    easing {
+                        type: Easing.InOutSine
+                    }
+                }
+            }
+        }
 
         ShadowItem {
             anchors.fill: parent
@@ -109,8 +128,9 @@ T.ComboBox {
         }
 
         GenericInteractiveRounded {
-            height: parent.height
-            width: parent.width
+            anchors.fill: parent
+            hovered: control.hovered && !popup.opened
+            pressed: control.pressed
 
         }
 
@@ -120,7 +140,7 @@ T.ComboBox {
     popup: T.Popup {
         id: popup
         width: control.width
-        height: Math.min(contentItem.implicitHeight, control.Window.height - topMargin - bottomMargin) + topPadding + bottomPadding
+        height: contentItem.implicitHeight + topPadding + bottomPadding
         transformOrigin: Item.Top
         topPadding: 6
         bottomPadding: 6
@@ -188,7 +208,7 @@ T.ComboBox {
                     type: Easing.InOutSine
                 }
 
-                targets: [background]
+                targets: background
                 property: "y"
                 to: 0
             }

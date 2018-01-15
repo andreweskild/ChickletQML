@@ -7,7 +7,7 @@ BasePalette::BasePalette(QObject *parent) : QObject(parent)
 
 void BasePalette::initColors()
 {
-    m_primaryLight = m_primaryHue.lighter(112);
+    m_primaryLight = m_primaryHue.lighter(120);
     m_primaryMid = m_primaryHue.darker(120);
     m_primaryDark = m_primaryHue.darker(160);
 

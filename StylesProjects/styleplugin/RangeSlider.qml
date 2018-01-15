@@ -36,96 +36,97 @@
 
 import QtQuick 2.10
 import QtQuick.Templates 2.3 as T
-import QtQuick.Controls 2.3
-import QtQuick.Controls.impl 2.3
 import styleplugin 1.0
-import QtGraphicalEffects 1.0
 
-T.DelayButton {
+T.RangeSlider {
     id: control
 
-    implicitWidth: StylePlugin.dimensions.actionableNormalWidth
+    implicitWidth: StylePlugin.dimensions.actionableWideWidth
     implicitHeight: StylePlugin.dimensions.actionableHeight
 
+    first.handle: Item {
+        id: firstHandle
+        x: control.first.visualPosition * (control.availableWidth - width)
+        height: control.height
+        width: control.height
 
-    transform: Translate {
-        y: control.pressed ? 2 : 0
+        transform: Translate {
+            y: control.first.pressed ? 2 : 0
 
 
-        Behavior on y {
-            NumberAnimation {
-                duration: 100
-                easing {
-                    type: Easing.InOutSine
-                }
-            }
-        }
-    }
-
-    transition: Transition {
-        NumberAnimation {
-            duration: control.delay * (control.pressed ? 1.0 - control.progress : 0.3 * control.progress)
-        }
-    }
-
-    contentItem: Text {
-        id: buttonText
-        height: parent.height
-        width: parent.width
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        color: control.checked ? StylePlugin.palette.greyWhite :
-            control.hovered ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
-        text: control.text
-        font: control.font
-
-        Behavior on color {
-            ColorAnimation {
-                duration: 150
-                easing {
-                    type: Easing.InOutSine
-                }
-            }
-        }
-    }
-
-    // TODO: Add a proper ripple/ink effect for mouse/touch input and focus state
-    background: Item {
-        id: content
-        anchors.fill: parent
-
-        ShadowItem {
-            anchors.fill: parent
-            hidden: control.pressed
-            hovered: control.hovered
-        }
-
-        GenericInteractiveRounded {
-            id: background
-            anchors.fill: parent
-            hovered: control.hovered
-            pressed: control.pressed
-
-            DelayButtonProgressIndicator {
-                id: indicator
-                property bool activated: false
-                anchors.fill: parent
-                progress: control.progress
-                color: control.pressed ? StylePlugin.palette.primaryNormal : StylePlugin.palette.primaryLight
-                Behavior on color {
-                    ColorAnimation {
-                        duration: 150
-                        easing {
-                            type: Easing.InOutSine
-                        }
+            Behavior on y {
+                NumberAnimation {
+                    duration: 100
+                    easing {
+                        type: Easing.InOutSine
                     }
                 }
             }
+        }
 
+        ShadowItem {
+            anchors.fill: parent
+            hidden: control.first.pressed
+            hovered: control.first.hovered
+        }
+
+        GenericInteractiveRounded {
+            anchors.fill: parent
+            pressed: control.first.pressed
+            hovered: control.first.hovered
         }
 
 
+    }
+
+    second.handle: Item {
+        id: secondHandle
+        x: control.second.visualPosition * (control.availableWidth - width)
+        height: control.height
+        width: control.height
+
+        transform: Translate {
+            y: control.second.pressed ? 2 : 0
 
 
+            Behavior on y {
+                NumberAnimation {
+                    duration: 100
+                    easing {
+                        type: Easing.InOutSine
+                    }
+                }
+            }
+        }
+
+        ShadowItem {
+            anchors.fill: parent
+            hidden: control.second.pressed
+            hovered: control.second.hovered
+        }
+
+        GenericInteractiveRounded {
+            anchors.fill: parent
+            pressed: control.second.pressed
+            hovered: control.second.hovered
+        }
+
+
+    }
+
+    background: Rectangle {
+        y: 2
+        width: parent.width
+        height: parent.height
+        color: StylePlugin.palette.greyMid
+        radius: 4
+
+        Rectangle {
+            x: firstHandle.x
+            width: secondHandle.x + secondHandle.width - firstHandle.x
+            height: parent.height
+            radius: 4
+            color: StylePlugin.palette.greyDark
+        }
     }
 }

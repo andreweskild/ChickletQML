@@ -42,7 +42,6 @@ T.Menu {
         implicitHeight: contentHeight
 
         model: control.contentModel
-        // TODO: improve this?
         interactive: ApplicationWindow.window ? contentHeight > ApplicationWindow.window.height : false
         currentIndex: control.currentIndex
 
@@ -64,14 +63,6 @@ T.Menu {
             color: StylePlugin.palette.greyLight
             radius: StylePlugin.dimensions.actionableRadius
 
-            Behavior on y {
-                NumberAnimation {
-                    duration: 100
-                    easing {
-                        type: Easing.InOutSine
-                    }
-                }
-            }
 
         }
 

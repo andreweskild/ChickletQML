@@ -11,6 +11,19 @@ T.MenuBarItem {
     implicitHeight: StylePlugin.dimensions.actionableHeight
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
+    transform: Translate {
+        y: control.pressed || menu.isOpen ? 2 : 0
+
+
+        Behavior on y {
+            NumberAnimation {
+                duration: 100
+                easing {
+                    type: Easing.InOutSine
+                }
+            }
+        }
+    }
 
     contentItem: Text {
         height: parent.height
@@ -21,17 +34,17 @@ T.MenuBarItem {
         font: control.font
         color: control.hovered && !menu.isOpen ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
 
-        y: control.pressed || menu.isOpen ? 2 : 0
+//        y: control.pressed || menu.isOpen ? 2 : 0
 
-        Behavior on y {
-            NumberAnimation {
-                duration: 100
-                easing {
-                    type: Easing.InOutSine
-                    overshoot: 5
-                }
-            }
-        }
+//        Behavior on y {
+//            NumberAnimation {
+//                duration: 100
+//                easing {
+//                    type: Easing.InOutSine
+//                    overshoot: 5
+//                }
+//            }
+//        }
 
         Behavior on color {
             ColorAnimation {
@@ -54,40 +67,11 @@ T.MenuBarItem {
         }
 
         GenericInteractiveRounded {
-        id: background
-        height: control.height
-        width: control.width
-        primaryColor: control.pressed && !menu.isOpen ? StylePlugin.palette.primaryMid :
-                        control.hovered && !menu.isOpen ? StylePlugin.palette.primaryNormal : StylePlugin.palette.greyLight
-        secondaryColor: control.hovered && !menu.isOpen ? StylePlugin.palette.primaryLight : StylePlugin.palette.greyLight
+            id: background
+            anchors.fill: parent
+            pressed: control.pressed && !menu.isOpen
+            hovered: control.hovered && !menu.isOpen
 
-        Behavior on primaryColor {
-            ColorAnimation {
-                duration: 150
-                easing {
-                    type: Easing.InOutSine
-                }
-            }
-        }
-        Behavior on secondaryColor {
-            ColorAnimation {
-                duration: 150
-                easing {
-                    type: Easing.InOutSine
-                }
-            }
-        }
-
-        y: control.pressed || menu.isOpen ? 2 : 0
-
-            Behavior on y {
-                NumberAnimation {
-                    duration: 100
-                    easing {
-                        type: Easing.InOutSine
-                    }
-                }
-            }
         }
     }
 }

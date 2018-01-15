@@ -11,24 +11,26 @@ T.RadioButton {
 
     spacing: 16
 
+
     indicator:Item {
         width: control.height
         height: control.height
+        transform: Translate {
+            y: control.pressed ? 2 : 0
 
-        y: control.pressed ? 2 : 0
 
-        Behavior on y {
-            NumberAnimation {
-                duration: 100
-                easing {
-                    type: Easing.InOutSine
+            Behavior on y {
+                NumberAnimation {
+                    duration: 100
+                    easing {
+                        type: Easing.InOutSine
+                    }
                 }
             }
         }
 
         ShadowItem {
-            width: parent.width
-            height: parent.height
+            anchors.fill: parent
             hidden: control.pressed
             hovered: control.hovered
             radius: parent.height * .5
@@ -36,8 +38,9 @@ T.RadioButton {
 
         GenericInteractiveCircle {
             id: radioBackground
-            implicitHeight: parent.height
-            implicitWidth: parent.height
+            anchors.fill: parent
+            hovered: control.hovered
+            pressed: control.pressed
 
 
             Rectangle {

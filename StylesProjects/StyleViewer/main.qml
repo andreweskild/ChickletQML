@@ -62,6 +62,13 @@ ApplicationWindow {
                 value: slider2.value
             }
 
+            RangeSlider {
+                from: 1
+                to: 100
+                first.value: 25
+                second.value: 75
+            }
+
             CheckBox {
                 text: "CheckBox"
                 Layout.row: 4
@@ -170,6 +177,10 @@ ApplicationWindow {
                                 editable: true
                                 value: 100
                                 to: 1000
+                            }
+
+                            TextArea {
+                                text: "blah"
                             }
                         }
                     }

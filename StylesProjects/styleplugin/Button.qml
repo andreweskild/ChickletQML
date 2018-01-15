@@ -13,40 +13,54 @@ T.Button {
     implicitWidth: StylePlugin.dimensions.actionableNormalWidth
     implicitHeight: StylePlugin.dimensions.actionableHeight
 
-    contentItem: Item {
-            id: content
-            anchors.fill: parent
+    transform: Translate {
+        y: control.pressed ? 2 : 0
 
-            ShadowItem {
-                height: parent.height
-                width: parent.width
-                hidden: control.pressed
-                hovered: control.hovered
-            }
 
-            GenericInteractiveRounded {
-                id: background
-                height: parent.height
-                width: parent.width
-
-                Text {
-                    id: buttonText
-                    anchors.centerIn: parent
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    color: control.hovered ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
-                    text: control.text
-                    font: control.font
-
-                    Behavior on color {
-                        ColorAnimation {
-                            duration: 150
-                            easing {
-                                type: Easing.InOutSine
-                            }
-                        }
-                    }
+        Behavior on y {
+            NumberAnimation {
+                duration: 100
+                easing {
+                    type: Easing.InOutSine
                 }
             }
+        }
     }
+
+    contentItem:Text {
+        id: buttonText
+        anchors.centerIn: parent
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        color: control.hovered ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
+        text: control.text
+        font: control.font
+
+        Behavior on color {
+            ColorAnimation {
+                duration: 150
+                easing {
+                    type: Easing.InOutSine
+                }
+            }
+        }
+    }
+
+    background: Item {
+        id: content
+        anchors.fill: parent
+
+        ShadowItem {
+            anchors.fill: parent
+            hidden: control.pressed
+            hovered: control.hovered
+        }
+
+        GenericInteractiveRounded {
+            id: background
+            anchors.fill: parent
+            hovered: control.hovered
+            pressed: control.pressed
+        }
+}
 }
