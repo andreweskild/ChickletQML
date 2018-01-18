@@ -2,8 +2,8 @@
 
 StylePlugin::StylePlugin(QObject *parent):
     QObject(parent),
-    m_basePalette(new BasePalette()),
-    m_dimensions(new DimensionsProvider())
+    m_basePalette(new BasePalette(this)),
+    m_dimensions(new DimensionsProvider(this))
 {
 }
 
@@ -15,6 +15,7 @@ StylePlugin *StylePlugin::qmlAttachedProperties(QObject *object)
 {
     return new StylePlugin(object);
 }
+
 
 BasePalette* StylePlugin::palette() const
 {

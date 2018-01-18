@@ -23,6 +23,7 @@ public:
     BasePalette* palette() const;
     DimensionsProvider* dimensions() const;
 
+
 signals:
     void paletteChanged();
     void dimensionsChanged();

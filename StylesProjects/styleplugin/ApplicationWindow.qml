@@ -5,7 +5,7 @@ import styleplugin 1.0
 T.ApplicationWindow {
     id: window
 
-    color: StylePlugin.palette.greyMidLight
+    color: Theme.window
 
     overlay.modal: Rectangle {
         color: window.color

@@ -32,7 +32,7 @@ T.Button {
         anchors.centerIn: parent
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        color: control.hovered ? StylePlugin.palette.textHover : StylePlugin.palette.textNormal
+        color: control.hovered ? Theme.textHover : Theme.textNormal
         text: control.text
         font: control.font
 

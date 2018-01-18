@@ -16,7 +16,8 @@ SOURCES += \
     interactivegradientitem.cpp \
     linearrowindicator.cpp \
     busyindicatorarc.cpp \
-    delaybuttonprogressindicator.cpp
+    delaybuttonprogressindicator.cpp \
+    palette.cpp
 
 HEADERS += \
     styleplugin_plugin.h \
@@ -27,7 +28,8 @@ HEADERS += \
     interactivegradientitem.h \
     linearrowindicator.h \
     busyindicatorarc.h \
-    delaybuttonprogressindicator.h
+    delaybuttonprogressindicator.h \
+    palette.h
 
 DISTFILES = qmldir \
     Button.qml \
@@ -67,7 +69,8 @@ DISTFILES = qmldir \
     SpinBox.qml \
     RangeSlider.qml \
     TextArea.qml \
-    CursorDelegate.qml
+    CursorDelegate.qml \
+    Theme.qml
 
 !equals(_PRO_FILE_PWD_, $$OUT_PWD) {
     copy_qmldir.target = $$OUT_PWD/qmldir

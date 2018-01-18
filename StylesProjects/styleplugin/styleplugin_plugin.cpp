@@ -7,6 +7,7 @@
 #include "linearrowindicator.h"
 #include "busyindicatorarc.h"
 #include "delaybuttonprogressindicator.h"
+#include "palette.h"
 
 #include <qqml.h>
 
@@ -14,6 +15,8 @@ void StylepluginPlugin::registerTypes(const char *uri)
 {
     // @uri styleplugin
     qmlRegisterUncreatableType<StylePlugin>(uri, 1, 0, "StylePlugin", "For Stuff");
+    qmlRegisterType<Palette>(uri, 1, 0, "Palette");
+    qmlRegisterType<PaletteAttached>();
     qmlRegisterType<DimensionsProvider>(uri, 1, 0, "DimensionsProvider");
     qmlRegisterType<BasePalette>(uri, 1, 0, "BasePalette");
     qmlRegisterType<CheckBoxIndicator>(uri, 1, 0, "CheckBoxIndicator");

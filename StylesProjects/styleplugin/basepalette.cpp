@@ -1,107 +1,100 @@
 #include "basepalette.h"
 
-BasePalette::BasePalette(BasePalette::ColorScheme p_colorScheme, QObject *parent) : QObject(parent)
+BasePalette::BasePalette(QObject *parent) : QObject(parent)
 {
-    setColorScheme(p_colorScheme);
+    initColors();
 }
 
-void BasePalette::setColorScheme(const ColorScheme &p_newScheme)
+
+void BasePalette::initColors()
 {
-    if(p_newScheme == Light )
+    m_accentLight = M_ACCENT.lighter(120);
+    m_accent = M_ACCENT;
+    m_accentDark = M_ACCENT.darker(120);
+
+    m_dangerousLight = M_DANGEROUS.lighter(120);
+    m_dangerous = M_DANGEROUS;
+    m_dangerousDark = M_DANGEROUS.darker(120);
+    m_shadow = QColor(0, 0, 0, 40);
+
+    updateGreys();
+}
+
+void BasePalette::updateGreys()
+{
+    if(m_dark)
     {
-        initLightColors();
+        changeToDarkGreys();
     }
     else
     {
-        initDarkColors();
+        changeToLightGreys();
     }
 }
 
-void BasePalette::initLightColors()
+void BasePalette::changeToLightGreys()
 {
-    m_greyHue = QColor::fromRgb(204, 200, 208);
-    m_primaryLight = m_primaryHue.lighter(120);
-    m_primaryMid = m_primaryHue.darker(120);
-    m_primaryDark = m_primaryHue.darker(160);
-
-    m_dangerousLight = m_dangerousHue.lighter(120);
-    m_dangerousMid = m_dangerousHue.darker(120);
-    m_dangerousDark = m_dangerousHue.darker(140);
-
-    m_greyWhite = Qt::white;
-    m_greyLight = m_greyHue.lighter(120);
-    m_greyMidLight = m_greyHue.lighter(112);
-    m_greyMidDark = m_greyHue.darker(112);
-    m_greyDark = m_greyHue.darker(200);
-    m_greyBlack = m_greyHue.darker(350);
-
-    m_textNormal = m_greyHue.darker(350);
-    m_textHover = Qt::white;
-
-    m_shadow = QColor(0, 0, 0, 40);
+    m_raised = M_GREYS_LIGHT.lighter(120);
+    setWindow(M_GREYS_LIGHT.lighter(112));
+    m_sunken = M_GREYS_LIGHT;
+    m_sunkenDark = M_GREYS_LIGHT.darker(200);
+    m_content = M_GREYS_LIGHT.darker(350);
+    m_contentSecondary = Qt::white;
 }
 
-void BasePalette::initDarkColors()
+void BasePalette::changeToDarkGreys()
 {
-    m_greyHue = QColor::fromRgb(77, 70, 83);
-    m_primaryLight = m_primaryHue.lighter(120);
-    m_primaryMid = m_primaryHue.darker(120);
-    m_primaryDark = m_primaryHue.darker(160);
-
-    m_dangerousLight = m_dangerousHue.lighter(120);
-    m_dangerousMid = m_dangerousHue.darker(120);
-    m_dangerousDark = m_dangerousHue.darker(140);
-
-    m_greyWhite = Qt::white;
-    m_greyLight = m_greyHue.lighter(170);
-    m_greyMidLight = m_greyHue.lighter(140);
-    m_greyMidDark = m_greyHue.darker(112);
-    m_greyDark = m_greyHue.darker(180);
-    m_greyBlack = m_greyHue.darker(350);
-
-    m_textNormal = Qt::white;
-    m_textHover = Qt::white;
-
-    m_shadow = QColor(0, 0, 0, 40);
-}
-
-// PRIMARY COLOR GETTERS ==============
-QColor BasePalette::primaryLight() const
-{
-    return m_primaryLight;
-}
-
-QColor BasePalette::primaryNormal() const
-{
-    return m_primaryHue;
-}
-
-QColor BasePalette::primaryMid() const
-{
-    return m_primaryMid;
-}
-
-QColor BasePalette::primaryDark() const
-{
-    return m_primaryDark;
+    m_raised = M_GREYS_DARK.lighter(170);
+    setWindow(M_GREYS_DARK.lighter(140));
+    m_sunken = M_GREYS_DARK;
+    m_sunkenDark = M_GREYS_DARK.darker(180);
+    m_content = Qt::white;
+    m_contentSecondary = Qt::white;
 }
 
 
-//DANGEROUS COLOR GETTERS ===============
+bool BasePalette::dark() const
+{
+    return m_dark;
+}
+
+void BasePalette::setDark(const bool &p_isDark)
+{
+    if (m_dark != p_isDark)
+    {
+        m_dark = p_isDark;
+        emit darkChanged();
+        updateGreys();
+    }
+}
+
+
+QColor BasePalette::accentLight() const
+{
+    return m_accentLight;
+}
+
+QColor BasePalette::accent() const
+{
+    return m_accent;
+}
+
+QColor BasePalette::accentDark() const
+{
+    return m_accentDark;
+}
+
+
 QColor BasePalette::dangerousLight() const
 {
     return m_dangerousLight;
 }
 
-QColor BasePalette::dangerousNormal() const
+QColor BasePalette::dangerous() const
 {
-    return m_dangerousHue;
+    return m_dangerous;
 }
 
-QColor BasePalette::dangerousMid() const
-{
-    return m_dangerousMid;
-}
 
 QColor BasePalette::dangerousDark() const
 {
@@ -109,54 +102,45 @@ QColor BasePalette::dangerousDark() const
 }
 
 
-//GREY COLOR GETTERS ===============
-QColor BasePalette::greyWhite() const
+QColor BasePalette::raised() const
 {
-    return m_greyWhite;
+    return m_raised;
 }
 
-QColor BasePalette::greyLight() const
+QColor BasePalette::window() const
 {
-    return m_greyLight;
+    return m_window;
 }
 
-QColor BasePalette::greyMidLight() const
+void BasePalette::setWindow(const QColor &p_color)
 {
-    return m_greyMidLight;
+    if(m_window != p_color)
+    {
+        m_window = p_color;
+        emit windowChanged();
+    }
 }
 
-QColor BasePalette::greyMid() const
+QColor BasePalette::sunken() const
 {
-    return m_greyHue;
+    return m_sunken;
 }
 
-QColor BasePalette::greyMidDark() const
+QColor BasePalette::sunkenDark() const
 {
-    return m_greyMidDark;
+    return m_sunkenDark;
 }
 
-QColor BasePalette::greyDark() const
+QColor BasePalette::content() const
 {
-    return m_greyDark;
+    return m_content;
 }
 
-QColor BasePalette::greyBlack() const
+QColor BasePalette::contentSecondary() const
 {
-    return m_greyBlack;
+    return m_contentSecondary;
 }
 
-QColor BasePalette::textNormal() const
-{
-    return m_textNormal;
-}
-
-QColor BasePalette::textHover() const
-{
-    return m_textHover;
-}
-
-
-// SHADOW COLOR GETTER ==============
 QColor BasePalette::shadow() const
 {
     return m_shadow;

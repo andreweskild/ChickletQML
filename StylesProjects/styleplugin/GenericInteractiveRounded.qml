@@ -5,10 +5,10 @@ InteractiveGradientItem {
     id: background
     height: parent.height
     width: parent.width
-    primaryColor: pressed ? StylePlugin.palette.primaryMid :
-                    hovered ? StylePlugin.palette.primaryNormal : StylePlugin.palette.greyLight
-    secondaryColor: pressed ? StylePlugin.palette.primaryLight :
-                    hovered ? StylePlugin.palette.primaryLight : StylePlugin.palette.greyLight
+    primaryColor: pressed ? Theme.primaryMid :
+                    hovered ? Theme.primaryNormal : Theme.greyLight
+    secondaryColor: pressed ? Theme.primaryLight :
+                    hovered ? Theme.primaryLight : Theme.greyLight
 
     property bool hovered: false
     property bool pressed: false
