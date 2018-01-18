@@ -23,7 +23,7 @@ T.GroupBox {
 
         text: control.title
         font: control.font
-        color: StylePlugin.palette.greyDark
+        color: StylePlugin.palette.textNormal
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter

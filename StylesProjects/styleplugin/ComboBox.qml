@@ -72,9 +72,9 @@ T.ComboBox {
         validator: control.validator
 
         font: control.font
-        color: control.hovered || popup.visible ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
+        color: control.hovered || popup.visible ? StylePlugin.palette.textHover : StylePlugin.palette.textNormal
         selectionColor: StylePlugin.palette.primaryNormal
-        selectedTextColor: StylePlugin.palette.greyWhite
+        selectedTextColor: StylePlugin.palette.textNormal
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
 

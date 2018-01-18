@@ -66,8 +66,8 @@ T.TabButton {
         text: control.text
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        color: control.checked ? StylePlugin.palette.greyBlack :
-                                                    StylePlugin.palette.greyWhite
+        color: control.checked ? StylePlugin.palette.textNormal :
+                                                    StylePlugin.palette.textHover
 
         Behavior on color {
             ColorAnimation {

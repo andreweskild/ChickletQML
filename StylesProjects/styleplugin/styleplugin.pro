@@ -14,7 +14,6 @@ SOURCES += \
     dimensionsprovider.cpp \
     checkboxindicator.cpp \
     interactivegradientitem.cpp \
-    rectangleitem.cpp \
     linearrowindicator.cpp \
     busyindicatorarc.cpp \
     delaybuttonprogressindicator.cpp
@@ -26,7 +25,6 @@ HEADERS += \
     dimensionsprovider.h \
     checkboxindicator.h \
     interactivegradientitem.h \
-    rectangleitem.h \
     linearrowindicator.h \
     busyindicatorarc.h \
     delaybuttonprogressindicator.h

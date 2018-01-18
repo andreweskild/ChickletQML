@@ -12,7 +12,7 @@ T.BusyIndicator {
         id: indicator
         anchors.fill: parent
         color: StylePlugin.palette.greyDark
-        arcWidth: StylePlugin.dimensions.progressBarWidth
+        arcWidth: 8
 
         SequentialAnimation {
             running: control.running
@@ -60,7 +60,7 @@ T.BusyIndicator {
         anchors.fill: parent
         color: "transparent"
         border.color: StylePlugin.palette.greyMid
-        border.width: StylePlugin.dimensions.progressBarWidth
+        border.width: indicator.arcWidth
         radius: width * .5
     }
 }

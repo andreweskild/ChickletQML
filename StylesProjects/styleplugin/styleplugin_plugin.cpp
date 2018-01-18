@@ -4,7 +4,6 @@
 #include "interactivegradientitem.h"
 #include "basepalette.h"
 #include "dimensionsprovider.h"
-#include "rectangleitem.h"
 #include "linearrowindicator.h"
 #include "busyindicatorarc.h"
 #include "delaybuttonprogressindicator.h"

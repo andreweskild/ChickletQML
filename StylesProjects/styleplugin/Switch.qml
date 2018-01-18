@@ -61,7 +61,7 @@ T.Switch {
         Rectangle {
             anchors.fill: parent
             color: control.checked ? StylePlugin.palette.greyDark : StylePlugin.palette.greyMid
-            radius: StylePlugin.dimensions.actionableRadius + 1
+            radius: 4
             Behavior on color {
                 ColorAnimation {
                     duration: 150
@@ -81,7 +81,7 @@ T.Switch {
                 width: 2
                 height: 10
                 anchors.centerIn: parent
-                color: control.checked ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
+                color: control.checked ? StylePlugin.palette.textHover : StylePlugin.palette.textNormal
                 radius: 2
                 Behavior on color {
                     ColorAnimation {
@@ -105,7 +105,7 @@ T.Switch {
                 color: "transparent"
                 radius: height * .5
                 border.width: 2
-                border.color: control.checked ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
+                border.color: control.checked ? StylePlugin.palette.textHover : StylePlugin.palette.textNormal
                 Behavior on border.color {
                     ColorAnimation {
                         duration: 150

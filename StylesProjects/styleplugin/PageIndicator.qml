@@ -22,7 +22,7 @@ T.PageIndicator {
             width: index === currentIndex ? parent.width : parent.width * .66
             anchors.centerIn: parent
             radius: width / 2
-            color: index === currentIndex ? StylePlugin.palette.greyDark : StylePlugin.palette.greyLight
+            color: index === currentIndex ? StylePlugin.palette.greyDark : StylePlugin.palette.greyMid
 
             Behavior on height {
                 NumberAnimation {

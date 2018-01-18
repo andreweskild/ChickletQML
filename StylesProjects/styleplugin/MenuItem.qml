@@ -20,7 +20,7 @@ T.MenuItem {
         verticalAlignment: Text.AlignVCenter
         text: control.text
         font: control.font
-        color: control.hovered ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
+        color: control.hovered ? StylePlugin.palette.textHover : StylePlugin.palette.textNormal
 
         Behavior on color {
             ColorAnimation {

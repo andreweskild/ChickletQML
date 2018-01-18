@@ -74,8 +74,8 @@ T.DelayButton {
         width: parent.width
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        color: control.checked ? StylePlugin.palette.greyWhite :
-            control.hovered ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
+        color: control.checked ? StylePlugin.palette.textNormal :
+            control.hovered ? StylePlugin.palette.textHover : StylePlugin.palette.textNormal
         text: control.text
         font: control.font
 

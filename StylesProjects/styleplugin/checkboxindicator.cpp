@@ -23,7 +23,7 @@ void CheckBoxIndicator::paint(QPainter *painter)
         QPen checkPen(QBrush(m_checkColor), m_checkWidth);
         checkPen.setCapStyle(Qt::RoundCap);
         QVector<qreal> dashes;
-        dashes << 6 << 6;
+        dashes << 12 << 12;
         checkPen.setDashOffset(m_dashOffset);
         checkPen.setDashPattern(dashes);
         painter->setPen(checkPen);

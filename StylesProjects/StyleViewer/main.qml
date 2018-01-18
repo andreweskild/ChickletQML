@@ -8,7 +8,6 @@ ApplicationWindow {
     width: 1024
     height: 480
     visible: true
-    color: "#e5e0e9"
 
     Drawer {
         width: 200

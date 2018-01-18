@@ -29,7 +29,7 @@ T.Tumbler {
     delegate: Text {
         id: label
         text: modelData
-        color: control.hovered ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
+        color: control.hovered ? StylePlugin.palette.textHover : StylePlugin.palette.textNormal
         opacity: 0.4 + Math.max(0, 1 - Math.abs(Tumbler.displacement)) * 0.6
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter

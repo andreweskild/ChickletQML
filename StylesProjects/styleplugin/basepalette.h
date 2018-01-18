@@ -27,11 +27,21 @@ class BasePalette : public QObject
     Q_PROPERTY(QColor greyDark READ greyDark CONSTANT)
     Q_PROPERTY(QColor greyBlack READ greyBlack CONSTANT)
 
+    Q_PROPERTY(QColor textNormal READ textNormal CONSTANT)
+    Q_PROPERTY(QColor textHover READ textHover CONSTANT)
+
     Q_PROPERTY(QColor shadow READ shadow CONSTANT)
 
 public:
 
-    BasePalette(QObject *parent = nullptr);
+    enum ColorScheme {
+        Dark,
+        Light
+    };
+
+    BasePalette(ColorScheme p_colorScheme = Light, QObject *parent = nullptr);
+
+    void setColorScheme(const ColorScheme &p_newScheme);
 
     QColor primaryLight() const;
     QColor primaryNormal() const;
@@ -52,12 +62,18 @@ public:
     QColor greyBlack() const;
     QColor shadow() const;
 
+    QColor textNormal() const;
+    QColor textHover() const;
+
 private:
-    void initColors();
+    void initColors(const ColorScheme &p_colorScheme = Light);
+
+    void initLightColors();
+    void initDarkColors();
 
     const QColor m_primaryHue = QColor::fromRgb(51, 204, 153);
     const QColor m_dangerousHue = QColor::fromRgb(255, 51, 153);
-    const QColor m_greyHue = QColor::fromRgb(204, 200, 208);
+    QColor m_greyHue;
 
     QColor m_primaryLight;
     QColor m_primaryMid;
@@ -73,6 +89,9 @@ private:
     QColor m_greyMidDark;
     QColor m_greyDark;
     QColor m_greyBlack;
+
+    QColor m_textNormal;
+    QColor m_textHover;
 
     QColor m_shadow;
 };

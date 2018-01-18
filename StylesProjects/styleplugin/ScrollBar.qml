@@ -6,8 +6,8 @@ import styleplugin 1.0
 T.ScrollBar {
     id: control
 
-    implicitWidth: 16
-    implicitHeight: 16
+    implicitWidth: 24
+    implicitHeight: 24
 
     clip: false
     visible: control.policy !== T.ScrollBar.AlwaysOff

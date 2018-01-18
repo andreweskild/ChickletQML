@@ -18,6 +18,6 @@ T.ToolBar {
 
     background: Rectangle {
         implicitHeight: 24
-        color: StylePlugin.palette.greyMidDark
+        color: StylePlugin.palette.greyMid
     }
 }

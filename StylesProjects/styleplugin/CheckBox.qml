@@ -8,7 +8,7 @@ T.CheckBox {
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
-    implicitHeight: StylePlugin.dimensions.checkableHeightWidth
+    implicitHeight: StylePlugin.dimensions.actionableHeight
 
     spacing: 16
 
@@ -49,9 +49,9 @@ T.CheckBox {
                 CheckBoxIndicator {
                     id: checkIndicator
                     anchors.fill: parent
-                    lineWidth: 2
-                    color: control.hovered ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
-                    dashOffset: control.checked ? 0 : 6
+                    lineWidth: 3
+                    color: control.hovered ? StylePlugin.palette.textHover : StylePlugin.palette.textNormal
+                    dashOffset: control.checked ? 0 : 12
 
                     Behavior on dashOffset {
                         NumberAnimation {
@@ -81,7 +81,7 @@ T.CheckBox {
 
         text: control.text
         font: control.font
-        color: StylePlugin.palette.greyBlack
+        color: StylePlugin.palette.textNormal
         elide: Text.ElideRight
         visible: control.text
         horizontalAlignment: Text.AlignLeft

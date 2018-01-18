@@ -21,7 +21,7 @@ T.TabBar {
         anchors.fill: parent
         Rectangle {
             anchors.fill: parent
-            color: StylePlugin.palette.greyMidDark
+            color: StylePlugin.palette.greyMid
         }
 
         LinearGradient {

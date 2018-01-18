@@ -7,7 +7,7 @@ T.RadioButton {
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
-    implicitHeight: StylePlugin.dimensions.checkableHeightWidth
+    implicitHeight: StylePlugin.dimensions.actionableHeight
 
     spacing: 16
 
@@ -49,8 +49,8 @@ T.RadioButton {
                 width: control.checked ? control.height * .5 : 0
                 height: control.checked ? control.height * .5 : 0
                 radius: height * .5
-                color: control.hovered ? StylePlugin.palette.greyWhite :
-                                         StylePlugin.palette.greyDark
+                color: control.hovered ? StylePlugin.palette.textHover :
+                                         StylePlugin.palette.textNormal
                 opacity: control.checked ? 1 : 0
 
                 Behavior on height {
@@ -100,7 +100,7 @@ T.RadioButton {
 
         text: control.text
         font: control.font
-        color: StylePlugin.palette.greyBlack
+        color: StylePlugin.palette.textNormal
         elide: Text.ElideRight
         visible: control.text
         horizontalAlignment: Text.AlignLeft

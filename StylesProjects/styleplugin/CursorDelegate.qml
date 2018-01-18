@@ -4,7 +4,7 @@ import styleplugin 1.0
 Rectangle {
     id: cursor
 
-    color: StylePlugin.palette.greyBlack
+    color: StylePlugin.palette.primaryNormal
     width: 2
     visible: parent.activeFocus && !parent.readOnly && parent.selectionStart === parent.selectionEnd
 

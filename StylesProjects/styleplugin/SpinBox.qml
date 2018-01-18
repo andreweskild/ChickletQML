@@ -39,10 +39,16 @@ T.SpinBox {
             width: parent.width
             height: parent.height
             anchors.centerIn: parent
-            color: StylePlugin.palette.greyLight
-            visible: input.activeFocus
-            border.width: 2
-            border.color: StylePlugin.palette.primaryNormal
+            color: control.activeFocus ? StylePlugin.palette.greyWhite :
+                    control.hovered ? StylePlugin.palette.primaryNormal : StylePlugin.palette.greyLight
+            Behavior on color {
+                ColorAnimation {
+                    duration: 150
+                    easing {
+                        type: Easing.InOutSine
+                    }
+                }
+            }
         }
 
         TextInput {
@@ -50,7 +56,7 @@ T.SpinBox {
             anchors.fill: parent
             text: control.textFromValue(control.value, control.locale)
 
-            color: control.hovered && !activeFocus ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
+            color: activeFocus ? StylePlugin.palette.greyBlack : StylePlugin.palette.textNormal
             selectionColor: StylePlugin.palette.primaryNormal
             selectedTextColor: StylePlugin.palette.greyWhite
             horizontalAlignment: Qt.AlignHCenter
@@ -86,7 +92,7 @@ T.SpinBox {
             y: (parent.height - height) / 2
             width: Math.min(parent.width / 4, parent.height / 4)
             height: 2
-            color: control.hovered || input.activeFocus ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyDark
+            color: control.hovered || input.activeFocus ? StylePlugin.palette.textHover : StylePlugin.palette.textNormal
             Behavior on color {
                 ColorAnimation {
                     duration: 150
@@ -101,7 +107,7 @@ T.SpinBox {
             y: (parent.height - height) / 2
             width: 2
             height: Math.min(parent.width / 4, parent.height / 4)
-            color: control.hovered || input.activeFocus ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyDark
+            color: control.hovered || input.activeFocus ? StylePlugin.palette.textHover : StylePlugin.palette.textNormal
             Behavior on color {
                 ColorAnimation {
                     duration: 150
@@ -126,7 +132,7 @@ T.SpinBox {
             y: (parent.height - height) / 2
             width: parent.width / 4
             height: 2
-            color: control.hovered || input.activeFocus ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyDark
+            color: control.hovered || input.activeFocus ? StylePlugin.palette.textHover : StylePlugin.palette.textNormal
             Behavior on color {
                 ColorAnimation {
                     duration: 150

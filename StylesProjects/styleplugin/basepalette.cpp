@@ -1,12 +1,25 @@
 #include "basepalette.h"
 
-BasePalette::BasePalette(QObject *parent) : QObject(parent)
+BasePalette::BasePalette(BasePalette::ColorScheme p_colorScheme, QObject *parent) : QObject(parent)
 {
-    initColors();
+    setColorScheme(p_colorScheme);
 }
 
-void BasePalette::initColors()
+void BasePalette::setColorScheme(const ColorScheme &p_newScheme)
 {
+    if(p_newScheme == Light )
+    {
+        initLightColors();
+    }
+    else
+    {
+        initDarkColors();
+    }
+}
+
+void BasePalette::initLightColors()
+{
+    m_greyHue = QColor::fromRgb(204, 200, 208);
     m_primaryLight = m_primaryHue.lighter(120);
     m_primaryMid = m_primaryHue.darker(120);
     m_primaryDark = m_primaryHue.darker(160);
@@ -22,9 +35,35 @@ void BasePalette::initColors()
     m_greyDark = m_greyHue.darker(200);
     m_greyBlack = m_greyHue.darker(350);
 
+    m_textNormal = m_greyHue.darker(350);
+    m_textHover = Qt::white;
+
     m_shadow = QColor(0, 0, 0, 40);
 }
 
+void BasePalette::initDarkColors()
+{
+    m_greyHue = QColor::fromRgb(77, 70, 83);
+    m_primaryLight = m_primaryHue.lighter(120);
+    m_primaryMid = m_primaryHue.darker(120);
+    m_primaryDark = m_primaryHue.darker(160);
+
+    m_dangerousLight = m_dangerousHue.lighter(120);
+    m_dangerousMid = m_dangerousHue.darker(120);
+    m_dangerousDark = m_dangerousHue.darker(140);
+
+    m_greyWhite = Qt::white;
+    m_greyLight = m_greyHue.lighter(170);
+    m_greyMidLight = m_greyHue.lighter(140);
+    m_greyMidDark = m_greyHue.darker(112);
+    m_greyDark = m_greyHue.darker(180);
+    m_greyBlack = m_greyHue.darker(350);
+
+    m_textNormal = Qt::white;
+    m_textHover = Qt::white;
+
+    m_shadow = QColor(0, 0, 0, 40);
+}
 
 // PRIMARY COLOR GETTERS ==============
 QColor BasePalette::primaryLight() const
@@ -104,6 +143,16 @@ QColor BasePalette::greyDark() const
 QColor BasePalette::greyBlack() const
 {
     return m_greyBlack;
+}
+
+QColor BasePalette::textNormal() const
+{
+    return m_textNormal;
+}
+
+QColor BasePalette::textHover() const
+{
+    return m_textHover;
 }
 
 

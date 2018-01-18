@@ -32,7 +32,7 @@ T.MenuBarItem {
         verticalAlignment: Text.AlignVCenter
         text: control.text
         font: control.font
-        color: control.hovered && !menu.isOpen ? StylePlugin.palette.greyWhite : StylePlugin.palette.greyBlack
+        color: control.hovered && !menu.isOpen ? StylePlugin.palette.textHover : StylePlugin.palette.textNormal
 
 //        y: control.pressed || menu.isOpen ? 2 : 0
 
