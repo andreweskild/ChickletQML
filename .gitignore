@@ -1,3 +1,6 @@
+@KoynovStas @tim-sueberkrueb @abrodkin @varhub @tsteinholz @nocnokneo @Ebola16 @misterion @munkhoff @jspahrsummers @jakepetroules @fsw @Glordim
+RawBlameHistory    
+48 lines (38 sloc)  455 Bytes
 # C++ objects and libs
 
 *.slo
@@ -12,6 +15,9 @@
 
 # Qt-es
 
+object_script.*.Release
+object_script.*.Debug
+*_plugin_import.cpp
 /.qmake.cache
 /.qmake.stash
 *.pro.user
@@ -23,8 +29,13 @@ moc_*.cpp
 moc_*.h
 qrc_*.cpp
 ui_*.h
+*.qmlc
+*.jsc
 Makefile*
 *build-*
+
+# Qt unit tests
+target_wrapper.*
 
 # QtCreator
 
@@ -36,4 +47,3 @@ Makefile*
 
 # QtCtreator CMake
 CMakeLists.txt.user*
-

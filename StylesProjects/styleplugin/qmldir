@@ -1,9 +1,0 @@
-module styleplugin
-plugin styleplugin
-singleton Theme 1.0 Theme.qml
-ActionableGeneric 1.0 ActionableGeneric.qml
-ShadowItem 1.0 ShadowItem.qml
-GenericInteractiveRounded 1.0 GenericInteractiveRounded.qml
-GenericInteractiveCircle 1.0 GenericInteractiveCircle.qml
-GenericInteractiveRect 1.0 GenericInteractiveRect.qml
-CursorDelegate 1.0 CursorDelegate.qml
