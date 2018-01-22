@@ -70,7 +70,8 @@ DISTFILES = qmldir \
     Dimensions.qml \
     Dialog.qml \
     DialogButtonBox.qml \
-    DialogTitleBar.qml
+    DialogTitleBar.qml \
+    Popup.qml
 
 !equals(_PRO_FILE_PWD_, $$OUT_PWD) {
     copy_qmldir.target = $$OUT_PWD/qmldir
