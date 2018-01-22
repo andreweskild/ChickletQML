@@ -8,7 +8,11 @@ QtObject {
     readonly property int commonWidth: 96
     readonly property int commonWidthWide: 120
 
+    readonly property int drawerWidth: 200
+
     readonly property int commonHeight: 24
+
+    readonly property int commonPadding: 8
 
     readonly property int progressBarWidth: 8
 

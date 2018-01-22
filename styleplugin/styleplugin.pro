@@ -67,7 +67,10 @@ DISTFILES = qmldir \
     TextArea.qml \
     CursorDelegate.qml \
     ColorPalette.qml \
-    Dimensions.qml
+    Dimensions.qml \
+    Dialog.qml \
+    DialogButtonBox.qml \
+    DialogTitleBar.qml
 
 !equals(_PRO_FILE_PWD_, $$OUT_PWD) {
     copy_qmldir.target = $$OUT_PWD/qmldir
