@@ -7,7 +7,7 @@ T.RadioButton {
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
-    implicitHeight: Dimensions.commonHeight
+    implicitHeight: 24
 
     spacing: 16
 
@@ -16,7 +16,7 @@ T.RadioButton {
         width: control.height
         height: control.height
         transform: Translate {
-            y: control.pressed ? Dimensions.elevation : 0
+            y: control.pressed ? 2 : 0
 
 
             Behavior on y {

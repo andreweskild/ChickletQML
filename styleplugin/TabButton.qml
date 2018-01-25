@@ -43,12 +43,12 @@ import styleplugin 1.0
 T.TabButton {
     id: control
 
-    width: Dimensions.commonWidthMini
-    implicitHeight: Dimensions.commonHeight
+    width: 72
+    implicitHeight: 24
     y: 4
 
     transform: Translate {
-        y: control.pressed ? Dimensions.elevation : 0
+        y: control.pressed ? 2 : 0
 
 
         Behavior on y {

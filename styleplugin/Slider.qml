@@ -6,8 +6,8 @@ import styleplugin 1.0
 T.Slider {
     id: control
 
-    implicitWidth: Dimensions.commonWidthWide
-    implicitHeight: Dimensions.commonHeight
+    implicitWidth: 120
+    implicitHeight: 24
 
 
     handle: Item {
@@ -16,7 +16,7 @@ T.Slider {
         height: control.height
         width: control.height
         transform: Translate {
-            y: control.pressed ? Dimensions.elevation : 0
+            y: control.pressed ? 2 : 0
 
 
             Behavior on y {
@@ -48,8 +48,8 @@ T.Slider {
         width: control.width
         height: control.height
         color: ColorPalette.sunken
-        radius: Dimensions.cornerRadius
-        y: Dimensions.elevation
+        radius: 4
+        y: 2
 
         Rectangle {
             width: handleBG.x + handleBG.width

@@ -10,11 +10,11 @@ T.Button {
 
     property bool dangerous: false
 
-    implicitWidth: Dimensions.commonWidth
-    implicitHeight: Dimensions.commonHeight
+    implicitWidth: 96
+    implicitHeight: 24
 
     transform: Translate {
-        y: control.pressed ? Dimensions.elevation : 0
+        y: control.pressed ? 2 : 0
 
 
         Behavior on y {

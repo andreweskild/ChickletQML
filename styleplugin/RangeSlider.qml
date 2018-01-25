@@ -41,8 +41,8 @@ import styleplugin 1.0
 T.RangeSlider {
     id: control
 
-    implicitWidth: Dimensions.commonWidthWide
-    implicitHeight: Dimensions.commonHeight
+    implicitWidth: 120
+    implicitHeight: 24
 
     first.handle: Item {
         id: firstHandle
@@ -51,7 +51,7 @@ T.RangeSlider {
         width: control.height
 
         transform: Translate {
-            y: control.first.pressed ? Dimensions.elevation : 0
+            y: control.first.pressed ? 2 : 0
 
 
             Behavior on y {
@@ -86,7 +86,7 @@ T.RangeSlider {
         width: control.height
 
         transform: Translate {
-            y: control.second.pressed ? Dimensions.elevation : 0
+            y: control.second.pressed ? 2 : 0
 
 
             Behavior on y {
@@ -115,11 +115,11 @@ T.RangeSlider {
     }
 
     background: Rectangle {
-        y: Dimensions.elevation
+        y: 2
         width: parent.width
         height: parent.height
         color: ColorPalette.sunken
-        radius: Dimensions.cornerRadius
+        radius: 4
 
         Rectangle {
             x: firstHandle.x

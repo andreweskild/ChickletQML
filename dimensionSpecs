@@ -1,0 +1,36 @@
+=================
+## Button Widths
+
+mini 72
+normal 96
+wide 120
+
+==================
+
+## Heights
+
+normal 24
+tall 48
+
+==================
+
+## Padding
+
+small 8
+medium 12
+large 16
+
+===================
+
+## Others
+
+progress bar thickness 8
+
+border thickness 2
+
+corder radius 4
+
+elevation 2
+
+switch width 48
+

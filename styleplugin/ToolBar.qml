@@ -17,7 +17,7 @@ T.ToolBar {
     bottomPadding: 4
 
     background: Rectangle {
-        implicitHeight: Dimensions.commonHeight
+        implicitHeight: 24
         color: ColorPalette.sunken
     }
 }

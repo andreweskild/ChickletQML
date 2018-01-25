@@ -5,8 +5,8 @@ import styleplugin 1.0
 T.ProgressBar {
     id: control
 
-    implicitWidth: Dimensions.commonWidthWide
-    implicitHeight: Dimensions.progressBarWidth
+    implicitWidth: 120
+    implicitHeight: 8
 
 
     background: Rectangle {

@@ -4,19 +4,19 @@ import styleplugin 1.0
 
 Item {
     readonly property Item dialog: parent
-    height: Dimensions.commonHeight
+    height: 24
     clip: true
     Rectangle {
         id: background
         width: parent.width
         height: parent.height + radius
         color: ColorPalette.raised
-        radius: Dimensions.cornerRadius
+        radius: 4
     }
     Label {
         anchors.fill: parent
         verticalAlignment: Text.AlignVCenter
-        leftPadding: Dimensions.commonPadding
+        leftPadding: 8
         text: control.title
         visible: control.title
         font.bold: true

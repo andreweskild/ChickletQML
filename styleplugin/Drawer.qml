@@ -22,8 +22,8 @@ T.Drawer {
 
         Rectangle {
             readonly property bool horizontal: control.edge === Qt.LeftEdge || control.edge === Qt.RightEdge
-            width: horizontal ? Dimensions.borderWidth : parent.width
-            height: horizontal ? parent.height : Dimensions.borderWidth
+            width: horizontal ? 2 : parent.width
+            height: horizontal ? parent.height : 2
             color: ColorPalette.sunken
             x: control.edge === Qt.LeftEdge ? parent.width - 1 : 0
             y: control.edge === Qt.TopEdge ? parent.height - 1 : 0

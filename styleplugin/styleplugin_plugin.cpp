@@ -6,6 +6,7 @@
 #include "linearrowindicator.h"
 #include "busyindicatorarc.h"
 #include "delaybuttonprogressindicator.h"
+#include "dialarcindicator.h"
 
 #include <qqml.h>
 
@@ -19,5 +20,6 @@ void StylepluginPlugin::registerTypes(const char *uri)
     qmlRegisterType<BusyIndicatorArc>(uri, 1, 0, "BusyIndicatorArc");
     qmlRegisterType<InteractiveGradientItem>(uri, 1, 0, "InteractiveGradientItem");
     qmlRegisterType<DelayButtonProgressIndicator>(uri, 1, 0, "DelayButtonProgressIndicator");
+    qmlRegisterType<DialArcIndicator>(uri, 1, 0, "DialArcIndicator");
 }
 

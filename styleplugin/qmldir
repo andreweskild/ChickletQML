@@ -3,7 +3,6 @@ plugin styleplugin
 
 # Style spec providers
 singleton ColorPalette 1.0 ColorPalette.qml
-singleton Dimensions 1.0 Dimensions.qml
 
 # Custom Visual Components
 DialogTitleBar 1.0 DialogTitleBar.qml

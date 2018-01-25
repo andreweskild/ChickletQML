@@ -5,8 +5,8 @@ import styleplugin 1.0
 T.SpinBox {
     id: control
 
-    implicitWidth: Dimensions.commonWidth
-    implicitHeight: Dimensions.commonHeight
+    implicitWidth: 96
+    implicitHeight: 24
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
     leftPadding: (control.mirrored ? (up.indicator ? up.indicator.width : 0) : (down.indicator ? down.indicator.width : 0))
@@ -19,7 +19,7 @@ T.SpinBox {
     }
 
     transform: Translate {
-        y: control.up.pressed || control.down.pressed ? Dimensions.elevation : 0
+        y: control.up.pressed || control.down.pressed ? 2 : 0
 
 
         Behavior on y {

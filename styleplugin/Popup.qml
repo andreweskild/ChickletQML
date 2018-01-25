@@ -35,7 +35,7 @@ T.Popup {
 
         Rectangle {
             anchors.fill: parent
-            radius: Dimensions.cornerRadius
+            radius: 4
             color: ColorPalette.window
         }
     }

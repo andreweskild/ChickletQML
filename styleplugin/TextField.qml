@@ -46,8 +46,8 @@ T.TextField {
     hoverEnabled: true
 
 
-    implicitWidth: Dimensions.commonWidthWide
-    implicitHeight: Dimensions.commonHeight
+    implicitWidth: 120
+    implicitHeight: 24
 
     selectByMouse: true
 
@@ -62,7 +62,7 @@ T.TextField {
 
 
     transform: Translate {
-        y: control.activeFocus ? Dimensions.elevation : 0
+        y: control.activeFocus ? 2 : 0
 
 
         Behavior on y {
@@ -101,8 +101,8 @@ T.TextField {
             color: ColorPalette.raised
             border.color: control.hovered || control.activeFocus ? ColorPalette.accent
                                           : ColorPalette.raised
-            border.width: Dimensions.borderWidth
-            radius: Dimensions.cornerRadius
+            border.width: 2
+            radius: 4
 
             Behavior on border.color {
                 ColorAnimation {

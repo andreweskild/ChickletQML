@@ -10,7 +10,7 @@ Item {
 
     property bool hidden: false;
     property bool hovered: false;
-    property real radius: Dimensions.cornerRadius;
+    property real radius: 4;
 
     implicitWidth: 24
     implicitHeight: 24

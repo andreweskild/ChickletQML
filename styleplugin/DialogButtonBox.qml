@@ -44,7 +44,7 @@ T.DialogButtonBox {
     id: control
 
     implicitWidth: contentItem.implicitWidth + padding + padding
-    implicitHeight: Dimensions.commonHeight + padding + padding
+    implicitHeight: 24 + padding + padding
 
     spacing: 8
     padding: 8

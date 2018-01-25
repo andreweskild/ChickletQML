@@ -12,7 +12,7 @@ T.BusyIndicator {
         id: indicator
         anchors.fill: parent
         color: ColorPalette.sunkenDark
-        arcWidth: Dimensions.progressBarWidth
+        arcWidth: 8
 
         SequentialAnimation {
             running: control.running

@@ -12,7 +12,7 @@ T.MenuSeparator {
     bottomPadding: 2
 
     contentItem: Rectangle {
-        implicitHeight: Dimensions.borderWidth
+        implicitHeight: 2
         width: control.width
         color: ColorPalette.window
     }

@@ -8,11 +8,11 @@ T.RoundButton {
     id: control
 
     property bool dangerous: false
-    implicitWidth: Dimensions.commonHeight + 2
-    implicitHeight: Dimensions.commonHeight + 2
+    implicitWidth: 24 + 2
+    implicitHeight: 24 + 2
 
     transform: Translate {
-        y: control.pressed ? Dimensions.elevation : 0
+        y: control.pressed ? 2 : 0
 
 
         Behavior on y {

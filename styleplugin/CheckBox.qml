@@ -6,9 +6,8 @@ import styleplugin 1.0
 T.CheckBox {
     id: control
 
-    implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                            contentItem.implicitWidth + leftPadding + rightPadding)
-    implicitHeight: Dimensions.commonHeight
+    implicitWidth: 96
+    implicitHeight: 24
 
     spacing: 16
 
@@ -19,7 +18,7 @@ T.CheckBox {
             width: parent.height
 
             transform: Translate {
-                y: control.pressed ? Dimensions.elevation : 0
+                y: control.pressed ? 2 : 0
 
 
                 Behavior on y {

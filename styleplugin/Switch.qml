@@ -5,8 +5,8 @@ import styleplugin 1.0
 T.Switch {
     id: control
 
-    implicitWidth: Dimensions.switchWidth
-    implicitHeight: Dimensions.commonHeight
+    implicitWidth: 48
+    implicitHeight: 24
 
     padding: 8
     spacing: 8
@@ -16,7 +16,7 @@ T.Switch {
         width: control.height
         height: control.height
         transform: Translate {
-            y: control.pressed ? Dimensions.elevation : 0
+            y: control.pressed ? 2 : 0
 
 
             Behavior on y {
@@ -55,13 +55,13 @@ T.Switch {
     background: Item {
         width: parent.width
         height: parent.height
-        y: Dimensions.elevation
+        y: 2
 
 
         Rectangle {
             anchors.fill: parent
             color: control.checked ? ColorPalette.sunkenDark : ColorPalette.sunken
-            radius: Dimensions.cornerRadius
+            radius: 4
             Behavior on color {
                 ColorAnimation {
                     duration: 150
@@ -78,7 +78,7 @@ T.Switch {
             anchors.left: parent.left
 
             Rectangle {
-                width: Dimensions.indicatorWidth
+                width: 3
                 height: 10
                 anchors.centerIn: parent
                 color: control.checked ? ColorPalette.contentSecondary : ColorPalette.content
@@ -104,7 +104,7 @@ T.Switch {
                 anchors.centerIn: parent
                 color: "transparent"
                 radius: height * .5
-                border.width: Dimensions.indicatorWidth
+                border.width: 3
                 border.color: control.checked ? ColorPalette.contentSecondary : ColorPalette.content
                 Behavior on border.color {
                     ColorAnimation {

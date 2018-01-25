@@ -6,8 +6,8 @@ import styleplugin 1.0
 T.ScrollBar {
     id: control
 
-    implicitWidth: interactive ? Dimensions.commonHeight : Dimensions.progressBarWidth
-    implicitHeight: interactive ? Dimensions.commonHeight : Dimensions.progressBarWidth
+    implicitWidth: interactive ? 24 : 8
+    implicitHeight: interactive ? 24 : 8
 
     clip: false
     visible: control.policy !== T.ScrollBar.AlwaysOff
@@ -16,8 +16,8 @@ T.ScrollBar {
 
         transform: Translate {
             y: control.vertical ?
-                   (control.pressed ? Dimensions.elevation : 0) :
-                   (control.pressed ? 0 : -Dimensions.elevation)
+                   (control.pressed ? 2 : 0) :
+                   (control.pressed ? 0 : -2)
 
 
             Behavior on y {
@@ -62,14 +62,14 @@ T.ScrollBar {
 
         Rectangle {
             anchors.fill: parent
-            radius: Dimensions.cornerRadius
+            radius: 4
             color: ColorPalette.sunken
         }
         Rectangle {
             width: control.horizontal ? control.position * control.width + handle.width : parent.width
-            height: control.vertical ? control.position * control.height + handle.height + Dimensions.elevation : parent.height
+            height: control.vertical ? control.position * control.height + handle.height + 2 : parent.height
             color: ColorPalette.sunkenDark
-            radius: Dimensions.cornerRadius
+            radius: 4
         }
     }
 

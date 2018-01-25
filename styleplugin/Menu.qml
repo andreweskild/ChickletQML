@@ -7,7 +7,7 @@ import styleplugin 1.0
 T.Menu {
     id: control
 
-    implicitWidth: Dimensions.commonWidthWide
+    implicitWidth: 120
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
                              contentItem ? contentItem.implicitHeight : 0) + topPadding + bottomPadding
 
@@ -61,7 +61,7 @@ T.Menu {
             height: parent.height
             width: parent.width
             color: ColorPalette.raised
-            radius: Dimensions.cornerRadius
+            radius: 4
 
 
         }

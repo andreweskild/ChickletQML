@@ -15,7 +15,8 @@ SOURCES += \
     interactivegradientitem.cpp \
     linearrowindicator.cpp \
     busyindicatorarc.cpp \
-    delaybuttonprogressindicator.cpp
+    delaybuttonprogressindicator.cpp \
+    dialarcindicator.cpp
 
 HEADERS += \
     styleplugin_plugin.h \
@@ -25,7 +26,8 @@ HEADERS += \
     interactivegradientitem.h \
     linearrowindicator.h \
     busyindicatorarc.h \
-    delaybuttonprogressindicator.h
+    delaybuttonprogressindicator.h \
+    dialarcindicator.h
 
 DISTFILES = qmldir \
     Button.qml \
@@ -67,11 +69,12 @@ DISTFILES = qmldir \
     TextArea.qml \
     CursorDelegate.qml \
     ColorPalette.qml \
-    Dimensions.qml \
     Dialog.qml \
     DialogButtonBox.qml \
     DialogTitleBar.qml \
-    Popup.qml
+    Popup.qml \
+    SwipeDelegate.qml \
+    Dial.qml
 
 !equals(_PRO_FILE_PWD_, $$OUT_PWD) {
     copy_qmldir.target = $$OUT_PWD/qmldir

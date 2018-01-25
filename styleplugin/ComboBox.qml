@@ -8,8 +8,8 @@ import styleplugin 1.0
 T.ComboBox {
     id: control
 
-    implicitWidth: Dimensions.commonWidthWide
-    implicitHeight: Dimensions.commonHeight
+    implicitWidth: 120
+    implicitHeight: 24
 
     leftPadding: padding + (!control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
     rightPadding: padding + (control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
@@ -17,7 +17,7 @@ T.ComboBox {
 
     delegate: MenuItem {
         width: parent.width
-        height: Dimensions.commonHeight
+        height: 24
         text: control.textRole ? (Array.isArray(control.model) ? modelData[control.textRole] : model[control.textRole]) : modelData
         highlighted: control.highlightedIndex === index
     }
@@ -27,7 +27,7 @@ T.ComboBox {
             width: parent.height
             anchors.right: parent.right
             transform: Translate {
-                y: control.pressed ? Dimensions.elevation : 0
+                y: control.pressed ? 2 : 0
 
 
                 Behavior on y {
@@ -79,7 +79,7 @@ T.ComboBox {
         verticalAlignment: Text.AlignVCenter
 
         transform: Translate {
-            y: control.pressed ? Dimensions.elevation : 0
+            y: control.pressed ? 2 : 0
 
 
             Behavior on y {
@@ -108,7 +108,7 @@ T.ComboBox {
         width: control.width
         height: control.height
         transform: Translate {
-            y: control.pressed ? Dimensions.elevation : 0
+            y: control.pressed ? 2 : 0
 
 
             Behavior on y {
@@ -189,7 +189,7 @@ T.ComboBox {
 
                 target: background
                 property: "height"
-                to: Dimensions.commonHeight
+                to: 24
             }
             NumberAnimation {
                 targets: [arrowIndicator, buttonText]

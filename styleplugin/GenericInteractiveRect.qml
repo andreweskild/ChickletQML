@@ -3,8 +3,8 @@ import styleplugin 1.0
 
 InteractiveGradientItem {
     id: background
-    height: parent.height
-    width: parent.width
+    implicitHeight: 24
+    implicitWidth: 96
     shape: InteractiveGradientItem.Rect
     primaryColor: dangerous ?
         (pressed ? ColorPalette.dangerousDark :
@@ -23,7 +23,7 @@ InteractiveGradientItem {
     property bool dangerous: false
     Behavior on primaryColor {
         ColorAnimation {
-            duration: 150
+            duration: 100
             easing {
                 type: Easing.InOutSine
             }
@@ -31,7 +31,7 @@ InteractiveGradientItem {
     }
     Behavior on secondaryColor {
         ColorAnimation {
-            duration: 150
+            duration: 100
             easing {
                 type: Easing.InOutSine
             }

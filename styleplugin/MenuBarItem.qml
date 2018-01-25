@@ -7,12 +7,12 @@ import styleplugin 1.0
 T.MenuBarItem {
     id: control
 
-    implicitWidth: Dimensions.commonWidthMini
-    implicitHeight: Dimensions.commonHeight
+    implicitWidth: 72
+    implicitHeight: 24
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
     transform: Translate {
-        y: control.pressed || menu.isOpen ? Dimensions.elevation : 0
+        y: control.pressed || menu.isOpen ? 2 : 0
 
 
         Behavior on y {

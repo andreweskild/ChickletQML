@@ -7,11 +7,11 @@ import styleplugin 1.0
 T.ToolButton {
     id: control
 
-    implicitWidth: Dimensions.commonWidthMini
-    implicitHeight: Dimensions.commonHeight
+    implicitWidth: 72
+    implicitHeight: 24
 
     transform: Translate {
-        y: control.pressed ? Dimensions.elevation : 0
+        y: control.pressed ? 2 : 0
 
 
         Behavior on y {
