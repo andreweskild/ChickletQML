@@ -6,13 +6,13 @@ T.ProgressBar {
     id: control
 
     implicitWidth: 120
-    implicitHeight: 8
+    implicitHeight: 12
 
 
     background: Rectangle {
         anchors.fill: parent
         color: ColorPalette.sunken
-        radius: height / 2
+        radius: 6
     }
 
 
@@ -22,7 +22,7 @@ T.ProgressBar {
         Rectangle {
             width: control.visualPosition * parent.width
             height: parent.height
-            radius: height / 2
+            radius: 6
             color: ColorPalette.sunkenDark
         }
     }

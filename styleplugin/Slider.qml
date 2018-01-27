@@ -45,11 +45,12 @@ T.Slider {
     }
 
     background: Rectangle {
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: 2
         width: control.width
-        height: control.height
+        height: 12
         color: ColorPalette.sunken
-        radius: 4
-        y: 2
+        radius: 6
 
         Rectangle {
             width: handleBG.x + handleBG.width
