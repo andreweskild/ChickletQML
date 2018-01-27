@@ -16,7 +16,8 @@ SOURCES += \
     linearrowindicator.cpp \
     busyindicatorarc.cpp \
     delaybuttonprogressindicator.cpp \
-    dialarcindicator.cpp
+    dialarcindicator.cpp \
+    colorselectionsquare.cpp
 
 HEADERS += \
     styleplugin_plugin.h \
@@ -27,7 +28,8 @@ HEADERS += \
     linearrowindicator.h \
     busyindicatorarc.h \
     delaybuttonprogressindicator.h \
-    dialarcindicator.h
+    dialarcindicator.h \
+    colorselectionsquare.h
 
 DISTFILES = qmldir \
     Button.qml \

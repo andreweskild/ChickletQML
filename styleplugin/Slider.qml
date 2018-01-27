@@ -12,9 +12,12 @@ T.Slider {
 
     handle: Item {
         id: handleBG
-        x: control.visualPosition * (control.availableWidth - width)
-        height: control.height
-        width: control.height
+        x: orientation === Qt.Vertical ? 0 :
+               control.visualPosition * (control.availableWidth - width)
+        y: orientation === Qt.Vertical ? control.visualPosition * (control.availableHeight - height) :
+                                         0
+        height: orientation === Qt.Vertical ? control.width : control.height
+        width: orientation === Qt.Vertical ? control.width : control.height
         transform: Translate {
             y: control.pressed ? 2 : 0
 
@@ -45,16 +48,17 @@ T.Slider {
     }
 
     background: Rectangle {
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.centerIn: parent
         anchors.verticalCenterOffset: 2
-        width: control.width
-        height: 12
+        width: orientation === Qt.Vertical ? 12 : control.width
+        height: orientation === Qt.Vertical ? control.height : 12
         color: ColorPalette.sunken
         radius: 6
 
         Rectangle {
-            width: handleBG.x + handleBG.width
-            height: parent.height
+            width: orientation === Qt.Vertical ? parent.width : handleBG.x + handleBG.width
+            height: orientation === Qt.Vertical ?  parent.height - handleBG.y : parent.height
+            y: orientation === Qt.Vertical ? handleBG.y : 0
             radius: parent.radius
 
             color: ColorPalette.sunkenDark

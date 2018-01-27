@@ -4,9 +4,6 @@
 #include "qnanoquickitem.h"
 #include "qnanoquickitempainter.h"
 #include "qnanoradialgradient.h"
-#include <QParallelAnimationGroup>
-#include <QPropertyAnimation>
-#include "basepalette.h"
 
 
 class InteractiveGradientItem : public QNanoQuickItem
