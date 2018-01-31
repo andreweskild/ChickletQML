@@ -15,7 +15,7 @@ T.TextArea {
                              placeholder.implicitHeight + 1 + topPadding + bottomPadding)
 
     topPadding: 8
-    bottomPadding: 16
+    bottomPadding: 15
     leftPadding: 8
     rightPadding: 8
 

@@ -10,11 +10,28 @@ Item {
 
     property bool hidden: false;
     property bool hovered: false;
-    property real radius: 4;
+    property real radius: 5;
 
-    implicitWidth: 24
-    implicitHeight: 24
+    implicitWidth: 20
+    implicitHeight: 20
 
+    Rectangle {
+        height: parent.height + 2
+        width: parent.width + 2
+        y: -1
+        x: -1
+        color: ColorPalette.shadow
+        opacity: hovered || hidden ? 0 : 1
+        radius: root.radius
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 150
+                easing {
+                    type: Easing.InOutSine
+                }
+            }
+        }
+    }
 
 
     RectangularGlow {

@@ -8,11 +8,24 @@ T.SwipeDelegate {
     id: control
 
     implicitWidth: 96
-    implicitHeight: 24
+    implicitHeight: 20
 
-    clip: true
 
     swipe.transition: Transition { SmoothedAnimation { velocity: 3; easing.type: Easing.InOutCubic } }
+
+    transform: Translate {
+        y: control.pressed ? 2 : 0
+
+
+        Behavior on y {
+            NumberAnimation {
+                duration: 100
+                easing {
+                    type: Easing.InOutSine
+                }
+            }
+        }
+    }
 
     contentItem: Label {
         leftPadding: 8
@@ -22,6 +35,14 @@ T.SwipeDelegate {
         text: control.text
         font: control.font
         color: control.hovered ? ColorPalette.contentSecondary : ColorPalette.content
+        Behavior on color {
+            ColorAnimation {
+                duration: 150
+                easing {
+                    type: Easing.InOutSine
+                }
+            }
+        }
     }
 
     background: Item {

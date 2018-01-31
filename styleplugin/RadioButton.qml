@@ -7,9 +7,9 @@ T.RadioButton {
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
-    implicitHeight: 24
+    implicitHeight: 20
 
-    spacing: 16
+    spacing: 15
 
 
     indicator:Item {

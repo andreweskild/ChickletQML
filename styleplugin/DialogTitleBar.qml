@@ -4,14 +4,14 @@ import styleplugin 1.0
 
 Item {
     readonly property Item dialog: parent
-    height: 24
+    height: 20
     clip: true
     Rectangle {
         id: background
         width: parent.width
         height: parent.height + radius
         color: ColorPalette.raised
-        radius: 4
+        radius: 5
     }
     Label {
         anchors.fill: parent

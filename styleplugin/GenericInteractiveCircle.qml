@@ -3,8 +3,8 @@ import styleplugin 1.0
 
 InteractiveGradientItem {
     id: background
-    implicitHeight: 24
-    implicitWidth: 24
+    implicitHeight: 20
+    implicitWidth: 20
     shape: InteractiveGradientItem.Circle
     primaryColor: dangerous ?
         (pressed ? ColorPalette.dangerousDark :

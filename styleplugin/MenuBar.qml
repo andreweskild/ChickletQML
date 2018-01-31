@@ -9,7 +9,7 @@ T.MenuBar {
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentWidth + leftPadding + rightPadding)
-    implicitHeight: 24
+    implicitHeight: 20
 
     padding: 8
     spacing: 8

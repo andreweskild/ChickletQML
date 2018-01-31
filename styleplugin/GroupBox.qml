@@ -34,7 +34,7 @@ T.GroupBox {
         width: parent.width
         height: parent.height - control.topPadding + control.padding
 
-        radius: 4
+        radius: 5
         color: "transparent"
         border.color: ColorPalette.sunken
         border.width: 2

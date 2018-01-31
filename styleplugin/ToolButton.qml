@@ -8,7 +8,7 @@ T.ToolButton {
     id: control
 
     implicitWidth: 72
-    implicitHeight: 24
+    implicitHeight: 20
 
     transform: Translate {
         y: control.pressed ? 2 : 0

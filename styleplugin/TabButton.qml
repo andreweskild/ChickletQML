@@ -44,7 +44,7 @@ T.TabButton {
     id: control
 
     width: 72
-    implicitHeight: 24
+    implicitHeight: 20
     y: 4
 
     transform: Translate {

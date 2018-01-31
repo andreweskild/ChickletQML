@@ -19,7 +19,7 @@ T.Dialog {
     contentWidth: contentItem.implicitWidth || (contentChildren.length === 1 ? contentChildren[0].implicitWidth : 0)
     contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0)
 
-    padding: 24
+    padding: 20
     topPadding: 20
 
 
@@ -43,7 +43,7 @@ T.Dialog {
 
         Rectangle {
             anchors.fill: parent
-            radius: 4
+            radius: 5
             color: ColorPalette.window
         }
     }

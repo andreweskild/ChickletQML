@@ -6,8 +6,8 @@ import styleplugin 1.0
 T.ScrollBar {
     id: control
 
-    implicitWidth: interactive ? 24 : 8
-    implicitHeight: interactive ? 24 : 8
+    implicitWidth: interactive ? 20 : 8
+    implicitHeight: interactive ? 20 : 8
 
     clip: false
     visible: control.policy !== T.ScrollBar.AlwaysOff
@@ -62,14 +62,14 @@ T.ScrollBar {
 
         Rectangle {
             anchors.fill: parent
-            radius: 4
+            radius: 5
             color: ColorPalette.sunken
         }
         Rectangle {
             width: control.horizontal ? control.position * control.width + handle.width : parent.width
             height: control.vertical ? control.position * control.height + handle.height + 2 : parent.height
             color: ColorPalette.sunkenDark
-            radius: 4
+            radius: 5
         }
     }
 

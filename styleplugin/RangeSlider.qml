@@ -42,7 +42,7 @@ T.RangeSlider {
     id: control
 
     implicitWidth: 120
-    implicitHeight: 24
+    implicitHeight: 20
 
     first.handle: Item {
         id: firstHandle
@@ -119,7 +119,7 @@ T.RangeSlider {
         width: parent.width
         height: parent.height
         color: ColorPalette.sunken
-        radius: 4
+        radius: 5
 
         Rectangle {
             x: firstHandle.x

@@ -8,7 +8,7 @@ T.MenuBarItem {
     id: control
 
     implicitWidth: 72
-    implicitHeight: 24
+    implicitHeight: 20
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
     transform: Translate {

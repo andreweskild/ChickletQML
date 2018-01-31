@@ -6,7 +6,7 @@ T.Switch {
     id: control
 
     implicitWidth: 48
-    implicitHeight: 24
+    implicitHeight: 20
 
     padding: 8
     spacing: 8
@@ -61,7 +61,7 @@ T.Switch {
         Rectangle {
             anchors.fill: parent
             color: control.checked ? ColorPalette.sunkenDark : ColorPalette.sunken
-            radius: 4
+            radius: 5
             Behavior on color {
                 ColorAnimation {
                     duration: 150

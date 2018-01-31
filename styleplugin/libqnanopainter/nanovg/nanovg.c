@@ -40,7 +40,7 @@
 
 #define NVG_INIT_COMMANDS_SIZE 256
 #define NVG_INIT_POINTS_SIZE 128
-#define NVG_INIT_PATHS_SIZE 16
+#define NVG_INIT_PATHS_SIZE 15
 #define NVG_INIT_VERTS_SIZE 256
 #define NVG_MAX_STATES 32
 
@@ -672,7 +672,7 @@ void nvgReset(NVGcontext* ctx)
 	state->scissor.extent[0] = -1.0f;
 	state->scissor.extent[1] = -1.0f;
 
-	state->fontSize = 16.0f;
+	state->fontSize = 15.0f;
 	state->letterSpacing = 0.0f;
 	state->lineHeight = 1.0f;
 	state->fontBlur = 0.0f;

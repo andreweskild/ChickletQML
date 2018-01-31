@@ -3,7 +3,7 @@ import styleplugin 1.0
 
 InteractiveGradientItem {
     id: background
-    implicitHeight: 24
+    implicitHeight: 20
     implicitWidth: 96
     shape: InteractiveGradientItem.Rect
     primaryColor: dangerous ?

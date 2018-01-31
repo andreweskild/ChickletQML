@@ -4,4 +4,5 @@ import styleplugin 1.0
 
 BasePalette {
     id: palette
+    dark: false
 }

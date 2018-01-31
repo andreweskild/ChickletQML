@@ -8,7 +8,7 @@ T.ToolTip {
     y: -implicitHeight - 8
 
     implicitWidth: contentItem.implicitWidth + leftPadding + rightPadding
-    implicitHeight: 24
+    implicitHeight: 20
 
 
     padding: 2
@@ -44,7 +44,7 @@ T.ToolTip {
             anchors.fill: parent
 
             color: ColorPalette.sunkenDark
-            radius: 4
+            radius: 5
         }
     }
 }

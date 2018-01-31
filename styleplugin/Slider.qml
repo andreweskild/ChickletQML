@@ -7,7 +7,7 @@ T.Slider {
     id: control
 
     implicitWidth: 120
-    implicitHeight: 24
+    implicitHeight: 20
 
 
     handle: Item {
@@ -19,8 +19,7 @@ T.Slider {
         height: orientation === Qt.Vertical ? control.width : control.height
         width: orientation === Qt.Vertical ? control.width : control.height
         transform: Translate {
-            y: control.pressed ? 2 : 0
-
+            y: control.pressed ? 0 : -2
 
             Behavior on y {
                 NumberAnimation {
@@ -49,11 +48,10 @@ T.Slider {
 
     background: Rectangle {
         anchors.centerIn: parent
-        anchors.verticalCenterOffset: 2
-        width: orientation === Qt.Vertical ? 12 : control.width
-        height: orientation === Qt.Vertical ? control.height : 12
+        width: orientation === Qt.Vertical ? 10 : control.width
+        height: orientation === Qt.Vertical ? control.height : 10
         color: ColorPalette.sunken
-        radius: 6
+        radius: 5
 
         Rectangle {
             width: orientation === Qt.Vertical ? parent.width : handleBG.x + handleBG.width

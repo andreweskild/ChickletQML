@@ -68,7 +68,7 @@ public:
     };
     enum TextBaseline {
         BASELINE_TOP = 8,
-        BASELINE_MIDDLE = 16,
+        BASELINE_MIDDLE = 15,
         BASELINE_BOTTOM = 32,
         BASELINE_ALPHABETIC = 64
     };

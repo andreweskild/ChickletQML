@@ -138,14 +138,14 @@ void QNanoColor::setHexColor(const char *hex)
     uchar a,r,g,b;
     if (length == 7) {
         a = 255;
-        r = s.mid(1,2).toInt(&ok, 16);
-        g = s.mid(3,2).toInt(&ok, 16);
-        b = s.mid(5,2).toInt(&ok, 16);
+        r = s.mid(1,2).toInt(&ok, 15);
+        g = s.mid(3,2).toInt(&ok, 15);
+        b = s.mid(5,2).toInt(&ok, 15);
     } else {
-        a = s.mid(1,2).toInt(&ok, 16);
-        r = s.mid(3,2).toInt(&ok, 16);
-        g = s.mid(5,2).toInt(&ok, 16);
-        b = s.mid(7,2).toInt(&ok, 16);
+        a = s.mid(1,2).toInt(&ok, 15);
+        r = s.mid(3,2).toInt(&ok, 15);
+        g = s.mid(5,2).toInt(&ok, 15);
+        b = s.mid(7,2).toInt(&ok, 15);
     }
     m_nvgColor = nvgRGBA(r, g, b, a);
 }

@@ -5,8 +5,8 @@ import styleplugin 1.0
 T.BusyIndicator {
     id: control
 
-    implicitWidth: 24
-    implicitHeight: 24
+    implicitWidth: 20
+    implicitHeight: 20
 
     contentItem: BusyIndicatorArc {
         id: indicator

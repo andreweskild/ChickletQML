@@ -6,7 +6,7 @@ import styleplugin 1.0
 
 T.Tumbler {
     id: control
-    implicitWidth: 24
+    implicitWidth: 20
     implicitHeight: 72 + topPadding + bottomPadding
     visibleItemCount: 3
 

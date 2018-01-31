@@ -1079,8 +1079,8 @@ void QNanoPainter::drawImage(QNanoImage &image, const QRectF sourceRect, const Q
 //
 // The local space means that values are not rotated or scale as per the current
 // transformation. For example if you set font size to 12, which would mean that
-// line height is 16, then regardless of the current scaling and rotation, the
-// returned line height is always 16. Some measures may vary because of the scaling
+// line height is 15, then regardless of the current scaling and rotation, the
+// returned line height is always 15. Some measures may vary because of the scaling
 // since aforementioned pixel snapping.
 //
 // Note: currently only solid color fill is supported for text.

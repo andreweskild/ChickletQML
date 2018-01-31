@@ -10,8 +10,8 @@ T.Button {
 
     property bool dangerous: false
 
-    implicitWidth: 96
-    implicitHeight: 24
+    width: 96
+    height: 20
 
     transform: Translate {
         y: control.pressed ? 2 : 0

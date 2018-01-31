@@ -9,7 +9,7 @@ T.ComboBox {
     id: control
 
     implicitWidth: 120
-    implicitHeight: 24
+    implicitHeight: 20
 
     leftPadding: padding + (!control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
     rightPadding: padding + (control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
@@ -17,7 +17,7 @@ T.ComboBox {
 
     delegate: MenuItem {
         width: parent.width
-        height: 24
+        height: 20
         text: control.textRole ? (Array.isArray(control.model) ? modelData[control.textRole] : model[control.textRole]) : modelData
         highlighted: control.highlightedIndex === index
     }
@@ -189,7 +189,7 @@ T.ComboBox {
 
                 target: background
                 property: "height"
-                to: 24
+                to: 20
             }
             NumberAnimation {
                 targets: [arrowIndicator, buttonText]

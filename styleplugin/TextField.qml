@@ -47,7 +47,7 @@ T.TextField {
 
 
     implicitWidth: 120
-    implicitHeight: 24
+    implicitHeight: 20
 
     selectByMouse: true
 
@@ -102,7 +102,7 @@ T.TextField {
             border.color: control.hovered || control.activeFocus ? ColorPalette.accent
                                           : ColorPalette.raised
             border.width: 2
-            radius: 4
+            radius: 5
 
             Behavior on border.color {
                 ColorAnimation {

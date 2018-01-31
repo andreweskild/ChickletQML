@@ -14,7 +14,7 @@ T.Frame {
     padding: 12
 
     background: Rectangle {
-        radius: 4
+        radius: 5
         color: "transparent"
         border.color: ColorPalette.sunken
         border.width: 2

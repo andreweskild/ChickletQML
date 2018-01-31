@@ -9,7 +9,7 @@ T.MenuItem {
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
-    implicitHeight: 24
+    implicitHeight: 20
 
 
 
