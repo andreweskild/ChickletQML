@@ -11,8 +11,8 @@ T.ComboBox {
     implicitWidth: 120
     implicitHeight: 20
 
-    leftPadding: padding + (!control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
-    rightPadding: padding + (control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
+    leftPadding: 10
+    rightPadding: 10
 
 
     delegate: MenuItem {
@@ -22,46 +22,39 @@ T.ComboBox {
         highlighted: control.highlightedIndex === index
     }
 
-    indicator: Item {
-            height: parent.height
-            width: parent.height
-            anchors.right: parent.right
-            transform: Translate {
-                y: control.pressed ? 2 : 0
+    indicator: LineArrowIndicator {
+        id: arrowIndicator
+        color: control.hovered || popup.opened ? ColorPalette.contentSecondary : ColorPalette.content
+        height: 6
+        width: 10
+        anchors.right: parent.right
+        anchors.rightMargin: parent.rightPadding
+        anchors.verticalCenter: parent.verticalCenter
+        transform: Translate {
+                           y: control.pressed ? 2 : 0
 
 
-                Behavior on y {
-                    NumberAnimation {
-                        duration: 100
-                        easing {
-                            type: Easing.InOutSine
-                        }
-                    }
-                }
-            }
-
-            LineArrowIndicator {
-                id: arrowIndicator
-                color: control.hovered || popup.opened ? ColorPalette.contentSecondary : ColorPalette.content
-                height: 6
-                width: 10
-                anchors.centerIn: parent
-                Behavior on color {
-                    ColorAnimation {
-                        duration: 150
-                        easing {
-                            type: Easing.InOutSine
-                        }
-                    }
+                           Behavior on y {
+                               NumberAnimation {
+                                   duration: 100
+                                   easing {
+                                       type: Easing.InOutSine
+                                   }
+                               }
+                           }
+                       }
+        Behavior on color {
+            ColorAnimation {
+                duration: 150
+                easing {
+                    type: Easing.InOutSine
                 }
             }
         }
+    }
 
     contentItem: T.TextField {
         id: buttonText
-        padding: 6
-        leftPadding: control.editable ? 2 : control.mirrored ? 0 : 8
-        rightPadding: control.editable ? 2 : control.mirrored ? 8 : 0
 
         text: control.editable ? control.editText : control.displayText
 
@@ -142,10 +135,10 @@ T.ComboBox {
         width: control.width
         height: contentItem.implicitHeight + topPadding + bottomPadding
         transformOrigin: Item.Top
-        topPadding: 6
-        bottomPadding: 6
-        topMargin: 12
-        bottomMargin: 12
+        topPadding: 5
+        bottomPadding: 5
+        topMargin: 10
+        bottomMargin: 10
         y: -topPadding
 
         enter: Transition {
@@ -235,7 +228,5 @@ T.ComboBox {
             }
         }
 
-        background: Item {
-        }
     }
 }

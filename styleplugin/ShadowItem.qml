@@ -15,23 +15,23 @@ Item {
     implicitWidth: 20
     implicitHeight: 20
 
-    Rectangle {
-        height: parent.height + 2
-        width: parent.width + 2
-        y: -1
-        x: -1
-        color: ColorPalette.shadow
-        opacity: hovered || hidden ? 0 : 1
-        radius: root.radius
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 150
-                easing {
-                    type: Easing.InOutSine
-                }
-            }
-        }
-    }
+//    Rectangle {
+//        height: parent.height + 2
+//        width: parent.width + 2
+//        y: -1
+//        x: -1
+//        color: ColorPalette.shadow
+//        opacity: hovered || hidden ? 0 : 1
+//        radius: root.radius
+//        Behavior on opacity {
+//            NumberAnimation {
+//                duration: 150
+//                easing {
+//                    type: Easing.InOutSine
+//                }
+//            }
+//        }
+//    }
 
 
     RectangularGlow {

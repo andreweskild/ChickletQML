@@ -61,19 +61,19 @@ T.TextField {
     verticalAlignment: TextInput.AlignVCenter
 
 
-    transform: Translate {
-        y: control.activeFocus ? 2 : 0
+//    transform: Translate {
+//        y: control.activeFocus ? 2 : 0
 
 
-        Behavior on y {
-            NumberAnimation {
-                duration: 100
-                easing {
-                    type: Easing.InOutSine
-                }
-            }
-        }
-    }
+//        Behavior on y {
+//            NumberAnimation {
+//                duration: 100
+//                easing {
+//                    type: Easing.InOutSine
+//                }
+//            }
+//        }
+//    }
 
     cursorDelegate: CursorDelegate {}
 
@@ -89,19 +89,19 @@ T.TextField {
     background: Item {
         id: background
 
-        ShadowItem {
-            anchors.fill: parent
-            hidden: control.activeFocus
-            hovered: control.hovered
-        }
+//        ShadowItem {
+//            anchors.fill: parent
+//            hidden: control.activeFocus
+//            hovered: control.hovered
+//        }
 
         Rectangle {
             id: inputBG
             anchors.fill: parent
             color: ColorPalette.raised
             border.color: control.hovered || control.activeFocus ? ColorPalette.accent
-                                          : ColorPalette.raised
-            border.width: 2
+                                          : Qt.darker(color, 1.2)
+            border.width: 1
             radius: 5
 
             Behavior on border.color {

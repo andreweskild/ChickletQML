@@ -13,10 +13,8 @@ T.Menu {
 
     property bool isOpen: false
 
-    topPadding: 8
-    bottomPadding: 8
-
-
+    topPadding: 5
+    bottomPadding: 5
 
 
 
@@ -68,9 +66,10 @@ T.Menu {
 
         Rectangle {
             color: ColorPalette.raised
-            width: control.parent.width
-            y: -2
-            height: 6
+            width: control.parent.width >= control.width ? control.width :
+                                                          control.parent.width
+            y: -5
+            height: 10
         }
 
 

@@ -28,7 +28,7 @@ T.SwipeDelegate {
     }
 
     contentItem: Label {
-        leftPadding: 8
+        leftPadding: 10
         height: parent.height
         width: parent.width
         verticalAlignment: Text.AlignVCenter

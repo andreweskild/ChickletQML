@@ -14,7 +14,7 @@ T.MenuItem {
 
 
     contentItem: Text {
-        leftPadding: 8
+        leftPadding: 10
         height: parent.height
 
         verticalAlignment: Text.AlignVCenter

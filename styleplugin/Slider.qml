@@ -52,12 +52,16 @@ T.Slider {
         height: orientation === Qt.Vertical ? control.height : 10
         color: ColorPalette.sunken
         radius: 5
+        border.color: Qt.darker(color, 1.1)
+        border.width: 1
 
         Rectangle {
             width: orientation === Qt.Vertical ? parent.width : handleBG.x + handleBG.width
             height: orientation === Qt.Vertical ?  parent.height - handleBG.y : parent.height
             y: orientation === Qt.Vertical ? handleBG.y : 0
             radius: parent.radius
+            border.color: Qt.darker(color, 1.1)
+            border.width: 1
 
             color: ColorPalette.sunkenDark
         }
