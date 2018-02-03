@@ -82,7 +82,7 @@ private:
 
     InteractiveGradientItem::Shape m_shape;
 
-    const int M_RADIUS = 5;
+    const int M_RADIUS = 3;
 
 
 };

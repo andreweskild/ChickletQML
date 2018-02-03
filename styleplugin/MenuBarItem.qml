@@ -7,9 +7,10 @@ import styleplugin 1.0
 T.MenuBarItem {
     id: control
 
-    implicitWidth: 72
+    implicitWidth: buttonText.contentWidth + padding + padding
     implicitHeight: 20
-    baselineOffset: contentItem.y + contentItem.baselineOffset
+
+    padding: 10
 
     transform: Translate {
         y: control.pressed || menu.isOpen ? 2 : 0
@@ -26,6 +27,7 @@ T.MenuBarItem {
     }
 
     contentItem: Text {
+        id: buttonText
         height: parent.height
         width: parent.width
         horizontalAlignment: Text.AlignHCenter
@@ -34,17 +36,6 @@ T.MenuBarItem {
         font: control.font
         color: control.hovered && !menu.isOpen ? ColorPalette.contentSecondary : ColorPalette.content
 
-//        y: control.pressed || menu.isOpen ? 2 : 0
-
-//        Behavior on y {
-//            NumberAnimation {
-//                duration: 100
-//                easing {
-//                    type: Easing.InOutSine
-//                    overshoot: 5
-//                }
-//            }
-//        }
 
         Behavior on color {
             ColorAnimation {

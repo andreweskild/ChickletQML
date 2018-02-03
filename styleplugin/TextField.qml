@@ -102,7 +102,7 @@ T.TextField {
             border.color: control.hovered || control.activeFocus ? ColorPalette.accent
                                           : Qt.darker(color, 1.2)
             border.width: 1
-            radius: 5
+            radius: 4
 
             Behavior on border.color {
                 ColorAnimation {

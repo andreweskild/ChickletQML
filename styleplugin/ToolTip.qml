@@ -44,7 +44,7 @@ T.ToolTip {
             anchors.fill: parent
 
             color: ColorPalette.sunkenDark
-            radius: 5
+            radius: 4
         }
     }
 }

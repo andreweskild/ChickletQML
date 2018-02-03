@@ -61,7 +61,7 @@ T.Switch {
         Rectangle {
             anchors.fill: parent
             color: control.checked ? ColorPalette.sunkenDark : ColorPalette.sunken
-            radius: 5
+            radius: 4
             Behavior on color {
                 ColorAnimation {
                     duration: 150

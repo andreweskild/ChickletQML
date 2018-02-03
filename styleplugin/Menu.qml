@@ -59,7 +59,7 @@ T.Menu {
             height: parent.height
             width: parent.width
             color: ColorPalette.raised
-            radius: 5
+            radius: 4
 
 
         }

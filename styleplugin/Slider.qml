@@ -51,7 +51,7 @@ T.Slider {
         width: orientation === Qt.Vertical ? 10 : control.width
         height: orientation === Qt.Vertical ? control.height : 10
         color: ColorPalette.sunken
-        radius: 5
+        radius: 4
         border.color: Qt.darker(color, 1.1)
         border.width: 1
 

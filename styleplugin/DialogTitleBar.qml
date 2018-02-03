@@ -11,7 +11,7 @@ Item {
         width: parent.width
         height: parent.height + radius
         color: ColorPalette.raised
-        radius: 5
+        radius: 4
     }
     Label {
         anchors.fill: parent

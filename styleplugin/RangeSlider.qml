@@ -119,7 +119,7 @@ T.RangeSlider {
         width: parent.width
         height: parent.height
         color: ColorPalette.sunken
-        radius: 5
+        radius: 4
 
         Rectangle {
             x: firstHandle.x

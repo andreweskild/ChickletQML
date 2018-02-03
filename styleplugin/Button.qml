@@ -8,10 +8,9 @@ import styleplugin 1.0
 T.Button {
     id: control
 
-    property bool dangerous: false
-
-    width: 96
+    width: buttonText.contentWidth + padding + padding
     height: 20
+    padding: 10
 
     transform: Translate {
         y: control.pressed ? 2 : 0
@@ -29,12 +28,9 @@ T.Button {
 
     contentItem:Text {
         id: buttonText
-        anchors.centerIn: parent
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        color: control.dangerous ?
-            ColorPalette.contentSecondary :
-            (control.hovered ? ColorPalette.contentSecondary : ColorPalette.content)
+        color: control.hovered ? ColorPalette.contentSecondary : ColorPalette.content
         text: control.text
         font: control.font
 
@@ -50,7 +46,9 @@ T.Button {
 
     background: Item {
         id: content
-        anchors.fill: parent
+        height: parent.height
+        width: parent.width
+        clip: false
 
         ShadowItem {
             anchors.fill: parent
@@ -63,7 +61,6 @@ T.Button {
             anchors.fill: parent
             hovered: control.hovered
             pressed: control.pressed
-            dangerous: control.dangerous
         }
 }
 }

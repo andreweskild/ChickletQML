@@ -62,14 +62,14 @@ T.ScrollBar {
 
         Rectangle {
             anchors.fill: parent
-            radius: 5
+            radius: 4
             color: ColorPalette.sunken
         }
         Rectangle {
             width: control.horizontal ? control.position * control.width + handle.width : parent.width
             height: control.vertical ? control.position * control.height + handle.height + 2 : parent.height
             color: ColorPalette.sunkenDark
-            radius: 5
+            radius: 4
         }
     }
 

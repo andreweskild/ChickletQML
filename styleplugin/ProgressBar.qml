@@ -12,7 +12,7 @@ T.ProgressBar {
     background: Rectangle {
         anchors.fill: parent
         color: ColorPalette.sunken
-        radius: 5
+        radius: 4
     }
 
 
@@ -22,7 +22,7 @@ T.ProgressBar {
         Rectangle {
             width: control.visualPosition * parent.width
             height: parent.height
-            radius: 5
+            radius: 4
             color: ColorPalette.sunkenDark
         }
     }

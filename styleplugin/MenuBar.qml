@@ -11,8 +11,10 @@ T.MenuBar {
                             contentWidth + leftPadding + rightPadding)
     implicitHeight: 20
 
-    padding: 8
-    spacing: 8
+    padding: 10
+    spacing: 10
+
+    hoverEnabled: true
 
 
     delegate: MenuBarItem { }

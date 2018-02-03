@@ -43,7 +43,7 @@ T.Dialog {
 
         Rectangle {
             anchors.fill: parent
-            radius: 5
+            radius: 4
             color: ColorPalette.window
         }
     }

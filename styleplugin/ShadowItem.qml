@@ -10,7 +10,7 @@ Item {
 
     property bool hidden: false;
     property bool hovered: false;
-    property real radius: 5;
+    property real radius: 4;
 
     implicitWidth: 20
     implicitHeight: 20
